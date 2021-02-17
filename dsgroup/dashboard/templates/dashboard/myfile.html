@@ -1,0 +1,364 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontent %}
+<div class="container">
+  <div class="row">
+
+    <form role="form" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      <div class="tab-content">
+        <div class="tab-pane active" role="tabpanel">
+          <fieldset></br>
+            <h1 class="text-center" id="personal">Personal Information</h1>
+            <div class="form-group">
+              <div class="col-sm-2 imgUp">
+                <div class="imagePreview"></div>
+                <label class="btn btn-primary">uploadFile
+                  <input type="file" name="profile" class="uploadFile img" value="" style="width: 0px;height: 0px;overflow: hidden;">
+                </label>
+              </div>
+              <div class="col-sm-10" id="parent">
+              <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="intern_id" name="intern_id" placeholder="Intern_Id" class="form-control" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="intern_name" name="intern_name" placeholder="Intern Name" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="email" name="email" placeholder="Email" class="form-control" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="phone_no" name="phone_no" placeholder="Phone Number" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-mobile"></i>
+                    </span>
+                    <input id="aadhar_no" name="aadhar_no" placeholder="Aadhaar Number" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-mobile"></i>
+                    </span>
+                    <input id="pan_card" name="pan_card" placeholder="Pan Card" class="form-control" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fab fa-gg-circle"></i>
+                    </span>
+                    <input id="blood_group" name="blood_group" placeholder="Blood Group*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-birthday-cake"></i>
+                    </span>
+                    <input type="date" id="date_of_birth" name="date_of_birth" placeholder="Date of Birth*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4 inputGroupContainer">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-venus-mars"></i>
+                    </span>
+                    <select class="select" name="gender" required>
+                      <option selected data-default disabled hidden>Choose gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-md-4">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="father_name" name="father_name" placeholder="Father's Name*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="father_occupation" name="father_occupation" placeholder="Father's Occupation*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-user"></i>
+                    </span>
+                    <input id="father_no" name="father_no" placeholder="Fathers_number *" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                
+
+              </div>
+
+              <div class="col-md-12">
+                <div class="col-md-4">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    <input id="city" name="city" placeholder="City*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    <input id="address" name="address" placeholder="Address*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-id-badge"></i>
+                    </span>
+                    <input id="pin_code" name="pin_code" placeholder="Pin Code*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-6">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                    <input id="state" name="state" placeholder="State*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                      <i class="fas fa-birthday-cake"></i>
+                    </span>
+                    <input type="date" id="join_date" name="join_date" placeholder="Joining Date*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                </br></br></br></br></br></br></br></br>
+              </div>
+              <h1 class="text-center" id="personal">Professional Details</h1></br></br></br></br>
+              <div class="col-sm-12">
+                <h3>High School</h3>
+                <div class="col-sm-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <input id="school_name" name="school_name" placeholder="School*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <input id="board" name="board" placeholder="Bord*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-gift"></i></i>
+                    </span>
+                    <input id="passing_year" name="passing_year" placeholder="Passing Year *" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <input name="school_marksheet" placeholder="school_marksheet*" class="form-control" required="true" value="" type="file">
+                  </div>
+                </div>
+                </br></br></br></br></br></br></br>
+              </div>
+
+
+              <div class="col-sm-12">
+               <h3>High Secondary School</h3>
+                <div class="col-sm-3">
+                  <div class="input-group" id="n1">
+                   <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <input id="high_school_name" name="high_school_name" placeholder="High School Name*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                     <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <input id="high_school_board" name="high_school_board" placeholder="High School Board*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                 <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-gift"></i></i>
+                    </span>
+                    <input id="high_school_passing_year" name="high_school_passing_year" placeholder="Passing Year *" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <input name="high_school_marksheet" placeholder="high_school_marksheet*" class="form-control" required="true" value="" type="file">
+                  </div>
+                </div>
+                </br></br></br></br></br></br></br>
+              </div>
+              <div class="col-sm-12">
+               <h3>Graduation Details</h3>
+                <div class="col-sm-3">
+                  <div class="input-group" id="n1">
+                   <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <input id="graduation_univercity" name="graduation_univercity" placeholder="University Name*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                     <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <input id="graduation_degree" name="graduation_degree" placeholder="Degree/Certification" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                 <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-gift"></i></i>
+                    </span>
+                    <input id="graduation_year" name="graduation_year" placeholder="Graduation Year*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <input name="graduation_marksheet" placeholder="graduation_marksheet*" class="form-control" required="true" value="" type="file">
+                  </div>
+                </div>
+              </br></br></br></br></br></br></br>
+              </div>
+
+
+              
+              <div class="col-sm-12">
+               <h3>Post Graduation Details</h3>
+                <div class="col-sm-3">
+                  <div class="input-group" id="n1">
+                   <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <input id="post_graduation_univercity" name="post_graduation_univercity" placeholder="University Name*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                     <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <input id="post_graduation_degree" name="post_graduation_degree" placeholder="Degree/Certification" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                 <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-gift"></i></i>
+                    </span>
+                    <input id="post_graduation_year" name="post_graduation_year" placeholder="Passing Year *" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <input name="post_graduation_marksheet" placeholder="post_graduation_marksheet*" class="form-control" required="true" value="" type="file">
+                  </div>
+                </div>
+                </br></br></br></br></br></br></br>
+              </div>
+
+
+
+              <div class="col-sm-12">
+               <h3>Other Degree/Chertification Details</h3>
+                <div class="col-sm-3">
+                  <div class="input-group" id="n1">
+                   <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <input id="other_univercity" name="other_univercity" placeholder="University Name*" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                     <span class="input-group-addon">
+                          <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    <input id="other_degree" name="other_degree" placeholder="Degree/Certification" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                 <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <span class="input-group-addon">
+                          <i class="fas fa-gift"></i></i>
+                    </span>
+                    <input id="other_year" name="other_year" placeholder="Passing Year *" class="form-control" required="true" value="" type="text">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="input-group" id="n1">
+                    <input name="other_marksheet" placeholder="other_marksheet*" class="form-control" required="true" value="" type="file">
+                  </div>
+                </div>
+
+              </div>
+              
+              
+              
+
+          </fieldset>
+
+          <ul class="list-inline pull-right">
+            <li>
+            <li><button type="submit" name="submit" class="btn btn-primary">submit</button></li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock maincontent %}

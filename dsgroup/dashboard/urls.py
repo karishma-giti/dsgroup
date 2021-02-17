@@ -10,8 +10,8 @@ urlpatterns = [
     
     path('',views.dashboard, name='dashboard'),
     path('register_intern/',views.register_intern, name='register_intern'),
-    # path('view_interns/',views.view_interns, name='view_interns'),
-    # path('interns_attendence/',views.interns_attendence, name='interns_attendence'),
+    path('view_interns/',views.view_interns, name='view_interns'),
+    path('interns_attendence/',views.interns_attendence, name='interns_attendence'),
     # path('intern_profile/<int:id>',views.intern_profile,name="intern_profile"),
     # path('edit_intern/<int:id>',views.edit_intern,name='edit_intern'),
     # path('manage_intern/<int:id>',views.manage_intern,name='manage_intern'),
