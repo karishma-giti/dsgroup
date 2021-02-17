@@ -1,0 +1,215 @@
+from django.shortcuts import render, redirect  
+from django.http import HttpResponse,HttpResponseRedirect
+from .models import Intern  
+
+
+
+
+# ###################intern#####################
+
+def dashboard(request):
+    return render(request,"dashboard/dashboard.html")
+
+def register_intern(request):
+    interns = Intern(request.POST,request.FILES)
+    if request.method =="POST":
+        intern_id=request.POST.get('intern_id')
+        profile=request.FILES.get('profile')
+        intern_name=request.POST.get('intern_name')
+        email=request.POST.get('email')
+        phone_no=request.POST.get('phone_no')
+        aadhar_no=request.POST.get('aadhar_no')
+        pan_card=request.POST.get('pan_card')
+        gender=request.POST.get('gender')
+        date_of_birth=request.POST.get('date_of_birth')
+        blood_group=request.POST.get('blood_group')
+        father_name=request.POST.get('father_name')
+        father_occupation=request.POST.get('father_occupation')
+        father_no=request.POST.get('father_no')
+        city=request.POST.get('city')
+        state = request.POST.get('state')
+        pin_code=request.POST.get('pin_code')
+        address=request.POST.get('address')
+        join_date=request.POST.get('join_date')
+
+        school_name=request.POST.get('school_name')
+        board=request.POST.get('board')
+        passing_year=request.POST.get('passing_year')
+        school_marksheet=request.POST.get('school_marksheet')
+
+        high_school_name=request.POST.get('high_school_name')
+        high_school_board=request.POST.get('high_school_board')
+        high_school_passing_year=request.POST.get('high_school_passing_year')
+        high_school_marksheet=request.FILES.get('high_school_marksheet')
+
+        graduation_univercity=request.POST.get('graduation_univercity')
+        graduation_degree=request.POST.get('graduation_degree')
+        graduation_year=request.POST.get('graduation_year')
+        graduation_marksheet=request.FILES.get('graduation_marksheet')
+
+        
+        post_graduation_univercity=request.POST.get('post_graduation_univercity')
+        post_graduation_degree=request.POST.get('post_graduation_degree')
+        post_graduation_year=request.POST.get('post_graduation_year')
+        post_graduation_marksheet=request.FILES.get(' post_graduation_marksheet')
+
+       
+        other_univercity =request.POST.get('other_univercity')
+        other_degree=request.POST.get('other_degree')
+        other_year=request.POST.get('other_year')
+        other_marksheet=request.FILES.get('other_marksheet')
+
+        Insertion=Intern(intern_id=intern_id,profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
+        pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
+        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date
+        ,school_name=school_name,board=board, passing_year=passing_year,school_marksheet=school_marksheet,high_school_name=high_school_name
+        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,high_school_marksheet=high_school_marksheet,
+        graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
+        graduation_marksheet=graduation_marksheet,post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
+        ,post_graduation_year=post_graduation_year,post_graduation_marksheet=post_graduation_marksheet,
+        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,other_marksheet=other_marksheet,state=state)
+        Insertion.save()
+        return render(request,"dashboard/register_intern.html")
+    else:
+        return render(request,"dashboard/register_intern.html")
+
+def view_interns(request):
+    return render(request,"dashboard/view_intern.html")
+    # data = Intern(request.GET)
+    # view_intern = Intern.objects.all()
+    # print(view_intern)
+    
+
+def intern_profile(request,id):
+    return render(request,"dashboard/intern_profile.html")
+    # view_intern = Intern.objects.filter(id=id)
+    # print(view_intern)
+    
+
+def interns_attendence(request):
+    return render(request,"dashboard/intern_attendence.html")
+
+# def edit_intern(request,id):
+#     interns = Intern.objects.get(id=id)
+#     print(interns)
+#     return render(request,"dashboard/edit_intern.html",{'edit_intern':interns})    
+
+# def manage_intern(request,id):
+#     interns = Intern.objects.get(id=id) 
+#     if request.method =="POST":
+#         interns.intern_id=request.POST.get('intern_id','')
+#         if "profile" in request.FILES:
+#             img=request.FILES["profile"]
+#             interns.profile =img
+#         interns.save()
+#         interns.intern_name=request.POST.get('intern_name','')
+#         interns.email=request.POST.get('email','')
+#         interns.phone_no=request.POST.get('phone_no','')
+#         interns.aadhar_no=request.POST.get('aadhar_no','')
+#         interns.pan_card=request.POST.get('pan_card','')
+#         interns.gender=request.POST.get('gender','')
+#         interns.date_of_birth=request.POST.get('date_of_birth','')
+#         interns.blood_group=request.POST.get('blood_group','')
+#         interns.father_name=request.POST.get('father_name','')
+#         interns.father_occupation=request.POST.get('father_occupation','')
+#         interns.father_no=request.POST.get('father_no','')
+#         interns.city=request.POST.get('city','')
+#         interns.state = request.POST.get('state','')
+#         interns.pin_code=request.POST.get('pin_code','')
+#         interns.address=request.POST.get('address','')
+#         interns.join_date=request.POST.get('join_date','')
+
+#         interns.school_name=request.POST.get('school_name','')
+#         interns.board=request.POST.get('board','')
+#         interns.passing_year=request.POST.get('passing_year','')
+#         if "school_marksheet" in request.FILES:
+#             img=request.FILES["school_marksheet"]
+#             interns.school_marksheet =img
+#         interns.save()
+
+#         interns.high_school_name=request.POST.get('high_school_name','')
+#         interns.high_school_board=request.POST.get('high_school_board','')
+#         interns.high_school_passing_year=request.POST.get('high_school_passing_year','')
+#         if "high_school_marksheet" in request.FILES:
+#             img=request.FILES["employee_photo"]
+#             interns.high_school_marksheet =img
+#         interns.save()
+
+#         interns.graduation_univercity=request.POST.get('graduation_univercity','')
+#         interns.graduation_degree=request.POST.get('graduation_degree','')
+#         interns.graduation_year=request.POST.get('graduation_year','')
+#         if "graduation_marksheet" in request.FILES:
+#             img=request.FILES["graduation_marksheet"]
+#             graduation_marksheet.graduation_marksheet =img
+#         interns.save()
+
+        
+#         interns.post_graduation_univercity=request.POST.get('post_graduation_univercity','')
+#         interns.post_graduation_degree=request.POST.get('post_graduation_degree','')
+#         interns.post_graduation_year=request.POST.get('post_graduation_year','')
+#         if "post_graduation_marksheet" in request.FILES:
+#             img=request.FILES["post_graduation_marksheet"]
+#             interns.post_graduation_marksheet =img
+#         interns.save()
+
+       
+#         interns.other_univercity =request.POST.get('other_univercity','')
+#         interns.other_degree=request.POST.get('other_degree','')
+#         interns.other_year=request.POST.get('other_year','')
+#         if "other_marksheet" in request.FILES:
+#             img=request.FILES["other_marksheet"]
+#             interns.employee_photo =img
+#         interns.save()
+#     return redirect('/dashboard/view_interns')
+
+
+# def remove_intern(request,id):
+#     interns = Intern.objects.get(id=id)
+#     print(interns)
+#     interns.delete()
+#     return redirect('/dashboard/view_interns')       
+
+# ###################traninees#####################
+
+def register_trainees(request):
+    return render(request,"dashboard/register_trainees.html")
+
+def view_trainees(request):
+    return render(request,"dashboard/view_trainees.html")
+
+def trainees_attendence(request):
+    return render(request,"dashboard/trainees_attendence.html")
+
+####################employee#####################    
+
+def register_employees(request):
+    return render(request,"dashboard/register_employees.html")
+
+def view_employees(request):
+    return render(request,"dashboard/view_employees.html")
+
+def employees_attendence(request):
+    return render(request,"dashboard/employees_attendence.html")
+
+
+####################payrol#####################  
+
+# payroll
+
+def add_salary(request):
+    return render(request,"dashboard/add_salary.html")
+
+def view_salary(request):
+    return render(request,"dashboard/view_salary.html")
+
+
+####################employee#####################  
+
+def register_staff(request):
+    return render(request,"dashboard/register_staff.html")
+
+def view_staff(request):
+    return render(request,"dashboard/view_staff.html")
+
+def staff_attendence(request):
+    return render(request,"dashboard/staff_attendence.html")
