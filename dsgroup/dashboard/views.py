@@ -35,7 +35,7 @@ def register_intern(request):
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
         passing_year=request.POST.get('passing_year')
-        school_marksheet=request.POST.get('school_marksheet')
+        school_marksheet=request.FILES.get('school_marksheet')
 
         high_school_name=request.POST.get('high_school_name')
         high_school_board=request.POST.get('high_school_board')
@@ -51,7 +51,7 @@ def register_intern(request):
         post_graduation_univercity=request.POST.get('post_graduation_univercity')
         post_graduation_degree=request.POST.get('post_graduation_degree')
         post_graduation_year=request.POST.get('post_graduation_year')
-        post_graduation_marksheet=request.FILES.get(' post_graduation_marksheet')
+        post_graduation_marksheet=request.FILES.get('post_graduation_marksheet')
 
        
         other_univercity =request.POST.get('other_univercity')
