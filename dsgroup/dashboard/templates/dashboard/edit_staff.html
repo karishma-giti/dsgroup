@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontent %}
+
+<style>
+    label {
+    font-weight: 600;
+    color: #555;
+}
+.container
+{
+    width:800px;
+  
+}
+.form-control
+{
+    background-color: #ccc;
+}
+
+</style>
+<div class="main">
+
+    <section class="signup">
+        <!-- <img src="images/signup-bg.jpg" alt=""> -->
+        <div class="container">
+            <form method="POST" action="{% url 'manage_staff' staff.id %}" >
+{% csrf_token %}
+                <h2 class="text-center">Personal Details</h2>
+            <div class="row jumbotron" style="background-color:white;">
+                <div class="col-sm-6 form-group">
+                    <label for="name-f">Staff Id</label>
+                    <input type="text" class="form-control" name="staff_id" id=" staff_id" placeholder="Staff Id" value="{{staff.staff_id}}" >
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="name-l"> Name</label>
+                    <input type="text" class="form-control" name="staff_name" id="staff_name" placeholder="Name" value="{{staff.staff_name}}" >
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="email">Phone Number</label>
+                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number" value="{{staff.phone_no}}">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="address-1">Aadhaar Number</label>
+                    <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhaar Number" value="{{staff.aadhar_no}}">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="address-1">Role</label>
+                    <input type="text" class="form-control" name="role" id="role" placeholder="Aadhaar Number" value="{{staff.role}}">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="Date">Join Date</label>
+                    <input type="Date" name="join_date" class="form-control" id="join_date" placeholder="Join Date" value="{{staff.join_date}}">
+                </div>
+                
+                
+    
+                <div class="col-sm-12 form-group mb-0">
+                   <button class="btn btn-primary float-right" type="submit">Submit</button>
+                </div>
+                
+            </div>
+            </form>
+        </div>
+    
+    
+
+{% endblock maincontent %}
