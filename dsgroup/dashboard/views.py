@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern  
+from .models import Intern,Staff  
 
 
 
@@ -207,10 +207,48 @@ def view_salary(request):
 ####################employee#####################  
 
 def register_staff(request):
-    return render(request,"dashboard/register_staff.html")
+    if request.method =="POST":
+        print(request.POST)
+        staff_id=request.POST['staff_id']
+        staff_name=request.POST['staff_name']
+        phone_no=request.POST['phone_no']
+        aadhar_no=request.POST['aadhar_no']
+        role=request.POST['role']
+        join_date=request.POST['join_date']
 
+        Insertion=Staff(staff_id=staff_id,staff_name=staff_name, phone_no= phone_no,aadhar_no=aadhar_no,role=role,join_date=join_date)
+        Insertion.save()
+        return render(request,"dashboard/register_staff.html")
+    else:
+        return render(request,"dashboard/register_staff.html")
+    
+       
 def view_staff(request):
-    return render(request,"dashboard/view_staff.html")
+    data = Staff.objects.all()
+    return render(request,"dashboard/view_staff.html",{'data':data})
+
+def delete_staff(request, id):
+    staff=Staff.objects.filter(pk=id)
+    staff.delete()
+    return HttpResponseRedirect("/dashboard/view_staff")
+
+
+def edit_staff(request,id):
+    staff = Staff.objects.get(id=id)
+    print(staff)
+    return render(request,"dashboard/edit_staff.html",{'staff':staff})
+
+def manage_staff(request,id):
+    staff = Staff.objects.get(id=id)
+    if request.method == "POST":
+        staff.staff_id = request.POST.get('staff_id','') 
+        staff.staff_name = request.POST.get('staff_name','') 
+        staff.phone_no = request.POST.get('phone_no','')
+        staff.aadhar_no = request.POST.get('aadhar_no','')
+        staff.role = request.POST.get('role','')
+        staff.join_date = request.POST.get('join_date','')
+        staff.save()
+    return redirect('/dashboard/view_staff/')
 
 def staff_attendence(request):
     return render(request,"dashboard/staff_attendence.html")
