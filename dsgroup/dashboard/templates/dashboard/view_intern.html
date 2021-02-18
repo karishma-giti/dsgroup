@@ -27,7 +27,7 @@
       <td>{{intern.email}}</td>
       <td>{{intern.phone_no}}</td>
       <td>{{intern.join_date}}</td>
-      <td><a href="{% url 'intern_profile' intern.id %}">view profile</a></td>
+      <td><a   class="btn btn-secondary" href="{% url 'intern_profile' intern.id %}">view profile</a></td>
       <td>
         <a href="{% url 'edit_intern' intern.id %}">Update</a>
         <button type="button" class="btn btn-danger" onclick="get_id({{intern.id}})" data-toggle="modal" data-target="#example" style="width:70px;">
