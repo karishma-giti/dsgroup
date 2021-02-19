@@ -21,6 +21,10 @@ urlpatterns = [
     path('register_trainees/',views.register_trainees, name='register_trainees'),
     path('view_trainees/',views.view_trainees, name='view_trainees'),
     path('trainees_attendence/',views.trainees_attendence, name='trainees_attendence'),
+    # path('trainees_profile/<int:id>',views.trainees_profile,name="trainees_profile"),
+    path('edit_trainees/<int:id>',views.edit_trainees,name='edit_trainees'),
+    path('manage_trainees/<int:id>',views.manage_trainees,name='manage_trainees'),
+    path('remove_trainees/',views.remove_trainees,name='remove_trainees'),
 
     path('register_employees/',views.register_employees, name='register_employees'),
     path('view_employees/',views.view_employees, name='view_employees'),

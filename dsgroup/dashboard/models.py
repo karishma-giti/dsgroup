@@ -120,7 +120,7 @@ class Trainer(models.Model):
 
 class Trainee(models.Model):
     trainee_id= models.CharField(max_length=20,unique=True)
-    Profile = models.FileField(upload_to='media/',blank=True,null=True)  
+    profile = models.FileField(upload_to='media/',blank=True,null=True)  
     trainee_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
@@ -137,30 +137,31 @@ class Trainee(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
+
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
-    percent = models.CharField(max_length=100,blank=True,null=True)
     passing_year = models.IntegerField() 
     school_marksheet = models.FileField(upload_to='media/',blank=True,null=True) 
+
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
     high_school_passing_year =models.IntegerField(blank=True,null=True) 
-    high_school_percent = models.CharField(max_length=100,blank=True,null=True)
     high_school_marksheet =models.FileField(upload_to='media/',blank=True,null=True) 
+
     graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
     graduation_percent = models.CharField(max_length=100,blank=True,null=True)
     graduation_year =models.IntegerField(blank=True,null=True) 
     graduation_marksheet = models.FileField(upload_to='media/',blank=True,null=True) 
+
     post_graduation_degree = models.CharField(max_length=100,blank=True,null=True)
     post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     post_graduation_year = models.IntegerField(blank=True,null=True) 
-    post_graduation_percent = models.CharField(max_length=100,blank=True,null=True)
     post_graduation_marksheet = models.FileField(upload_to='media/',blank=True,null=True) 
+
     other_degree = models.CharField(max_length=100,blank=True,null=True)
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
     other_year = models.IntegerField(blank=True,null=True) 
-    other_percent = models.CharField(max_length=100,blank=True,null=True)
     other_marksheet = models.FileField(upload_to='media/',blank=True,null=True) 
  
 
