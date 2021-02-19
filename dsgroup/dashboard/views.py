@@ -164,9 +164,10 @@ def manage_intern(request,id):
     return redirect('/dashboard/view_interns')
 
 
-def remove_intern(request,id):
-    interns = Intern.objects.get(id=id)
-    print(interns)
+def remove_intern(request):
+    Id=request.POST['inter_id']
+    print(Id)
+    interns = Intern.objects.get(pk=Id)
     interns.delete()
     return redirect('/dashboard/view_interns')       
 
@@ -251,4 +252,4 @@ def manage_staff(request,id):
     return redirect('/dashboard/view_staff/')
 
 def staff_attendence(request):
-    return render(request,"dashboard/staff_attendence.html")
+    return render(request,"/dashboard/staff_attendence.html")
