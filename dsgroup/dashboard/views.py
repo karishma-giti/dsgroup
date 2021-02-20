@@ -87,8 +87,15 @@ def intern_profile(request,id):
     return render(request,"dashboard/intern_profile.html")
     
 
-def interns_attendence(request):
-    return render(request,"dashboard/intern_attendence.html")
+def interns_attendance(request):
+    return render(request,"dashboard/interns_attendance.html")
+
+def interns_attendance_date(request):
+    return render(request,"dashboard/interns_attendance_date.html")  
+
+def interns_attendance_edit(request):
+    return render(request,"dashboard/interns_attendance_edit.html")
+  
 
 def edit_intern(request,id):
     interns = Intern.objects.get(id=id)

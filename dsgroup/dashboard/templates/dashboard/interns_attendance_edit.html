@@ -1,0 +1,40 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontent %}
+<div class="container" style="width:80%; margin-top: 8%; ">
+<div class="card">
+    <div class="card-header"style="height:88px;">
+        <h6 style="text-align:center;">Date:20-02-2021 </h6>
+            <a class="btn btn-info float-right"  href="{% url 'interns_attendance_date' %}">Back</a>
+            
+            </div>
+            <div class="card-body">
+<table  class="table table-striped">
+    <thead>
+      <tr >
+        <th style="width:30%" >ID</th>
+        <th style="width:40%">Intern Name</th>
+        <th styele="width:30%">Attendance</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Mark</td>
+        <td>
+            <input type="radio" name="attend[]" value="present">&nbsp;P
+            &nbsp;
+            <input type="radio" name="attend[]" value="absent">&nbsp;A
+    	</td>
+      </tr>
+      <tr>
+        <td colspan="4" class="text-center">
+            <input type="submit" name="submit" class="btn btn-primary px-5" value="Submit" style="height:35px;font-size:15px;">
+        </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+{% endblock maincontent %}
