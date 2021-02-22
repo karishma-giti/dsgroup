@@ -87,8 +87,15 @@ def intern_profile(request,id):
     return render(request,"dashboard/intern_profile.html")
     
 
-def interns_attendence(request):
-    return render(request,"dashboard/intern_attendence.html")
+def interns_attendance(request):
+    return render(request,"dashboard/interns_attendance.html")
+
+def interns_attendance_date(request):
+    return render(request,"dashboard/interns_attendance_date.html")  
+
+def interns_attendance_edit(request):
+    return render(request,"dashboard/interns_attendance_edit.html")
+  
 
 def edit_intern(request,id):
     interns = Intern.objects.get(id=id)
@@ -491,4 +498,8 @@ def manage_staff(request,id):
     return redirect('/dashboard/view_staff/')
 
 def staff_attendence(request):
+<<<<<<< HEAD
     return render(request,"dashboard/staff_attendence.html")
+=======
+    return render(request,"/dashboard/staff_attendence.html")
+>>>>>>> 87e212c17bc6139369d2407d02d2f5a808e7b5d3

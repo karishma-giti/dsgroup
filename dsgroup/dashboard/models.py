@@ -54,12 +54,19 @@ class Intern(models.Model):
     def __str__(self): 
          return "intern_name"
 
+class Intern_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
+
+    def __str__(self): 
+         return "id"
+
 
 
 class Trainer(models.Model):  
-    Trainer_id= models.CharField(max_length=20,unique=True,null=True)
+    trainer_id= models.CharField(max_length=20,unique=True,null=True)
     Profile = models.FileField(upload_to='media/',blank=True,null=True)  
-    Trainer_name = models.CharField(max_length=100)  
+    trainer_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
@@ -114,7 +121,13 @@ class Trainer(models.Model):
     def __str__(self): 
          return "Trainer_name"
 
+class Trainer_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
 
+    def __str__(self): 
+         return "id"
+ 
 
 
 class Trainee(models.Model):
@@ -169,7 +182,17 @@ class Trainee(models.Model):
          return "trainee_name"
 
 
+<<<<<<< HEAD
 
+=======
+class Trainee_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
+
+    def __str__(self): 
+         return "id"
+ 
+>>>>>>> 87e212c17bc6139369d2407d02d2f5a808e7b5d3
 
 class Employee(models.Model):  
     emp_id= models.CharField(max_length=20,unique=True,null=True,default=True)
@@ -234,6 +257,16 @@ class Employee(models.Model):
          return "emp_name"
 
 
+class Employee_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
+
+    def __str__(self): 
+         return "id"
+ 
+ 
+
+
 class Staff(models.Model):  
     staff_name = models.CharField(max_length=100)  
     phone_no = models.IntegerField() 
@@ -243,3 +276,10 @@ class Staff(models.Model):
     
     def __str__(self): 
          return "staff_name"
+
+class Staff_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
+
+    def __str__(self): 
+         return "id"

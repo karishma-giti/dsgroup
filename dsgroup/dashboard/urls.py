@@ -11,7 +11,9 @@ urlpatterns = [
     path('',views.dashboard, name='dashboard'),
     path('register_intern/',views.register_intern, name='register_intern'),
     path('view_interns/',views.view_interns, name='view_interns'),
-    path('interns_attendence/',views.interns_attendence, name='interns_attendence'),
+    path('interns_attendance/',views.interns_attendance, name='interns_attendance'),
+    path('interns_attendance_date/',views.interns_attendance_date, name='interns_attendance_date'),
+    path('interns_attendance_edit/',views.interns_attendance_edit, name='interns_attendance_edit'),
     path('intern_profile/<int:id>',views.intern_profile,name="intern_profile"),
     path('edit_intern/<int:id>',views.edit_intern,name='edit_intern'),
     path('manage_intern/<int:id>',views.manage_intern,name='manage_intern'),
@@ -39,5 +41,5 @@ urlpatterns = [
     path('delete_staff/<int:id>',views.delete_staff,name='delete_staff'),
     path('edit_staff/<int:id>',views.edit_staff,name="edit_staff"),
     path('manage_staff/<int:id>', views.manage_staff,name="manage_staff"),
-    path('staff_attendence',views.staff_attendence, name='staff_attendence'),
+   path('staff_attendence/',views.staff_attendence, name='staff_attendence'),
 ]
