@@ -37,6 +37,11 @@
 	<link rel="stylesheet" type="text/css" href="/static/assets/css2/jquery-ui.min.css">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="/static/assets/css2/style.css"/>
+
+
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   
 </head>
 
@@ -195,6 +200,38 @@
 
               </ul>
             </li>
+                        <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user-tie"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                <p>
+                  TRAINER
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{% url 'register_employees' %}" class="nav-link">
+                    <i class="fad fa-dot-circle"></i>&nbsp;&nbsp;
+                    <p>REGISTER&nbsp;&nbsp;  TRAINER</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'view_employees' %}" class="nav-link">
+                    <i class="fad fa-dot-circle"></i>&nbsp;&nbsp;
+                    <p>VIEW &nbsp;&nbsp; TRAINER</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="{% url 'employees_attendence' %}" class="nav-link">
+                    <i class="fad fa-dot-circle"></i>&nbsp;&nbsp;
+                    <p>ATTENDANCE</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fas fa-user-tie"></i>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -226,6 +263,7 @@
 
               </ul>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="fas fa-rupee-sign"></i>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -349,6 +387,10 @@
 	<script src="/static/assets/js2/jquery.steps.js"></script>
 	<script src="/static/assets/js2/jquery-ui.min.js"></script>
 	<script src="/static/assets/js2/main.js"></script>
+
+
+
+  
 
 
  
