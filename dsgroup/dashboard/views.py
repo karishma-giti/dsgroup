@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Employee  
+from .models import Intern,Staff,Trainee,Employee,Trainer
 
 
 
 
-# ###################intern#####################
+############################################################## Intern ########################################################  
+
 
 def dashboard(request):
     return render(request,"dashboard/dashboard.html")
@@ -13,7 +14,6 @@ def dashboard(request):
 def register_intern(request):
     interns = Intern(request.POST,request.FILES)
     if request.method =="POST":
-        intern_id=request.POST.get('intern_id')
         profile=request.FILES.get('profile')
         intern_name=request.POST.get('intern_name')
         email=request.POST.get('email')
@@ -35,43 +35,38 @@ def register_intern(request):
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
         passing_year=request.POST.get('passing_year')
-        school_marksheet=request.FILES.get('school_marksheet')
 
         high_school_name=request.POST.get('high_school_name')
         high_school_board=request.POST.get('high_school_board')
         high_school_passing_year=request.POST.get('high_school_passing_year')
-        high_school_marksheet=request.FILES.get('high_school_marksheet')
 
         graduation_univercity=request.POST.get('graduation_univercity')
         graduation_degree=request.POST.get('graduation_degree')
         graduation_year=request.POST.get('graduation_year')
-        graduation_marksheet=request.FILES.get('graduation_marksheet')
-
         
         post_graduation_univercity=request.POST.get('post_graduation_univercity')
         post_graduation_degree=request.POST.get('post_graduation_degree')
         post_graduation_year=request.POST.get('post_graduation_year')
-        post_graduation_marksheet=request.FILES.get('post_graduation_marksheet')
-
-       
+    
         other_univercity =request.POST.get('other_univercity')
         other_degree=request.POST.get('other_degree')
         other_year=request.POST.get('other_year')
-        other_marksheet=request.FILES.get('other_marksheet')
 
-        Insertion=Intern(intern_id=intern_id,profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
+        Insertion=Intern(profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
         father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date
-        ,school_name=school_name,board=board, passing_year=passing_year,school_marksheet=school_marksheet,high_school_name=high_school_name
-        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,high_school_marksheet=high_school_marksheet,
+        ,school_name=school_name,board=board, passing_year=passing_year,high_school_name=high_school_name
+        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
-        graduation_marksheet=graduation_marksheet,post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
-        ,post_graduation_year=post_graduation_year,post_graduation_marksheet=post_graduation_marksheet,
-        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,other_marksheet=other_marksheet,state=state)
+        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
+        ,post_graduation_year=post_graduation_year,
+        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
         return render(request,"dashboard/register_intern.html")
     else:
         return render(request,"dashboard/register_intern.html")
+
+################ view intern ##################      
 
 def view_interns(request):
     data = Intern(request.GET)
@@ -80,7 +75,7 @@ def view_interns(request):
     return render(request,"dashboard/view_intern.html",{'view_intern':interns} )
     
     
-
+################ intern profile##################  
 def intern_profile(request,id):
     interns = Intern.objects.filter(id=id)
     print(interns)
@@ -96,16 +91,17 @@ def interns_attendance_date(request):
 def interns_attendance_edit(request):
     return render(request,"dashboard/interns_attendance_edit.html")
   
-
+################ edit intern ##################  
 def edit_intern(request,id):
     interns = Intern.objects.get(id=id)
     print(interns)
-    return render(request,"dashboard/edit_intern.html",{'edit_intern':interns})    
+    return render(request,"dashboard/edit_intern.html",{'edit_intern':interns}) 
 
+
+################ update intern ##################  
 def manage_intern(request,id):
     interns = Intern.objects.get(id=id) 
     if request.method =="POST":
-        interns.intern_id=request.POST.get('intern_id','')
         if "profile" in request.FILES:
             img=request.FILES["profile"]
             interns.profile =img
@@ -130,47 +126,28 @@ def manage_intern(request,id):
         interns.school_name=request.POST.get('school_name','')
         interns.board=request.POST.get('board','')
         interns.passing_year=request.POST.get('passing_year','')
-        if "school_marksheet" in request.FILES:
-            img=request.FILES["school_marksheet"]
-            interns.school_marksheet =img
-        interns.save()
-
+        
         interns.high_school_name=request.POST.get('high_school_name','')
         interns.high_school_board=request.POST.get('high_school_board','')
         interns.high_school_passing_year=request.POST.get('high_school_passing_year','')
-        if "high_school_marksheet" in request.FILES:
-            img=request.FILES["employee_photo"]
-            interns.high_school_marksheet =img
-        interns.save()
-
+        
         interns.graduation_univercity=request.POST.get('graduation_univercity','')
         interns.graduation_degree=request.POST.get('graduation_degree','')
         interns.graduation_year=request.POST.get('graduation_year','')
-        if "graduation_marksheet" in request.FILES:
-            img=request.FILES["graduation_marksheet"]
-            graduation_marksheet.graduation_marksheet =img
-        interns.save()
-
+        
         
         interns.post_graduation_univercity=request.POST.get('post_graduation_univercity','')
         interns.post_graduation_degree=request.POST.get('post_graduation_degree','')
         interns.post_graduation_year=request.POST.get('post_graduation_year','')
-        if "post_graduation_marksheet" in request.FILES:
-            img=request.FILES["post_graduation_marksheet"]
-            interns.post_graduation_marksheet =img
-        interns.save()
-
+       
        
         interns.other_univercity =request.POST.get('other_univercity','')
         interns.other_degree=request.POST.get('other_degree','')
         interns.other_year=request.POST.get('other_year','')
-        if "other_marksheet" in request.FILES:
-            img=request.FILES["other_marksheet"]
-            interns.employee_photo =img
         interns.save()
     return redirect('/dashboard/view_interns')
 
-
+################ delete intern ##################  
 def remove_intern(request):
     Id=request.POST['inter_id']
     print(Id)
@@ -178,12 +155,12 @@ def remove_intern(request):
     interns.delete()
     return redirect('/dashboard/view_interns')       
 
-# ###################traninees#####################
+############################################################## employee departmenet ########################################################  
+
 
 def register_trainees(request):
     trainee = Trainee(request.POST,request.FILES)
     if request.method =="POST":
-        trainee_id=request.POST.get('trainee_id')
         profile=request.FILES.get('profile')
         trainee_name=request.POST.get('trainee_name')
         email=request.POST.get('email')
@@ -205,43 +182,38 @@ def register_trainees(request):
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
         passing_year=request.POST.get('passing_year')
-        school_marksheet=request.FILES.get('school_marksheet')
 
         high_school_name=request.POST.get('high_school_name')
         high_school_board=request.POST.get('high_school_board')
         high_school_passing_year=request.POST.get('high_school_passing_year')
-        high_school_marksheet=request.FILES.get('high_school_marksheet')
 
         graduation_univercity=request.POST.get('graduation_univercity')
         graduation_degree=request.POST.get('graduation_degree')
         graduation_year=request.POST.get('graduation_year')
-        graduation_marksheet=request.FILES.get('graduation_marksheet')
-
         
         post_graduation_univercity=request.POST.get('post_graduation_univercity')
         post_graduation_degree=request.POST.get('post_graduation_degree')
         post_graduation_year=request.POST.get('post_graduation_year')
-        post_graduation_marksheet=request.FILES.get('post_graduation_marksheet')
-
        
         other_univercity =request.POST.get('other_univercity')
         other_degree=request.POST.get('other_degree')
         other_year=request.POST.get('other_year')
-        other_marksheet=request.FILES.get('other_marksheet')
 
-        Insertion=Trainee(trainee_id=trainee_id,profile=profile, trainee_name= trainee_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
+        Insertion=Trainee(profile=profile, trainee_name= trainee_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
         father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date
-        ,school_name=school_name,board=board, passing_year=passing_year,school_marksheet=school_marksheet,high_school_name=high_school_name
-        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,high_school_marksheet=high_school_marksheet,
+        ,school_name=school_name,board=board, passing_year=passing_year,high_school_name=high_school_name
+        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
-        graduation_marksheet=graduation_marksheet,post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
-        ,post_graduation_year=post_graduation_year,post_graduation_marksheet=post_graduation_marksheet,
-        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,other_marksheet=other_marksheet,state=state)
+        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
+        ,post_graduation_year=post_graduation_year,
+        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
         return render(request,"dashboard/register_trainees.html")
     else:
         return render(request,"dashboard/register_trainees.html")
+
+################ view trainees ##################          
 
 def view_trainees(request):
     data = Trainee(request.GET)
@@ -256,16 +228,17 @@ def view_trainees(request):
 #     return render(request,"dashboard/intern_profile.html")
         
 
-
+################ edit trainees ##################  
 def edit_trainees(request,id):
     trainees = Trainee.objects.get(id=id)
     print(trainees)
-    return render(request,"dashboard/edit_trainees.html",{'edit_trainees':trainees})    
+    return render(request,"dashboard/edit_trainees.html",{'edit_trainees':trainees})  
 
+
+################ update trainees ##################  
 def manage_trainees(request,id):
     trainees = Trainee.objects.get(id=id) 
     if request.method =="POST":
-        trainees.trainee_id=request.POST.get('trainee_id','')
         if "profile" in request.FILES:
             img=request.FILES["profile"]
             interns.profile =img
@@ -290,46 +263,28 @@ def manage_trainees(request,id):
         trainees.school_name=request.POST.get('school_name','')
         trainees.board=request.POST.get('board','')
         trainees.passing_year=request.POST.get('passing_year','')
-        if "school_marksheet" in request.FILES:
-            img=request.FILES["school_marksheet"]
-            trainees.school_marksheet =img
-        trainees.save()
 
         trainees.high_school_name=request.POST.get('high_school_name','')
         trainees.high_school_board=request.POST.get('high_school_board','')
         trainees.high_school_passing_year=request.POST.get('high_school_passing_year','')
-        if "high_school_marksheet" in request.FILES:
-            img=request.FILES["employee_photo"]
-            trainees.high_school_marksheet =img
-        trainees.save()
-
+    
         trainees.graduation_univercity=request.POST.get('graduation_univercity','')
         trainees.graduation_degree=request.POST.get('graduation_degree','')
         trainees.graduation_year=request.POST.get('graduation_year','')
-        if "graduation_marksheet" in request.FILES:
-            img=request.FILES["graduation_marksheet"]
-            trainees.graduation_marksheet =img
-        trainees.save()
-
         
         trainees.post_graduation_univercity=request.POST.get('post_graduation_univercity','')
         trainees.post_graduation_degree=request.POST.get('post_graduation_degree','')
         trainees.post_graduation_year=request.POST.get('post_graduation_year','')
-        if "post_graduation_marksheet" in request.FILES:
-            img=request.FILES["post_graduation_marksheet"]
-            trainees.post_graduation_marksheet =img
-        trainees.save()
 
        
         trainees.other_univercity =request.POST.get('other_univercity','')
         trainees.other_degree=request.POST.get('other_degree','')
         trainees.other_year=request.POST.get('other_year','')
-        if "other_marksheet" in request.FILES:
-            img=request.FILES["other_marksheet"]
-            trainees.employee_photo =img
         trainees.save()
     return redirect('/dashboard/view_trainees')
 
+
+################ delete trainees ##################  
 def remove_trainees(request):
     Id=request.POST['trainee_id']
     print(Id)
@@ -338,17 +293,15 @@ def remove_trainees(request):
     return redirect('/dashboard/view_trainees')       
 
 
-
-
+################ trainees attendence ##################  
 def trainees_attendence(request):
     return render(request,"dashboard/trainees_attendence.html")
 
-####################employee#####################    
+############################################################## employee departmenet ########################################################  
 
 def register_employees(request):
     employee = Employee(request.POST,request.FILES)
     if request.method =="POST":
-        emp_id=request.POST.get('emp_id')
         profile=request.FILES.get('profile')
         emp_name=request.POST.get('emp_name')
         email=request.POST.get('email')
@@ -370,29 +323,24 @@ def register_employees(request):
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
         passing_year=request.POST.get('passing_year')
-        school_marksheet=request.FILES.get('school_marksheet')
 
         high_school_name=request.POST.get('high_school_name')
         high_school_board=request.POST.get('high_school_board')
         high_school_passing_year=request.POST.get('high_school_passing_year')
-        high_school_marksheet=request.FILES.get('high_school_marksheet')
 
         graduation_univercity=request.POST.get('graduation_univercity')
         graduation_degree=request.POST.get('graduation_degree')
         graduation_year=request.POST.get('graduation_year')
-        graduation_marksheet=request.FILES.get('graduation_marksheet')
 
         
         post_graduation_univercity=request.POST.get('post_graduation_univercity')
         post_graduation_degree=request.POST.get('post_graduation_degree')
         post_graduation_year=request.POST.get('post_graduation_year')
-        post_graduation_marksheet=request.FILES.get('post_graduation_marksheet')
 
        
         other_univercity =request.POST.get('other_univercity')
         other_degree=request.POST.get('other_degree')
         other_year=request.POST.get('other_year')
-        other_marksheet=request.FILES.get('other_marksheet')
 
 
         skill = request.POST.getlist(('skill[]'))
@@ -416,15 +364,15 @@ def register_employees(request):
         joining_date = request.POST.get('joining_date')
         living_date = request.POST.get('living_date')
 
-        Insertion=Employee(emp_id=emp_id,profile=profile, emp_name= emp_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
+        Insertion=Employee(profile=profile, emp_name= emp_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
         father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date,
-        school_name=school_name,board=board,passing_year=passing_year,school_marksheet=school_marksheet,high_school_name=high_school_name,
-        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,high_school_marksheet=high_school_marksheet,
+        school_name=school_name,board=board,passing_year=passing_year,high_school_name=high_school_name,
+        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
-        graduation_marksheet=graduation_marksheet,post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
-        post_graduation_year=post_graduation_year,post_graduation_marksheet=post_graduation_marksheet,
-        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,other_marksheet=other_marksheet,state=state,skill=skill,position=position,
+        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
+        post_graduation_year=post_graduation_year,
+        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state,skill=skill,position=position,
         experience=experience,company_name=company_name,designation=designation,contact_no=contact_no,emails=emails,refference=refference,
         relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
         Insertion.save()
@@ -433,16 +381,298 @@ def register_employees(request):
     else:
         return render(request,"dashboard/register_employees.html")
 
-def view_employees(request):
-    return render(request,"dashboard/view_employees.html")
 
+################ view employees ##################  
+def view_employees(request):
+    data = Employee(request.GET)
+    employees = Employee.objects.all()
+    print(employees)
+    return render(request,"dashboard/view_employees.html",{'view_employees':employees} )
+
+
+################ employees attendence ################## 
 def employees_attendence(request):
     return render(request,"dashboard/employees_attendence.html")
 
 
-####################payrol#####################  
+################ edit employees ################## 
+def edit_employees(request,id):
+    employees = Employee.objects.get(id=id)
+    skills=list(employees.skill.split(","))
+    positions=list(employees.position.split(","))
+    experiences=list(employees.experience.split(","))
+    print(employees)
+    skill_info=zip(skills,positions,experiences)
+    print(type(skill_info))
+    return render(request,"dashboard/edit_employees.html",{'edit_employees':employees,'skills':skill_info})
 
-# payroll
+################ manage employees ################## 
+def manage_employees(request,id):
+    employee = Employee.objects.get(id=id) 
+    if request.method =="POST":
+        employee.profile=request.FILES.get('profile','')
+        employee.emp_name=request.POST.get('emp_name','')
+        employee.email=request.POST.get('email','')
+        employee.phone_no=request.POST.get('phone_no','')
+        employee.aadhar_no=request.POST.get('aadhar_no','')
+        employee.pan_card=request.POST.get('pan_card','')
+        employee.gender=request.POST.get('gender','')
+        employee.date_of_birth=request.POST.get('date_of_birth','')
+        employee.blood_group=request.POST.get('blood_group','')
+        employee.father_name=request.POST.get('father_name','')
+        employee.father_occupation=request.POST.get('father_occupation','')
+        employee.father_no=request.POST.get('father_no','')
+        employee.city=request.POST.get('city','')
+        employee.state = request.POST.get('state','')
+        employee.pin_code=request.POST.get('pin_code','')
+        employee.address=request.POST.get('address','')
+        employee.join_date=request.POST.get('join_date','')
+
+        employee.school_name=request.POST.get('school_name','')
+        employee.board=request.POST.get('board','')
+        employee.passing_year=request.POST.get('passing_year','')
+
+
+        employee.high_school_name=request.POST.get('high_school_name','')
+        employee.high_school_board=request.POST.get('high_school_board','')
+        employee.high_school_passing_year=request.POST.get('high_school_passing_year','')
+
+        employee.graduation_univercity=request.POST.get('graduation_univercity','')
+        employee.graduation_degree=request.POST.get('graduation_degree','')
+        employee.graduation_year=request.POST.get('graduation_year','')
+
+        
+        employee.post_graduation_univercity=request.POST.get('post_graduation_univercity','')
+        employee.post_graduation_degree=request.POST.get('post_graduation_degree','')
+        employee.post_graduation_year=request.POST.get('post_graduation_year','')
+        
+
+        employee.other_univercity =request.POST.get('other_univercity','')
+        employee.other_degree=request.POST.get('other_degree','')
+        employee.other_year=request.POST.get('other_year','')
+
+
+        employee.skill = request.POST.getlist(('skill[]'))
+        employee.skill=','.join(employee.skill)
+        print(employee.skill)
+        employee.position = request.POST.getlist(str('position[]'))
+        employee.position=','.join( employee.position)
+
+        print( employee.position)
+        employee.experience = request.POST.getlist(str('experience[]'))
+        employee.experience=','.join(employee.experience)
+        print(employee.experience)
+
+        employee.company_name = request.POST.get('company_name','')
+        employee.designation =request.POST.get('designation','')
+        employee.contact_no = request.POST.get('contact_no','')
+        employee.emails = request.POST.get('emails','')
+        employee.refference = request.POST.get('refference','')
+        employee.relationships = request.POST.get('relationships','')
+        employee.belongs_department= request.POST.get('belongs_department','')
+        employee.joining_date = request.POST.get('joining_date','')
+        employee.living_date = request.POST.get('living_date','')
+        employee.save()
+    return redirect('/dashboard/view_employees')
+
+################ delete employees ################## 
+def remove_employees(request):
+    Id=request.POST['employee_id']
+    print(Id)
+    employees = Employee.objects.get(pk=Id)
+    employees.delete()
+    return redirect('/dashboard/view_employees')       
+
+
+
+
+############################################################## employee departmenet ########################################################  
+
+def register_trainer(request):
+    trainer = Trainer(request.POST,request.FILES)
+    if request.method =="POST":
+        profile=request.FILES.get('profile')
+        trainer_name=request.POST.get('trainer_name')
+        email=request.POST.get('email')
+        phone_no=request.POST.get('phone_no')
+        aadhar_no=request.POST.get('aadhar_no')
+        pan_card=request.POST.get('pan_card')
+        gender=request.POST.get('gender')
+        date_of_birth=request.POST.get('date_of_birth')
+        blood_group=request.POST.get('blood_group')
+        father_name=request.POST.get('father_name')
+        father_occupation=request.POST.get('father_occupation')
+        father_no=request.POST.get('father_no')
+        city=request.POST.get('city')
+        state = request.POST.get('state')
+        pin_code=request.POST.get('pin_code')
+        address=request.POST.get('address')
+        join_date=request.POST.get('join_date')
+
+        school_name=request.POST.get('school_name')
+        board=request.POST.get('board')
+        passing_year=request.POST.get('passing_year')
+
+        high_school_name=request.POST.get('high_school_name')
+        high_school_board=request.POST.get('high_school_board')
+        high_school_passing_year=request.POST.get('high_school_passing_year')
+
+        graduation_univercity=request.POST.get('graduation_univercity')
+        graduation_degree=request.POST.get('graduation_degree')
+        graduation_year=request.POST.get('graduation_year')
+        
+        post_graduation_univercity=request.POST.get('post_graduation_univercity')
+        post_graduation_degree=request.POST.get('post_graduation_degree')
+        post_graduation_year=request.POST.get('post_graduation_year')
+       
+        other_univercity =request.POST.get('other_univercity')
+        other_degree=request.POST.get('other_degree')
+        other_year=request.POST.get('other_year')
+
+
+        skill = request.POST.getlist(('skill[]'))
+        skill=','.join(skill)
+        print(skill)
+        position = request.POST.getlist(str('position[]'))
+        position=','.join(position)
+
+        print(position)
+        experience = request.POST.getlist(str('experience[]'))
+        experience=','.join(experience)
+        print(experience)
+
+        company_name = request.POST.get('company_name')
+        designation =request.POST.get('designation')
+        contact_no = request.POST.get('contact_no')
+        emails = request.POST.get('emails')
+        refference = request.POST.get('refference')
+        relationships = request.POST.get('relationships')
+        belongs_department= request.POST.get('belongs_department')
+        joining_date = request.POST.get('joining_date')
+        living_date = request.POST.get('living_date')
+
+        Insertion=Trainer(profile=profile, trainer_name= trainer_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
+        pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
+        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date,
+        school_name=school_name,board=board,passing_year=passing_year,high_school_name=high_school_name,
+        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
+        graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
+        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
+        post_graduation_year=post_graduation_year,other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state,skill=skill,position=position,
+        experience=experience,company_name=company_name,designation=designation,contact_no=contact_no,emails=emails,refference=refference,
+        relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
+        Insertion.save()
+        print(Insertion)
+        return render(request,"dashboard/register_trainer.html")
+    else:
+        return render(request,"dashboard/register_trainer.html")
+
+
+################ view trainer ################## 
+def view_trainer(request):
+    data = Trainer(request.GET)
+    trainer = Trainer.objects.all()
+    print(trainer)
+    return render(request,"dashboard/view_trainer.html",{'view_trainers':trainer})
+
+
+################ edit trainer ################## 
+def edit_trainer(request,id):
+    trainers = Trainer.objects.get(id=id)
+    skills=list(trainers.skill.split(","))
+    positions=list(trainers.position.split(","))
+    experiences=list(trainers.experience.split(","))
+    print(trainers)
+    skill_info=zip(skills,positions,experiences)
+    print(type(skill_info))
+    return render(request,"dashboard/edit_trainer.html",{'edit_trainer':trainers,'skills':skill_info})
+
+################ update trainer ################## 
+def manage_trainer(request,id):
+    trainer = Trainer.objects.get(id=id) 
+    if request.method =="POST":
+        trainer.profile=request.FILES.get('profile','')
+        trainer.trainer_name=request.POST.get('trainer_name','')
+        trainer.email=request.POST.get('email','')
+        trainer.phone_no=request.POST.get('phone_no','')
+        trainer.aadhar_no=request.POST.get('aadhar_no','')
+        trainer.pan_card=request.POST.get('pan_card','')
+        trainer.gender=request.POST.get('gender','')
+        trainer.date_of_birth=request.POST.get('date_of_birth','')
+        trainer.blood_group=request.POST.get('blood_group','')
+        trainer.father_name=request.POST.get('father_name','')
+        trainer.father_occupation=request.POST.get('father_occupation','')
+        trainer.father_no=request.POST.get('father_no','')
+        trainer.city=request.POST.get('city','')
+        trainer.state = request.POST.get('state','')
+        trainer.pin_code=request.POST.get('pin_code','')
+        trainer.address=request.POST.get('address','')
+        trainer.join_date=request.POST.get('join_date','')
+
+        trainer.school_name=request.POST.get('school_name','')
+        trainer.board=request.POST.get('board','')
+        trainer.passing_year=request.POST.get('passing_year','')
+
+
+        trainer.high_school_name=request.POST.get('high_school_name','')
+        trainer.high_school_board=request.POST.get('high_school_board','')
+        trainer.high_school_passing_year=request.POST.get('high_school_passing_year','')
+
+        trainer.graduation_univercity=request.POST.get('graduation_univercity','')
+        trainer.graduation_degree=request.POST.get('graduation_degree','')
+        trainer.graduation_year=request.POST.get('graduation_year','')
+
+        
+        trainer.post_graduation_univercity=request.POST.get('post_graduation_univercity','')
+        trainer.post_graduation_degree=request.POST.get('post_graduation_degree','')
+        trainer.post_graduation_year=request.POST.get('post_graduation_year','')
+        
+
+        trainer.other_univercity =request.POST.get('other_univercity','')
+        trainer.other_degree=request.POST.get('other_degree','')
+        trainer.other_year=request.POST.get('other_year','')
+
+
+        trainer.skill = request.POST.getlist(('skill[]'))
+        trainer.skill=','.join(trainer.skill)
+        print(trainer.skill)
+        trainer.position = request.POST.getlist(str('position[]'))
+        trainer.position=','.join( trainer.position)
+
+        print( trainer.position)
+        trainer.experience = request.POST.getlist(str('experience[]'))
+        trainer.experience=','.join(trainer.experience)
+        print(trainer.experience)
+
+        trainer.company_name = request.POST.get('company_name','')
+        trainer.designation =request.POST.get('designation','')
+        trainer.contact_no = request.POST.get('contact_no','')
+        trainer.emails = request.POST.get('emails','')
+        trainer.refference = request.POST.get('refference','')
+        trainer.relationships = request.POST.get('relationships','')
+        trainer.belongs_department= request.POST.get('belongs_department','')
+        trainer.joining_date = request.POST.get('joining_date','')
+        trainer.living_date = request.POST.get('living_date','')
+        trainer.save()
+    return redirect('/dashboard/view_trainer')
+
+    
+
+################ delete trainer ################## 
+def remove_trainer(request):
+    Id=request.POST['trainer_id']
+    print(Id)
+    trainers = Trainer.objects.get(pk=Id)
+    trainers.delete()
+    return redirect('/dashboard/view_trainer')       
+
+
+
+
+    
+
+############################################################## employee departmenet ########################################################  
+
 
 def add_salary(request):
     return render(request,"dashboard/add_salary.html")
@@ -451,44 +681,53 @@ def view_salary(request):
     return render(request,"dashboard/view_salary.html")
 
 
-####################employee#####################  
+############################################################## employee departmenet ########################################################  
+
 
 def register_staff(request):
     if request.method =="POST":
         print(request.POST)
-        staff_id=request.POST['staff_id']
         staff_name=request.POST['staff_name']
         phone_no=request.POST['phone_no']
         aadhar_no=request.POST['aadhar_no']
         role=request.POST['role']
         join_date=request.POST['join_date']
 
-        Insertion=Staff(staff_id=staff_id,staff_name=staff_name, phone_no= phone_no,aadhar_no=aadhar_no,role=role,join_date=join_date)
+        Insertion=Staff(staff_name=staff_name, phone_no= phone_no,aadhar_no=aadhar_no,role=role,join_date=join_date)
         Insertion.save()
         return render(request,"dashboard/register_staff.html")
     else:
         return render(request,"dashboard/register_staff.html")
+
+
     
-       
+################ view staff ##################        
 def view_staff(request):
     data = Staff.objects.all()
     return render(request,"dashboard/view_staff.html",{'data':data})
 
+
+
+################ delete staff ################## 
 def delete_staff(request, id):
     staff=Staff.objects.filter(pk=id)
     staff.delete()
     return HttpResponseRedirect("/dashboard/view_staff")
 
 
+
+################ edit staff ################## 
 def edit_staff(request,id):
     staff = Staff.objects.get(id=id)
     print(staff)
     return render(request,"dashboard/edit_staff.html",{'staff':staff})
 
+
+
+################ update staff ################## 
 def manage_staff(request,id):
     staff = Staff.objects.get(id=id)
     if request.method == "POST":
-        staff.staff_id = request.POST.get('staff_id','') 
         staff.staff_name = request.POST.get('staff_name','') 
         staff.phone_no = request.POST.get('phone_no','')
         staff.aadhar_no = request.POST.get('aadhar_no','')
@@ -497,9 +736,9 @@ def manage_staff(request,id):
         staff.save()
     return redirect('/dashboard/view_staff/')
 
+
+
+################ attendence staff ################## 
 def staff_attendence(request):
-<<<<<<< HEAD
     return render(request,"dashboard/staff_attendence.html")
-=======
-    return render(request,"/dashboard/staff_attendence.html")
->>>>>>> 87e212c17bc6139369d2407d02d2f5a808e7b5d3
+    

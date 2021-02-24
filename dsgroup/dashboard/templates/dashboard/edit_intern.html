@@ -14,19 +14,12 @@ body {
 <body>
 
     <div class="container">
-    <h2 class="text-center">Personal Information</h2>
+    <h2 class="text-center">Personal Details</h2>
         <form method="POST" action="{% url 'manage_intern' edit_intern.id %}" enctype="multipart/form-data">
 						    {% csrf_token %}
             
         <div class="row jumbotron">
-            <div class="col-sm-4 form-group">
-                <label for="name-f">Intern Id</label>
-                <input type="text" class="form-control" name="intern_id" id="intern_id" placeholder="Intern Id" value="{{edit_intern.intern_id}}">
-            </div>
-            <div class="col-sm-4 form-group">
-                <label for="name-l">Profile</label>
-                <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_intern.profile}}">
-            </div>
+            
             <div class="col-sm-4 form-group">
                 <label for="email">Intern Name</label>
                 <input type="text" class="form-control" name="intern_name" id="intern_name" placeholder="Intern Name" value="{{edit_intern.intern_name}}">
@@ -36,51 +29,48 @@ body {
                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_intern.email}}">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="address-2">Phone no</label>
-                <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone no" value="{{edit_intern.phone_no}}">
+                <label for="address-2">Phone Number</label>
+                <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number" value="{{edit_intern.phone_no}}">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="State">Aadhar no</label>
-                <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar no" value="{{edit_intern.aadhar_no}}">
+                <label for="State">Aadhar Number</label>
+                <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_intern.aadhar_no}}">
             </div>
             <div class="col-sm-4 form-group">
                 <label for="zip">Pan Card</label>
                 <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_intern.pan_card}}">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="Country">Country</label>
+                <label for="Country">Gender</label>
                 <select class="form-control custom-select browser-default" name="gender" value="{{edit_intern.gender}}">
-               {% if emp.gender == "Male" %}
+               {% if edit_intern.gender == "Male" %}
                                     <option value="Male" selected="selected" >Male</option>
                                 {% else %}
                                     <option value="Male" >Male</option>
                                 {% endif %}
-                                {% if emp.gender == "Female" %}
+                                {% if edit_intern.gender == "Female" %}
                                     <option value="Female" selected="selected" >Female</option>
                                 {% else %}
                                     <option value="Female">Female</option>
                                 {% endif %}
                 </select>
             </div>
-            <div class="col-sm-4 form-group">
-                <label for="Date">Date Of Birth</label>
-                <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_intern.date_of_birth}}">
-            </div>
+            
             <div class="col-sm-4 form-group">
                 <label for="tel">Blood Group</label>
                 <input type="text" name="blood_group" class="form-control" id="blood_group" placeholder="Blood Group" value="{{edit_intern.blood_group}}">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="pass">Father Name</label>
-                <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father Name" value="{{edit_intern.father_name}}">
+                <label for="pass">Father's Name</label>
+                <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name" value="{{edit_intern.father_name}}">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="pass2">Father Occupation</label>
-                <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father Occupation" value="{{edit_intern.father_occupation}}">
+                <label for="pass2">Father's Occupation</label>
+                <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation" value="{{edit_intern.father_occupation}}">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="pass2">Father no</label>
-                <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father no" value="{{edit_intern.father_no}}">
+                <label for="pass2">Father's Number</label>
+                <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father's Number" value="{{edit_intern.father_no}}">
             </div>
             <div class="col-sm-4 form-group">
                 <label for="pass2">City</label>
@@ -100,98 +90,72 @@ body {
                 <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="{{edit_intern.address}}">
             </div>
             <div class="col-sm-4 form-group">
+                <label for="name-l">Profile</label>
+                <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_intern.profile}}">
+            </div>
+            <div class="col-sm-4 form-group">
+                <label for="Date">Date Of Birth</label>
+                <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_intern.date_of_birth}}">
+            </div>
+            <div class="col-sm-4 form-group">
                 <label for="pass2">Join Date</label>
                 <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date" value="{{edit_intern.join_date}}">
             </div></br>
             </div> 
-              <h3 class="text-center">Professional Information</h3></br></br>
+              <h3 class="text-center">Educational Details</h3></br></br>
             <div class="row">
-            <div class="col-sm-3 form-group">
-                <label for="pass2">School Name</label>
-                <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" value="{{edit_intern.school_name}}">
-            </div>
-            <div class="col-sm-3 form-group">
+            <div class="col-sm-6 form-group">
+             <h5>School</h5></br>
+               
+                <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" value="{{edit_intern.school_name}}"></br>
                 <label for="pass2">Board</label>
-                <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_intern.board}}">
-            </div>
-            <div class="col-sm-3 form-group">
+                <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_intern.board}}"></br>
                 <label for="pass2">Passing year</label>
                 <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_intern.passing_year}}">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label for="pass2">School Marksheet</label>
-                <input type="file" name="school_marksheet" class="form-control" id="school_marksheet" placeholder="School Marksheet" value="{{edit_intern.school_marksheet}}">
-              </div></br></br></br></br></br>
-            </div>
 
-            
-           <h4 class="text-center">High School</h4></br>
-           <div class="row">
-            <div class="col-sm-3 form-group">
-                <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name" value="{{edit_intern.high_school_name}}">
             </div>
-            <div class="col-sm-3 form-group">
-
-                <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_intern.high_school_board}}">
-            </div>
-            <div class="col-sm-3 form-group">
-                <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing_year" value="{{edit_intern.high_school_passing_year}}">
-            </div>
-            <div class="col-sm-3 form-group">
-                <input type="file" name="high_school_marksheet" class="form-control" id="high_school_marksheet" placeholder="High School Marksheet" value="{{edit_intern.high_school_marksheet}}">
-            </div></br></br></br></br></br>
+            <div class="col-sm-6 form-group">
+              <h5>High School</h5></br>
+               
+                <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name" value="{{edit_intern.high_school_name}}"></br>
+                <label for="pass2">Board</label>
+                <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_intern.high_school_board}}"></br>
+                <label for="pass2">Passing year</label>
+                <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_intern.high_school_passing_year}}">
             </div>
             
-            <h4 class="text-center">Graduation</h4></br></br>
+        </div></br></br></br>
             <div class="row">
             
-            <div class="col-sm-3 form-group">
-                <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity" value="{{edit_intern.graduation_univercity}}">
-            </div>
-            <div class="col-sm-3 form-group">
-
-                <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_intern.graduation_degree}}">
-            </div>
-            <div class="col-sm-3 form-group">
+            <div class="col-sm-4 form-group">
+                <h5>Graduation Details</h5></br>
+               
+                <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity" value="{{edit_intern.graduation_univercity}}"></br>
+                <label for="pass2">Degree</label>
+                <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_intern.graduation_degree}}"></br>
+                <label for="pass2">Passing year</label>
                 <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_intern.graduation_year}}">
             </div>
-            <div class="col-sm-3 form-group">
-                <input type="file" name="graduation_marksheet" class="form-control" id="graduation_marksheet" placeholder="Graduation Marksheet" value="{{edit_intern.graduation_marksheet}}">
-            </div></br></br></br></br></br>
-            </div>
-
-            <h4 class="text-center">Post Graduation</h4></br></br>
-            <div class="row">
-            <div class="col-sm-3 form-group">
-                <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity" value="{{edit_intern.post_graduation_univercity}}">
-            </div>
-            <div class="col-sm-3 form-group">
-                <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_intern.post_graduation_degree}}">
-            </div>
-            <div class="col-sm-3 form-group">
+            <div class="col-sm-4 form-group">
+                 <h5>Post Graduation Details</h5></br>
+               
+                <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity" value="{{edit_intern.post_graduation_univercity}}"></br>
+                <label for="pass2">Degree</label>
+                <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_intern.post_graduation_degree}}"></br>
+                <label for="pass2">Passing year</label>
                 <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_intern.post_graduation_year}}">
             </div>
-            <div class="col-sm-3 form-group">
-                <input type="file" name="post_graduation_marksheet" class="form-control" id="post_graduation_marksheet" placeholder="Post Graduation Mmarksheet" value="{{edit_intern.post_graduation_marksheet}}">
-            </div></br></br></br></br></br>
-            </div>
-             
-             <h4 class="text-center">Other Degree/ Chartification</h4></br></br>  
-             <div class="row">
-             
-            <div class="col-sm-3 form-group">
-                <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity" value="{{edit_intern.other_univercity}}">
-            </div>
-            <div class="col-sm-3 form-group">
-                <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_intern.other_degree}}">
-            </div>
-            <div class="col-sm-3 form-group">
+            <div class="col-sm-4 form-group">
+                <h5>Other Degree/Chartification</h5></br>
+                
+                <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity" value="{{edit_intern.other_univercity}}"></br>
+                <label for="pass2">Degree</label>
+                <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_intern.other_degree}}"></br>
+                <label for="pass2">Passing year</label>
                 <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_intern.other_year}}">
-            </div>
-            <div class="col-sm-3 form-group">
-                <input type="file" name="other_marksheet" class="form-control" id="other_marksheet" placeholder="Other Marksheet" value="{{edit_intern.other_marksheet}}">
-            </div>
-
+          
+                 </div>
+                 </div></br></br></br></br></br>
 
             <div class="col-sm-12 form-group mb-0">
                <button class="btn btn-primary float-right">Submit</button>
@@ -199,7 +163,7 @@ body {
             
         </div>
         </form>
-        </br>
+        </br></br></br></br>
     </div>
 
 
