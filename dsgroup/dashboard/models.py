@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date 
 
 gender=(
     ('Male','Male'),
@@ -37,8 +38,8 @@ class Intern(models.Model):
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
     graduation_year =models.IntegerField(blank=True,null=True) 
 
-    post_graduation_degree = models.CharField(max_length=100,blank=True,null=True)
-    post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
+    post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
+    post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
     post_graduation_year = models.IntegerField(blank=True,null=True) 
     
     other_degree = models.CharField(max_length=100,blank=True,null=True)
@@ -46,7 +47,15 @@ class Intern(models.Model):
     other_year = models.IntegerField(blank=True,null=True)  
         
     def __str__(self): 
-         return "intern_name"
+         return self.intern_name
+
+class InternAttendance(models.Model):
+    intern_name= models.ForeignKey('Intern',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+
+    def __str__(self): 
+        return str(self.intern_name)
 
 
 
@@ -55,6 +64,7 @@ class Trainer(models.Model):
     trainer_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
+
     aadhar_no = models.IntegerField()   
     pan_card = models.IntegerField(blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
@@ -148,19 +158,24 @@ class Trainee(models.Model):
     other_degree = models.CharField(max_length=100,blank=True,null=True)
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
     other_year = models.IntegerField(blank=True,null=True) 
-
  
 
     def __str__(self): 
          return "trainee_name"
 
 
+class Trainee_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
 
+    def __str__(self): 
+         return "id"
+ 
 
 class Employee(models.Model):  
-    profile = models.FileField(upload_to='media/',blank=True,null=True)  
-    emp_name = models.CharField(max_length=100,default=True)  
-    email = models.EmailField(max_length=100,default=True) 
+    Profile = models.FileField(upload_to='media/',blank=True,null=True)  
+    emp_name = models.CharField(max_length=100)  
+    email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
     pan_card = models.IntegerField(blank=True,null=True)   
@@ -213,12 +228,39 @@ class Employee(models.Model):
     living_date =  models.CharField(max_length=100,default=True) 
 
     def __str__(self): 
-         return "emp_name"
+         return str(self.emp_name)
+
+
+class Employee_attendence(models.Model):
+    attendance = models.CharField(max_length=100) 
+    date = models.CharField(max_length=100) 
+
+    def __str__(self): 
+         return "id"
+ 
+class Salary(models.Model):
+    emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE)
+    salary = models.IntegerField() 
+    tds =  models.IntegerField() 
+    basic = models.IntegerField() 
+    pf = models.IntegerField()   
+    da =  models.IntegerField()   
+    prof_tax =  models.IntegerField() 
+    hra =  models.IntegerField()  
+    deductions =  models.IntegerField()  
+    medical_allowance =  models.IntegerField()  
+    net_salary =  models.IntegerField()  
+    sub_total =  models.IntegerField()  
+
+    def __str__(self): 
+         return str(self.emp_name)
+       
 
  
 
 
 class Staff(models.Model):  
+    staff_id= models.CharField(max_length=20,unique=True,null=True)
     staff_name = models.CharField(max_length=100)  
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField(blank=True,null=True)   

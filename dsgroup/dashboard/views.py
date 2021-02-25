@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Employee,Trainer
+from .models import Intern,Staff,Trainee,Salary,Employee,Trainer,InternAttendance
+from datetime import date
 
 
 
@@ -82,14 +83,42 @@ def intern_profile(request,id):
     return render(request,"dashboard/intern_profile.html")
     
 
-def interns_attendance(request):
-    return render(request,"dashboard/interns_attendance.html")
+def interns_attendance(request): 
+    if request.method =="POST":
+        print(request.POST)
+        intern_name=Intern.objects.get(intern_name=request.POST['internname'])
+        attendance = request.POST.get('attendance')
+        Insertion=InternAttendance(intern_name=intern_name,attendance=attendance)
+        Insertion.save()
+        return render(request,"dashboard/interns_attendance.html")
+    else:
+        data = Intern.objects.all()
+        dat = date.today().strftime("%d/%m/%Y")
+        print(data)
+        return render(request,"dashboard/interns_attendance.html",{'data':data,'dat':dat})
+
 
 def interns_attendance_date(request):
-    return render(request,"dashboard/interns_attendance_date.html")  
+    data = InternAttendance.objects.all()
+    
+    return render(request,"dashboard/interns_attendance_date.html",{'data':data})
+ 
 
-def interns_attendance_edit(request):
-    return render(request,"dashboard/interns_attendance_edit.html")
+def interns_attendance_edit(request,id):
+    data = InternAttendance.objects.get(id=id)
+    print(data)
+    return render(request,"dashboard/interns_attendance_edit.html",{'data':data})
+
+def interns_attendance_manage(request,id):
+    print(id)
+    data = InternAttendance.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST.get('attendance') )
+
+        data.attendance = request.POST.get('attendance') 
+        data.save()
+    return redirect(f'/dashboard/interns_attendance_edit/{id}',{'data':data})
+
   
 ################ edit intern ##################  
 def edit_intern(request,id):
@@ -297,6 +326,10 @@ def remove_trainees(request):
 def trainees_attendence(request):
     return render(request,"dashboard/trainees_attendence.html")
 
+############################################################################################################################################    
+
+def register_employees(request):
+    return render(request,"dashboard/register_employees.html")
 ############################################################## employee departmenet ########################################################  
 
 def register_employees(request):
@@ -395,6 +428,7 @@ def employees_attendence(request):
     return render(request,"dashboard/employees_attendence.html")
 
 
+############################################################################################################################################ 
 ################ edit employees ################## 
 def edit_employees(request,id):
     employees = Employee.objects.get(id=id)
@@ -675,10 +709,41 @@ def remove_trainer(request):
 
 
 def add_salary(request):
-    return render(request,"dashboard/add_salary.html")
+    if request.method =="POST":
+        print(request.POST)
+        emp_name=Employee.objects.get(emp_name=request.POST['empname'])
+        salary = request.POST['salary']
+        tds = request.POST['tds']
+        basic = request.POST['basic']
+        pf =request.POST['pf']   
+        da =  request.POST['da']   
+        prof_tax = request.POST['prof_tax'] 
+        hra = request.POST['hra'] 
+        deductions = request.POST['deductions']
+        medical_allowance = request.POST['medical_allowance']  
+        net_salary = request.POST['net_salary']  
+        sub_total = request.POST['sub_total']  
+
+        Insertion=Salary(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
+        ,net_salary=net_salary,sub_total=sub_total)
+        Insertion.save()
+        return render(request,"dashboard/view_salary.html")
+    else:
+        employee = Employee.objects.all()
+        return render(request,"dashboard/add_salary.html",{'employee':employee})
+
+
+
+    return render(request,"dashboard/view_salary.html")
 
 def view_salary(request):
-    return render(request,"dashboard/view_salary.html")
+    data = Salary.objects.all()
+    print(data)
+    return render(request,"dashboard/view_salary.html",{'data':data})
+
+def salary_detail(request,id):
+    data = Salary.objects.get(id=id)
+    return render(request,"dashboard/salary_detail.html",{'data':data})
 
 
 ############################################################## employee departmenet ########################################################  
@@ -740,5 +805,6 @@ def manage_staff(request,id):
 
 ################ attendence staff ################## 
 def staff_attendence(request):
-    return render(request,"dashboard/staff_attendence.html")
+    return render(request,"/dashboard/staff_attendence.html")
+  
     
