@@ -13,7 +13,8 @@ urlpatterns = [
     path('view_interns/',views.view_interns, name='view_interns'),
     path('interns_attendance/',views.interns_attendance, name='interns_attendance'),
     path('interns_attendance_date/',views.interns_attendance_date, name='interns_attendance_date'),
-    path('interns_attendance_edit/',views.interns_attendance_edit, name='interns_attendance_edit'),
+    path('interns_attendance_edit/<int:id>',views.interns_attendance_edit, name='interns_attendance_edit'),
+    path('interns_attendance_manage/<int:id>',views.interns_attendance_manage, name='interns_attendance_manage'),
     path('intern_profile/<int:id>',views.intern_profile,name="intern_profile"),
     path('edit_intern/<int:id>',views.edit_intern,name='edit_intern'),
     path('manage_intern/<int:id>',views.manage_intern,name='manage_intern'),
@@ -33,6 +34,7 @@ urlpatterns = [
     path('employees_attendence/',views.employees_attendence, name='employees_attendence'),
 
     path('add_salary/',views.add_salary, name='add_salary'),
+    path('salary_detail/<int:id>',views.salary_detail, name='salary_detail'),
     path('view_salary/',views.view_salary, name='view_salary'),
 
 

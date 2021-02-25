@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Employee  
+from .models import Intern,Staff,Trainee,Salary,Employee,InternAttendance
+from datetime import date
 
 
 
@@ -13,7 +14,6 @@ def dashboard(request):
 def register_intern(request):
     interns = Intern(request.POST,request.FILES)
     if request.method =="POST":
-        intern_id=request.POST.get('intern_id')
         profile=request.FILES.get('profile')
         intern_name=request.POST.get('intern_name')
         email=request.POST.get('email')
@@ -59,7 +59,7 @@ def register_intern(request):
         other_year=request.POST.get('other_year')
         other_marksheet=request.FILES.get('other_marksheet')
 
-        Insertion=Intern(intern_id=intern_id,profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
+        Insertion=Intern(profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
         father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date
         ,school_name=school_name,board=board, passing_year=passing_year,school_marksheet=school_marksheet,high_school_name=high_school_name
@@ -87,14 +87,42 @@ def intern_profile(request,id):
     return render(request,"dashboard/intern_profile.html")
     
 
-def interns_attendance(request):
-    return render(request,"dashboard/interns_attendance.html")
+def interns_attendance(request): 
+    if request.method =="POST":
+        print(request.POST)
+        intern_name=Intern.objects.get(intern_name=request.POST['internname'])
+        attendance = request.POST.get('attendance')
+        Insertion=InternAttendance(intern_name=intern_name,attendance=attendance)
+        Insertion.save()
+        return render(request,"dashboard/interns_attendance.html")
+    else:
+        data = Intern.objects.all()
+        dat = date.today().strftime("%d/%m/%Y")
+        print(data)
+        return render(request,"dashboard/interns_attendance.html",{'data':data,'dat':dat})
+
 
 def interns_attendance_date(request):
-    return render(request,"dashboard/interns_attendance_date.html")  
+    data = InternAttendance.objects.all()
+    
+    return render(request,"dashboard/interns_attendance_date.html",{'data':data})
+ 
 
-def interns_attendance_edit(request):
-    return render(request,"dashboard/interns_attendance_edit.html")
+def interns_attendance_edit(request,id):
+    data = InternAttendance.objects.get(id=id)
+    print(data)
+    return render(request,"dashboard/interns_attendance_edit.html",{'data':data})
+
+def interns_attendance_manage(request,id):
+    print(id)
+    data = InternAttendance.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST.get('attendance') )
+
+        data.attendance = request.POST.get('attendance') 
+        data.save()
+    return redirect(f'/dashboard/interns_attendance_edit/{id}',{'data':data})
+
   
 
 def edit_intern(request,id):
@@ -343,95 +371,10 @@ def remove_trainees(request):
 def trainees_attendence(request):
     return render(request,"dashboard/trainees_attendence.html")
 
-####################employee#####################    
+############################################################################################################################################    
 
 def register_employees(request):
-    employee = Employee(request.POST,request.FILES)
-    if request.method =="POST":
-        emp_id=request.POST.get('emp_id')
-        profile=request.FILES.get('profile')
-        emp_name=request.POST.get('emp_name')
-        email=request.POST.get('email')
-        phone_no=request.POST.get('phone_no')
-        aadhar_no=request.POST.get('aadhar_no')
-        pan_card=request.POST.get('pan_card')
-        gender=request.POST.get('gender')
-        date_of_birth=request.POST.get('date_of_birth')
-        blood_group=request.POST.get('blood_group')
-        father_name=request.POST.get('father_name')
-        father_occupation=request.POST.get('father_occupation')
-        father_no=request.POST.get('father_no')
-        city=request.POST.get('city')
-        state = request.POST.get('state')
-        pin_code=request.POST.get('pin_code')
-        address=request.POST.get('address')
-        join_date=request.POST.get('join_date')
-
-        school_name=request.POST.get('school_name')
-        board=request.POST.get('board')
-        passing_year=request.POST.get('passing_year')
-        school_marksheet=request.FILES.get('school_marksheet')
-
-        high_school_name=request.POST.get('high_school_name')
-        high_school_board=request.POST.get('high_school_board')
-        high_school_passing_year=request.POST.get('high_school_passing_year')
-        high_school_marksheet=request.FILES.get('high_school_marksheet')
-
-        graduation_univercity=request.POST.get('graduation_univercity')
-        graduation_degree=request.POST.get('graduation_degree')
-        graduation_year=request.POST.get('graduation_year')
-        graduation_marksheet=request.FILES.get('graduation_marksheet')
-
-        
-        post_graduation_univercity=request.POST.get('post_graduation_univercity')
-        post_graduation_degree=request.POST.get('post_graduation_degree')
-        post_graduation_year=request.POST.get('post_graduation_year')
-        post_graduation_marksheet=request.FILES.get('post_graduation_marksheet')
-
-       
-        other_univercity =request.POST.get('other_univercity')
-        other_degree=request.POST.get('other_degree')
-        other_year=request.POST.get('other_year')
-        other_marksheet=request.FILES.get('other_marksheet')
-
-
-        skill = request.POST.getlist(('skill[]'))
-        skill=','.join(skill)
-        print(skill)
-        position = request.POST.getlist(str('position[]'))
-        position=','.join(position)
-
-        print(position)
-        experience = request.POST.getlist(str('experience[]'))
-        experience=','.join(experience)
-        print(experience)
-
-        company_name = request.POST.get('company_name')
-        designation =request.POST.get('designation')
-        contact_no = request.POST.get('contact_no')
-        emails = request.POST.get('emails')
-        refference = request.POST.get('refference')
-        relationships = request.POST.get('relationships')
-        belongs_department= request.POST.get('belongs_department')
-        joining_date = request.POST.get('joining_date')
-        living_date = request.POST.get('living_date')
-
-        Insertion=Employee(emp_id=emp_id,profile=profile, emp_name= emp_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
-        pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
-        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date,
-        school_name=school_name,board=board,passing_year=passing_year,school_marksheet=school_marksheet,high_school_name=high_school_name,
-        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,high_school_marksheet=high_school_marksheet,
-        graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
-        graduation_marksheet=graduation_marksheet,post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
-        post_graduation_year=post_graduation_year,post_graduation_marksheet=post_graduation_marksheet,
-        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,other_marksheet=other_marksheet,state=state,skill=skill,position=position,
-        experience=experience,company_name=company_name,designation=designation,contact_no=contact_no,emails=emails,refference=refference,
-        relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
-        Insertion.save()
-        print(Insertion)
-        return render(request,"dashboard/register_employees.html")
-    else:
-        return render(request,"dashboard/register_employees.html")
+    return render(request,"dashboard/register_employees.html")
 
 def view_employees(request):
     return render(request,"dashboard/view_employees.html")
@@ -440,15 +383,46 @@ def employees_attendence(request):
     return render(request,"dashboard/employees_attendence.html")
 
 
-####################payrol#####################  
+############################################################################################################################################ 
 
 # payroll
 
 def add_salary(request):
-    return render(request,"dashboard/add_salary.html")
+    if request.method =="POST":
+        print(request.POST)
+        emp_name=Employee.objects.get(emp_name=request.POST['empname'])
+        salary = request.POST['salary']
+        tds = request.POST['tds']
+        basic = request.POST['basic']
+        pf =request.POST['pf']   
+        da =  request.POST['da']   
+        prof_tax = request.POST['prof_tax'] 
+        hra = request.POST['hra'] 
+        deductions = request.POST['deductions']
+        medical_allowance = request.POST['medical_allowance']  
+        net_salary = request.POST['net_salary']  
+        sub_total = request.POST['sub_total']  
+
+        Insertion=Salary(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
+        ,net_salary=net_salary,sub_total=sub_total)
+        Insertion.save()
+        return render(request,"dashboard/view_salary.html")
+    else:
+        employee = Employee.objects.all()
+        return render(request,"dashboard/add_salary.html",{'employee':employee})
+
+
+
+    return render(request,"dashboard/view_salary.html")
 
 def view_salary(request):
-    return render(request,"dashboard/view_salary.html")
+    data = Salary.objects.all()
+    print(data)
+    return render(request,"dashboard/view_salary.html",{'data':data})
+
+def salary_detail(request,id):
+    data = Salary.objects.get(id=id)
+    return render(request,"dashboard/salary_detail.html",{'data':data})
 
 
 ####################employee#####################  
@@ -498,8 +472,4 @@ def manage_staff(request,id):
     return redirect('/dashboard/view_staff/')
 
 def staff_attendence(request):
-<<<<<<< HEAD
-    return render(request,"dashboard/staff_attendence.html")
-=======
     return render(request,"/dashboard/staff_attendence.html")
->>>>>>> 87e212c17bc6139369d2407d02d2f5a808e7b5d3
