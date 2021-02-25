@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-<<<<<<< HEAD
 from .models import Intern,Staff,Trainee,Salary,Employee,InternAttendance
 from datetime import date
-=======
-from .models import Intern,Staff,Trainee,Employee,Trainer
->>>>>>> 1502733a434305e2a2f08a65841962f0923d3ddc
 
 
 
