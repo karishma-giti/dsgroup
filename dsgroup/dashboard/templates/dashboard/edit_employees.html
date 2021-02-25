@@ -1,0 +1,248 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontent %}
+
+<style type="text/css">
+  label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  body {
+    background: ;
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+   
+    <form method="POST" action="{% url 'manage_employees' edit_employees.id %}" enctype="multipart/form-data">
+     {% csrf_token %}
+       <center><h2 class="text-center">Personal Details</h2></center>
+     
+       <div class="row jumbotron">
+        <div class="row">
+         <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="emp_name" id="emp_name" placeholder="employee_name" value="{{edit_employees.emp_name}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_employees.email}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number" value="{{edit_employees.phone_no}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_employees.aadhar_no}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_employees.pan_card}}">
+          </div>
+          <div class="col-sm-4 form-group">
+                <select class="form-control custom-select browser-default" name="gender" value="{{edit_employees.gender}}">
+               {% if edit_employees.gender == "Male" %}
+                                    <option value="Male" selected="selected" >Male</option>
+                                {% else %}
+                                    <option value="Male" >Male</option>
+                                {% endif %}
+                                {% if edit_employees.gender == "Female" %}
+                                    <option value="Female" selected="selected" >Female</option>
+                                {% else %}
+                                    <option value="Female">Female</option>
+                                {% endif %}
+                </select>
+            </div>
+
+          <div class="col-sm-4 form-group">
+            <input type="text" name="blood_group" class="form-control" id="blood_group" placeholder="Blood Group" value="{{edit_employees.blood_group}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name" value="{{edit_employees.father_name}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation" value="{{edit_employees.father_occupation}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father's Number" value="{{edit_employees.father_no}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_employees.pin_code}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="{{edit_employees.address}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{edit_employees.city}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="state" class="form-control" id="state" placeholder="State" value="{{edit_employees.state}}">
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="Date">Employee Profile</label>
+            <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_employees.profile}}">
+          </div>
+
+          <div class="col-sm-4 form-group">
+            <label for="Date">Date Of Birth</label>
+            <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_employees.date_of_birth}}">
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="pass2">Join Date</label>
+            <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date" value="{{edit_employees.join_date}}">
+          </div>
+        </div>
+      </div>
+      <h3 class="text-center">Educational Details</h3></br></br>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <h6>School</h6></br>
+          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" value="{{edit_employees.school_name}}"></br>
+          <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_employees.board}}"></br>
+          <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_employees.passing_year}}"></br>
+        </div>
+        <div class="col-sm-6 form-group">
+          <h6>High School</h6></br>
+          <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name" value="{{edit_employees.high_school_name}}"></br>
+          <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_employees.high_school_board}}"></br>
+          <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_employees.high_school_passing_year}}"></br>
+        </div>
+      </div></br>
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <h6>Graduation Details</h6></br>
+          <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity" value="{{edit_employees.graduation_univercity}}"></br>
+          <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_employees.graduation_degree}}"></br>
+          <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_employees.graduation_year}}"></br>
+
+        </div>
+        <div class="col-sm-4 form-group">
+          <h6>Post Graduation Details</h6></br>
+          <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity" value="{{edit_employees.post_graduation_univercity}}"></br>
+          <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_employees.post_graduation_degree}}"></br>
+          <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_employees.post_graduation_year}}"></br>
+        </div>
+        <div class="col-sm-4 form-group">
+          <h6>Other Degree/Chartification</h6></br>
+          <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity" value="{{edit_employees.other_univercity}}"></br>
+          <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_employees.other_degree}}"></br>
+          <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_employees.other_year}}"></br>
+        </div>
+      </div></br></br></br>
+
+      <!------ Include the above in your HEAD tag ---------->
+      <h2 class="text-center">Professional Details</h2></br></br>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <table class="table table-bordered table-hover" id="tab_logic">
+            <thead>
+              <tr>
+                <th class="text-center">
+                  #
+                </th>
+                <th class="text-center">
+                  skill
+                </th>
+                <th class="text-center">
+                  position
+                </th>
+                <th class="text-center">
+                  experience
+                </th>
+              </tr>
+            </thead>
+        
+            <tbody>
+
+            {% for i,j,k in skills%} 
+            
+                <td>
+                 {{forloop.counter }} 
+                </td>
+                
+                <td>
+                  <input type="text" name='skill[]' placeholder=' skill' class="form-control"  value="{{i}}"/>
+                </td>
+                <td>
+                  <input type="text" name='position[]' placeholder='position' class="form-control" value="{{j}}" />
+                </td>
+                <td>
+                  <input type="text" name='experience[]' placeholder='experience' class="form-control"  value="{{k}}"/>
+                </td>
+              </tr>
+              {% endfor %}
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <a id='delete_row' style="background-color: #DC143C;color: white;padding: 5px 5px;text-align: center;margin:4px;text-decoration: none;
+        display: inline-block;float: right;" class="btn btn-default">Delete</a>
+      <a id="add_row" style="background-color:#00BFFF;color: white;padding: 5px 5px;text-align: center;margin:4px;text-decoration: none;
+        display: inline-block; float: right;" class="btn btn-default">Add</a></br></br>
+
+      <h5 class="text-center">Componey Refference </h5></br></br>
+
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <input type="text" name="company_name" class="form-control" id="company_name" placeholder="Company Name" value="{{edit_employees.company_name}}"></br>
+          <input type="text" name="designation" class="form-control" id="designation" placeholder="Designation " value="{{edit_employees.designation}}"></br>
+           <label for="text">Refference</label>
+          <input type="text" name="refference" class="form-control" id="refference" placeholder="How do you know Him/Her." value="{{edit_employees.refference}}"></br>
+        </div>
+        <div class="col-sm-4 form-group">
+          <input type="text" name="emails" class="form-control" id="emails" placeholder="Email" value="{{edit_employees.emails}}"></br>
+          <input type="text" name="contact_no" class="form-control" id="contact_no" placeholder="Contact Number" value="{{edit_employees.contact_no}}"></br>
+          <label for="Date">Joining Date</label>
+          <input type="date" name="joining_date" class="form-control" id="joining_date" placeholder="Joining Date" value="{{edit_employees.joining_date}}"></br>
+        </div>
+        <div class="col-sm-4 form-group">
+          <input type="text" name="relationships" class="form-control" id="relationships" placeholder="Relationships" value="{{edit_employees.relationships}}"></br>
+          <input type="text" name="belongs_department" class="form-control" id="belongs_department" placeholder="Belongsepartment" value="{{edit_employees.belongs_department}}"></br>
+          <label for="Date">Living Date</label>
+          <input type="date" name="living_date" class="form-control" id="living_date" placeholder="Living Date" value="{{edit_employees.living_date}}"></br>
+          </br></br></br>
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function() {
+         var i = $("#tab_logic tr").length-2;
+    
+
+          $("#add_row").click(function() {
+        
+            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><input  name='position[]' type='text' placeholder='position'  class='form-control input-md'></td><td><input  name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
+            $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+            i++;
+          });
+          $("#delete_row").click(function() {
+            if (i > 1) {
+              $("#addr" + (i - 1)).html('');
+              i--;
+            }
+          });
+        });
+      </script>
+
+      <div class="col-sm-12 form-group mb-0">
+        <button class="btn btn-primary float-right">Submit</button>
+      </div>
+
+  </div>
+  </form>
+  </div></br></br>
+
+  {% endblock maincontent %}

@@ -29,9 +29,18 @@ urlpatterns = [
     path('manage_trainees/<int:id>',views.manage_trainees,name='manage_trainees'),
     path('remove_trainees/',views.remove_trainees,name='remove_trainees'),
 
+    path('register_trainer',views.register_trainer,name='register_trainer'),
+    path('view_trainer',views.view_trainer,name='view_trainer'),
+    path('edit_trainer/<int:id>',views.edit_trainer,name='edit_trainer'),
+    path('manage_trainer/<int:id>',views.manage_trainer,name='manage_trainer'),
+    path('remove_trainer',views.remove_trainer,name='remove_trainer'),
+
     path('register_employees/',views.register_employees, name='register_employees'),
     path('view_employees/',views.view_employees, name='view_employees'),
     path('employees_attendence/',views.employees_attendence, name='employees_attendence'),
+    path('edit_employees/<int:id>',views.edit_employees,name='edit_employees'),
+    path('manage_employees/<int:id>',views.manage_employees,name='manage_employees'),
+    path('remove_employees/',views.remove_employees,name='remove_employees'),
 
     path('add_salary/',views.add_salary, name='add_salary'),
     path('salary_detail/<int:id>',views.salary_detail, name='salary_detail'),

@@ -17,6 +17,7 @@ admin.site.register(Employee)
 from .models import Staff
 admin.site.register(Staff)
 
+<<<<<<< HEAD
 from .models import InternAttendance
 admin.site.register(InternAttendance)
 
@@ -37,4 +38,6 @@ from .models import Salary
 admin.site.register(Salary)
 
 
+=======
+>>>>>>> 1502733a434305e2a2f08a65841962f0923d3ddc
 
