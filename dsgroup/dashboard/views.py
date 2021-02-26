@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Salary,Employee,InternAttendance
+from .models import Intern,Staff,Trainee,Salary,Employee,Trainer,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,staffAttendance
 from datetime import date
 
 
@@ -10,7 +10,11 @@ from datetime import date
 
 
 def dashboard(request):
-    return render(request,"dashboard/dashboard.html")
+    total_intern= Intern.objects.all().count()
+    total_trainee= Trainee.objects.all().count()
+    total_emp= Employee.objects.all().count()
+    total_trainer= Trainer.objects.all().count()
+    return render(request,"dashboard/dashboard.html",{'total_intern':total_intern,'total_trainee':total_trainee,'total_emp':total_emp,'total_trainer':total_trainer})
 
 def register_intern(request):
     interns = Intern(request.POST,request.FILES)
@@ -323,8 +327,41 @@ def remove_trainees(request):
 
 
 ################ trainees attendence ##################  
-def trainees_attendence(request):
-    return render(request,"dashboard/trainees_attendence.html")
+def trainee_attendance(request): 
+    if request.method =="POST":
+        print(request.POST)
+        trainee_name=Trainee.objects.get(trainee_name=request.POST['trainee_name'])
+        attendance = request.POST.get('attendance')
+        Insertion=TraineeAttendance(trainee_name=trainee_name,attendance=attendance)
+        Insertion.save()
+        return render(request,"dashboard/trainee_attendance.html")
+    else:
+        data = Trainee.objects.all()
+        dat = date.today().strftime("%d/%m/%Y")
+        print(data)
+        return render(request,"dashboard/trainee_attendance.html",{'data':data,'dat':dat})
+
+
+def trainee_attendance_date(request):
+    data = TraineeAttendance.objects.all()
+    
+    return render(request,"dashboard/trainee_attendance_date.html",{'data':data})
+ 
+
+def trainee_attendance_edit(request,id):
+    data = TraineeAttendance.objects.get(id=id)
+    print(data)
+    return render(request,"dashboard/trainee_attendance_edit.html",{'data':data})
+
+def trainee_attendance_manage(request,id):
+    print(id)
+    data = TraineeAttendance.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST.get('attendance') )
+
+        data.attendance = request.POST.get('attendance') 
+        data.save()
+    return redirect(f'/dashboard/trainee_attendance_edit/{id}',{'data':data})
 
 ############################################################################################################################################    
 
@@ -424,8 +461,42 @@ def view_employees(request):
 
 
 ################ employees attendence ################## 
-def employees_attendence(request):
-    return render(request,"dashboard/employees_attendence.html")
+def emp_attendance(request): 
+    if request.method =="POST":
+        print(request.POST)
+        emp_name=Employee.objects.get(emp_name=request.POST['empname'])
+        attendance = request.POST.get('attendance')
+        Insertion=EmployeeAttendance(emp_name=emp_name,attendance=attendance)
+        Insertion.save()
+        return render(request,"dashboard/emp_attendance.html")
+    else:
+        data = Employee.objects.all()
+        dat = date.today().strftime("%d/%m/%Y")
+        print(data)
+        return render(request,"dashboard/emp_attendance.html",{'data':data,'dat':dat})
+
+
+def emp_attendance_date(request):
+    data = EmployeeAttendance.objects.all()
+    
+    return render(request,"dashboard/emp_attendance_date.html",{'data':data})
+ 
+
+def emp_attendance_edit(request,id):
+    data = EmployeeAttendance.objects.get(id=id)
+    print(data)
+    return render(request,"dashboard/emp_attendance_edit.html",{'data':data})
+
+def emp_attendance_manage(request,id):
+    print(id)
+    data = EmployeeAttendance.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST.get('attendance') )
+
+        data.attendance = request.POST.get('attendance') 
+        data.save()
+    return redirect(f'/dashboard/emp_attendance_edit/{id}',{'data':data})
+
 
 
 ############################################################################################################################################ 
@@ -702,6 +773,43 @@ def remove_trainer(request):
 
 
 
+def trainer_attendance(request): 
+    if request.method =="POST":
+        print(request.POST)
+        trainer_name=Trainer.objects.get(trainer_name=request.POST['trainer_name'])
+        attendance = request.POST.get('attendance')
+        Insertion=TrainerAttendance(trainer_name=trainer_name,attendance=attendance)
+        Insertion.save()
+        return render(request,"dashboard/trainer_attendance.html")
+    else:
+        data =Trainer.objects.all()
+        dat = date.today().strftime("%d/%m/%Y")
+        print(data)
+        return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat})
+
+
+def trainer_attendance_date(request):
+    data = TrainerAttendance.objects.all()
+    
+    return render(request,"dashboard/trainer_attendance_date.html",{'data':data})
+ 
+
+def trainer_attendance_edit(request,id):
+    data = TrainerAttendance.objects.get(id=id)
+    print(data)
+    return render(request,"dashboard/trainer_attendance_edit.html",{'data':data})
+
+def trainer_attendance_manage(request,id):
+    print(id)
+    data = TrainerAttendance.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST.get('attendance') )
+
+        data.attendance = request.POST.get('attendance') 
+        data.save()
+    return redirect(f'/dashboard/trainer_attendance_edit/{id}',{'data':data})
+
+
 
     
 
@@ -804,7 +912,54 @@ def manage_staff(request,id):
 
 
 ################ attendence staff ################## 
-def staff_attendence(request):
-    return render(request,"/dashboard/staff_attendence.html")
-  
+def staff_attendance(request): 
+    if request.method =="POST":
+        print(request.POST)
+        staff_name=Staff.objects.get(staff_name=request.POST['staff_name'])
+        attendance = request.POST.get('attendance')
+        Insertion=staffAttendance(staff_name=staff_name,attendance=attendance)
+        Insertion.save()
+        return render(request,"dashboard/staff_attendance.html")
+    else:
+        data = Staff.objects.all()
+        dat = date.today().strftime("%d/%m/%Y")
+        print(data)
+        return render(request,"dashboard/staff_attendance.html",{'data':data,'dat':dat})
+
+
+def staff_attendance_date(request):
+    data = staffAttendance.objects.all()
+    
+    return render(request,"dashboard/staff_attendance_date.html",{'data':data})
+ 
+
+def staff_attendance_edit(request,id):
+    data = staffAttendance.objects.get(id=id)
+    print(data)
+    return render(request,"dashboard/staff_attendance_edit.html",{'data':data})
+
+def staff_attendance_manage(request,id):
+    print(id)
+    data = staffAttendance.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST.get('attendance') )
+
+        data.attendance = request.POST.get('attendance') 
+        data.save()
+    return redirect(f'/dashboard/staff_attendance_edit/{id}',{'data':data})
+
+def search(request):
+    posts =Staff.objects.all()
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = posts.filter(staff_name=search_term)
+
+        context = {
+        'posts': posts,
+        'search-term': search_term
+        }
+
+    return render(request, '/dashboard/view_staff.html', context)  
     

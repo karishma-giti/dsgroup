@@ -117,7 +117,17 @@ class Trainer(models.Model):
     living_date =  models.CharField(max_length=100) 
 
     def __str__(self): 
-         return "Trainer_name"
+        return "Trainer_name"
+
+
+class TrainerAttendance(models.Model):
+    trainer_name= models.ForeignKey('Trainer',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+
+    def __str__(self): 
+        return str(self.trainer_name)
+
 
 
 class Trainee(models.Model):
@@ -161,15 +171,23 @@ class Trainee(models.Model):
  
 
     def __str__(self): 
-         return "trainee_name"
+       return str(self.trainee_name)
 
 
+class TraineeAttendance(models.Model):
+    trainee_name= models.ForeignKey('Trainee',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
 
+    def __str__(self): 
+        return str(self.trainee_name)
+
+ 
 
 class Employee(models.Model):  
     profile = models.FileField(upload_to='media/',blank=True,null=True)  
-    emp_name = models.CharField(max_length=100,default=True)  
-    email = models.EmailField(max_length=100,default=True) 
+    emp_name = models.CharField(max_length=100)  
+    email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
     pan_card = models.IntegerField(blank=True,null=True)   
@@ -222,15 +240,18 @@ class Employee(models.Model):
     living_date =  models.CharField(max_length=100,default=True) 
 
     def __str__(self): 
-         return str(self.emp_name)
+        return str(self.emp_name)
 
 
-class Employee_attendence(models.Model):
+class EmployeeAttendance(models.Model):
+    emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE,default=True)
     attendance = models.CharField(max_length=100) 
-    date = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
 
     def __str__(self): 
-         return "id"
+        return str(self.emp_name)
+
+
  
 class Salary(models.Model):
     emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE)
@@ -247,8 +268,10 @@ class Salary(models.Model):
     sub_total =  models.IntegerField()  
 
     def __str__(self): 
-         return str(self.emp_name)
-     
+        return str(self.emp_name)
+       
+
+ 
 
 
 class Staff(models.Model):  
@@ -260,5 +283,14 @@ class Staff(models.Model):
     join_date = models.CharField(max_length=100)
     
     def __str__(self): 
-         return "staff_name"
+        return "staff_name"
+
+
+class staffAttendance(models.Model):
+    staff_name= models.ForeignKey('Staff',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+
+    def __str__(self): 
+        return str(self.staff_name)
 

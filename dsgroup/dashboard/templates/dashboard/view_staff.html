@@ -6,10 +6,23 @@
   }
  
 </style>
+<form action="{{'posts': posts,
+'search-term': search_term}}" method="GET">
+<div class="input-group">
+  <div class="form-outline" style="margin-left: 70%;margin-top:20px;">
+    <input type="search" name="search" id="form1" class="form-control" placeholder="Search..." />
+    
+  </div>
+  <input type="submit"  value="Search"/>
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+</br></br>
+
 <table class="table">
   <thead class="">
     <tr>
-      <th>Staff Id</th>
+     
       <th>Name</th>
       <th>Phone Number</th>
       <th>Aadhaar Number</th>
@@ -23,7 +36,7 @@
     {% for d in data %}
     <tr>
      
-      <td>{{d.id}}</td>
+      
       <td>{{d.staff_name}}</td>
       <td>{{d.phone_no}}</td>
       <td>{{d.aadhar_no}}</td>
