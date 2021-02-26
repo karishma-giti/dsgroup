@@ -82,19 +82,6 @@
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
 
           </a>
-          <div class="navbar-search-block">
-            <form class="form-inline">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <!--  <i class="fas fa-times"></i> -->
-                </button>
-              </div>
-            </form>
-          </div>
         </li>
 
         <!-- Messages Dropdown Menu -->
@@ -106,7 +93,7 @@
             <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
             <a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a>
             <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+            <a href="{% url 'user_logout' %}" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
           </div>
         </div>
       </ul>
@@ -191,7 +178,7 @@
                 <li class="nav-item">
                   <a href="{% url 'register_trainees' %}" class="nav-link">
                     <i class="fad fa-dot-circle"></i>&nbsp;&nbsp;
-                    <p>REGISTER&nbsp;&nbsp; TRAINEES</p>
+                    <p>REGISTER&nbsp;&nbsp;TRAINEES</p>
                   </a>
                 </li>
                 <li class="nav-item">

@@ -19,6 +19,7 @@ urlpatterns = [
     path('edit_intern/<int:id>',views.edit_intern,name='edit_intern'),
     path('manage_intern/<int:id>',views.manage_intern,name='manage_intern'),
     path('remove_intern/',views.remove_intern,name='remove_intern'),
+    # path('search/', views.SearchResultsView.as_view(), name='search_results'),
 
 
     path('register_trainees/',views.register_trainees, name='register_trainees'),

@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Intern,Staff,Trainee,Salary,Employee,Trainer,InternAttendance
 from datetime import date
+from django.contrib.auth.decorators import login_required
+
+# from django.db.models import Q
+# from django.views.generic import TemplateView, ListView
 
 
 
 
 ############################################################## Intern ########################################################  
 
-
+@login_required(login_url='/')
 def dashboard(request):
     return render(request,"dashboard/dashboard.html")
 
@@ -55,12 +59,12 @@ def register_intern(request):
 
         Insertion=Intern(profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
-        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date
-        ,school_name=school_name,board=board, passing_year=passing_year,high_school_name=high_school_name
-        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
+        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date,
+        school_name=school_name,board=board, passing_year=passing_year,high_school_name=high_school_name,
+        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
-        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
-        ,post_graduation_year=post_graduation_year,
+        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
+        post_graduation_year=post_graduation_year,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
         return render(request,"dashboard/register_intern.html")
@@ -182,8 +186,25 @@ def remove_intern(request):
     print(Id)
     interns = Intern.objects.get(pk=Id)
     interns.delete()
-    return redirect('/dashboard/view_interns')       
+    return redirect('/dashboard/view_interns')     
 
+
+
+
+
+################ search ##################
+# class SearchResultsView(ListView):
+#     model = Intern
+#     template_name = 'view_intern.html'
+#     def get_queryset(self):
+#         query = self.request.GET.get('q') # new
+#         object_list = Intern.objects.filter(
+#             Q(intern_name=query) | Q(email=query)
+#         )
+#         return object_list
+
+
+      
 ############################################################## employee departmenet ########################################################  
 
 
