@@ -20,10 +20,20 @@ admin.site.register(Staff)
 from .models import InternAttendance
 admin.site.register(InternAttendance)
 
+from .models import TraineeAttendance
+admin.site.register(TraineeAttendance)
 
+from .models import EmployeeAttendance
+admin.site.register(EmployeeAttendance)
 
-from .models import Salary
-admin.site.register(Salary)
+from .models import TrainerAttendance
+admin.site.register(TrainerAttendance)
+
+from .models import staffAttendance
+admin.site.register(staffAttendance)
+
+from .models import Payroll
+admin.site.register(Payroll)
 
 
 

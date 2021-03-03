@@ -14,7 +14,7 @@ class Intern(models.Model):
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -30,6 +30,8 @@ class Intern(models.Model):
     board = models.CharField(max_length=100,blank=True,null=True)
     passing_year = models.IntegerField(blank=True,null=True) 
 
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
     high_school_passing_year =models.IntegerField(blank=True,null=True) 
@@ -38,12 +40,13 @@ class Intern(models.Model):
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
     graduation_year =models.IntegerField(blank=True,null=True) 
 
-    post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
-    post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
-    post_graduation_year = models.IntegerField(blank=True,null=True) 
     
-    other_degree = models.CharField(max_length=100,blank=True,null=True)
+    post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
+    post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
+    post_graduation_year = models.IntegerField(blank=True,null=True) 
+
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
+    other_degree = models.CharField(max_length=100,blank=True,null=True)
     other_year = models.IntegerField(blank=True,null=True)  
         
     def __str__(self): 
@@ -66,7 +69,7 @@ class Trainer(models.Model):
     phone_no = models.IntegerField() 
 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -78,6 +81,9 @@ class Trainer(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
+
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
 
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
@@ -120,13 +126,23 @@ class Trainer(models.Model):
         return "Trainer_name"
 
 
+class TrainerAttendance(models.Model):
+    trainer_name= models.ForeignKey('Trainer',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+
+    def __str__(self): 
+        return str(self.trainer_name)
+
+
+
 class Trainee(models.Model):
     profile = models.FileField(upload_to='media/',blank=True,null=True)  
     trainee_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -138,6 +154,9 @@ class Trainee(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
+
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
 
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
@@ -161,24 +180,26 @@ class Trainee(models.Model):
  
 
     def __str__(self): 
-        return "trainee_name"
+       return str(self.trainee_name)
 
 
-class Trainee_attendence(models.Model):
+class TraineeAttendance(models.Model):
+    trainee_name= models.ForeignKey('Trainee',on_delete=models.CASCADE,default=True)
     attendance = models.CharField(max_length=100) 
-    date = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
 
-    def __str__(self):
-        return "id"
+    def __str__(self): 
+        return str(self.trainee_name)
+
  
 
 class Employee(models.Model):  
-    Profile = models.FileField(upload_to='media/',blank=True,null=True)  
+    profile = models.FileField(upload_to='media/',blank=True,null=True)  
     emp_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100,default=True) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -190,6 +211,9 @@ class Employee(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100,default=True)  
     join_date = models.CharField(max_length=100,default=True)
+
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
     
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
@@ -229,8 +253,19 @@ class Employee(models.Model):
 
     def __str__(self): 
         return str(self.emp_name)
+
+
+class EmployeeAttendance(models.Model):
+    emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+
+    def __str__(self): 
+        return str(self.emp_name)
+
+
  
-class Salary(models.Model):
+class Payroll(models.Model):
     emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE)
     salary = models.IntegerField() 
     tds =  models.IntegerField() 
@@ -261,4 +296,13 @@ class Staff(models.Model):
     
     def __str__(self): 
         return "staff_name"
+
+
+class staffAttendance(models.Model):
+    staff_name= models.ForeignKey('Staff',on_delete=models.CASCADE,default=True)
+    attendance = models.CharField(max_length=100) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+
+    def __str__(self): 
+        return str(self.staff_name)
 

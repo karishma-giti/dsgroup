@@ -1,11 +1,11 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 <div class="container">
   
       <div class="card">
         <div class="card-header">
           <h2>
-            <a class="btn btn-success" href="#">Add Student</a>
+            <a class="btn btn-success" href="{% url 'register_intern' %}">Add Intern</a>
             <a class="btn btn-info float-right" href="{% url 'interns_attendance' %}">Take Addendance</a>
           </h2>
         </div>
@@ -33,4 +33,4 @@
         </div>
       </div>
     </div>
-{% endblock maincontent %}
+{% endblock maincontain %}

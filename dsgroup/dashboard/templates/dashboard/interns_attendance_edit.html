@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header">
           <h2>
-            <a class="btn btn-success" href="add.php">Add Student</a>
+            <a class="btn btn-success" href="{% url 'register_intern' %}">Add Intern</a>
             <a class="btn btn-info float-right" href="{% url 'interns_attendance_date' %}">Back</a>
           </h2>
         </div>
@@ -21,7 +21,7 @@
             <table class="table table-striped">
               <tr>
                 <th width="25%">S/L</th>
-                <th width="25%">Student Name</th>
+                <th width="25%">Intern Name</th>
                
                 <th width="25%">Attendance</th>
               </tr>
