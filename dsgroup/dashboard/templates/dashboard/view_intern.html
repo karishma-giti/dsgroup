@@ -1,15 +1,15 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 <style>
   .table{
     background-color: white;
   }
  
 </style>
+
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th>Intern Id</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone Number</th>
@@ -21,8 +21,6 @@
   
     {% for intern in view_intern %}
     <tr>
-     
-      <td>{{intern.id}}</td>
       <td>{{intern.intern_name}}</td>
       <td>{{intern.email}}</td>
       <td>{{intern.phone_no}}</td>
@@ -48,11 +46,11 @@
                <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
                <form action="{% url 'remove_intern' %}" method='POST'>
 							{% csrf_token %}
-							<input type='text' name='inter_id' id='inter_id'> 
+							<input type='hidden' name='inter_id' id='inter_id'> 
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-danger">Delete</a></button>
+               <button type="submit" class="btn btn-danger">Delete</button>
              </div>
              </form>
            </div>
@@ -79,4 +77,4 @@ function get_id(id)
 		}
 
 	</script>
-{% endblock maincontent %}
+{% endblock maincontain %}

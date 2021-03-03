@@ -5,6 +5,14 @@ gender=(
     ('Male','Male'),
     ('Female','Female'),
 )
+reference=(
+    ('facebook','facebook'),
+    ('instagram','instagram'),
+    ('linkain','linkain'),
+    ('twitter','twitter'),
+    ('other','other'),
+    ('people','people'),
+)
 
 
 # Create your models here.
@@ -14,7 +22,7 @@ class Intern(models.Model):
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -30,6 +38,8 @@ class Intern(models.Model):
     board = models.CharField(max_length=100,blank=True,null=True)
     passing_year = models.IntegerField(blank=True,null=True) 
 
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
     high_school_passing_year =models.IntegerField(blank=True,null=True) 
@@ -38,12 +48,13 @@ class Intern(models.Model):
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
     graduation_year =models.IntegerField(blank=True,null=True) 
 
-    post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
-    post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
-    post_graduation_year = models.IntegerField(blank=True,null=True) 
     
-    other_degree = models.CharField(max_length=100,blank=True,null=True)
+    post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
+    post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
+    post_graduation_year = models.IntegerField(blank=True,null=True) 
+
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
+    other_degree = models.CharField(max_length=100,blank=True,null=True)
     other_year = models.IntegerField(blank=True,null=True)  
         
     def __str__(self): 
@@ -66,7 +77,7 @@ class Trainer(models.Model):
     phone_no = models.IntegerField() 
 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -78,6 +89,9 @@ class Trainer(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
+
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
 
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
@@ -136,7 +150,7 @@ class Trainee(models.Model):
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -148,6 +162,9 @@ class Trainee(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
+
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
 
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
@@ -190,7 +207,7 @@ class Employee(models.Model):
     email = models.EmailField(max_length=100) 
     phone_no = models.IntegerField() 
     aadhar_no = models.IntegerField()   
-    pan_card = models.IntegerField(blank=True,null=True)   
+    pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.CharField(max_length=100,default=True) 
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
@@ -202,6 +219,9 @@ class Employee(models.Model):
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100,default=True)  
     join_date = models.CharField(max_length=100,default=True)
+
+    document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
+
     
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
@@ -253,7 +273,7 @@ class EmployeeAttendance(models.Model):
 
 
  
-class Salary(models.Model):
+class Payroll(models.Model):
     emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE)
     salary = models.IntegerField() 
     tds =  models.IntegerField() 
@@ -294,3 +314,14 @@ class staffAttendance(models.Model):
     def __str__(self): 
         return str(self.staff_name)
 
+# ######################################lead#####################################################################
+
+class Lead(models.Model):    
+    name = models.CharField(max_length=100)  
+    email = models.EmailField(max_length=100) 
+    regarding = models.CharField(max_length=100,blank=True,null=True,default=True)
+    reference = models.CharField(max_length=100, choices=reference,null=True) 
+    message = models.CharField(max_length=100,blank=True,null=True,default=True)    
+
+    def __str__(self): 
+        return str(self.name)

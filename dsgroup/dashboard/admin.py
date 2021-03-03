@@ -32,8 +32,10 @@ admin.site.register(TrainerAttendance)
 from .models import staffAttendance
 admin.site.register(staffAttendance)
 
-from .models import Salary
-admin.site.register(Salary)
+from .models import Payroll
+admin.site.register(Payroll)
 
+from .models import Lead
+admin.site.register(Lead)
 
 

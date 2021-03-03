@@ -1,23 +1,28 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
   .table{
     background-color: white;
   }
  
 </style>
-<form action="{{'posts': posts,
-'search-term': search_term}}" method="GET">
+<form action="{% url 'view_staff' %}" method="post">
+  {% csrf_token %}
 <div class="input-group">
-  <div class="form-outline" style="margin-left: 70%;margin-top:20px;">
-    <input type="search" name="search" id="form1" class="form-control" placeholder="Search..." />
+  <div class="form-outline" style="margin-left: 65%;margin-bottom: none;" >
+    <input type="search" id="form1" name="search" class="form-control" />
     
   </div>
-  <input type="submit"  value="Search"/>
+  <button type="submit" class="btn btn-primary" name='search_btn' style="height: 40px;" >
     <i class="fas fa-search"></i>
   </button>
 </div>
 </br></br>
+</form>
+{{posts}}
+{{search_term.staff_name.staff_name}}
 
 <table class="table">
   <thead class="">
@@ -94,4 +99,4 @@ function get_id(id)
 		}
 
 	</script>
-{% endblock maincontent %}
+{% endblock maincontain %}

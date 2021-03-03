@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Salary,Employee,Trainer,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,staffAttendance
+from .models import Intern,Staff,Trainee,Payroll,Employee,Trainer,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,staffAttendance,Lead
 from datetime import date
+from django.contrib.auth.decorators import login_required
+
+# from django.db.models import Q
+# from django.views.generic import TemplateView, ListView
 
 
 
 
 ############################################################## Intern ########################################################  
 
-
+@login_required(login_url='/')
 def dashboard(request):
     total_intern= Intern.objects.all().count()
     total_trainee= Trainee.objects.all().count()
@@ -16,6 +20,7 @@ def dashboard(request):
     total_trainer= Trainer.objects.all().count()
     return render(request,"dashboard/dashboard.html",{'total_intern':total_intern,'total_trainee':total_trainee,'total_emp':total_emp,'total_trainer':total_trainer})
 
+@login_required(login_url='/')
 def register_intern(request):
     interns = Intern(request.POST,request.FILES)
     if request.method =="POST":
@@ -59,20 +64,20 @@ def register_intern(request):
 
         Insertion=Intern(profile=profile, intern_name= intern_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
-        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date
-        ,school_name=school_name,board=board, passing_year=passing_year,high_school_name=high_school_name
-        ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
+        father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date,
+        school_name=school_name,board=board, passing_year=passing_year,high_school_name=high_school_name,
+        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
-        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
-        ,post_graduation_year=post_graduation_year,
+        post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
+        post_graduation_year=post_graduation_year,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
-        return render(request,"dashboard/register_intern.html")
+        return render(request,"dashboard/view_intern.html")
     else:
         return render(request,"dashboard/register_intern.html")
 
 ################ view intern ##################      
-
+@login_required(login_url='/')
 def view_interns(request):
     data = Intern(request.GET)
     interns = Intern.objects.all()
@@ -81,12 +86,14 @@ def view_interns(request):
     
     
 ################ intern profile##################  
+@login_required(login_url='/')
 def intern_profile(request,id):
     interns = Intern.objects.filter(id=id)
     print(interns)
     return render(request,"dashboard/intern_profile.html")
     
 
+@login_required(login_url='/')
 def interns_attendance(request): 
     if request.method =="POST":
         print(request.POST)
@@ -102,17 +109,21 @@ def interns_attendance(request):
         return render(request,"dashboard/interns_attendance.html",{'data':data,'dat':dat})
 
 
+@login_required(login_url='/')
 def interns_attendance_date(request):
     data = InternAttendance.objects.all()
     
     return render(request,"dashboard/interns_attendance_date.html",{'data':data})
  
 
+@login_required(login_url='/')
 def interns_attendance_edit(request,id):
     data = InternAttendance.objects.get(id=id)
     print(data)
     return render(request,"dashboard/interns_attendance_edit.html",{'data':data})
 
+
+@login_required(login_url='/')
 def interns_attendance_manage(request,id):
     print(id)
     data = InternAttendance.objects.get(id=id)
@@ -125,6 +136,7 @@ def interns_attendance_manage(request,id):
 
   
 ################ edit intern ##################  
+@login_required(login_url='/')
 def edit_intern(request,id):
     interns = Intern.objects.get(id=id)
     print(interns)
@@ -132,6 +144,7 @@ def edit_intern(request,id):
 
 
 ################ update intern ##################  
+@login_required(login_url='/')
 def manage_intern(request,id):
     interns = Intern.objects.get(id=id) 
     if request.method =="POST":
@@ -181,16 +194,34 @@ def manage_intern(request,id):
     return redirect('/dashboard/view_interns')
 
 ################ delete intern ##################  
+@login_required(login_url='/')
 def remove_intern(request):
     Id=request.POST['inter_id']
     print(Id)
     interns = Intern.objects.get(pk=Id)
     interns.delete()
-    return redirect('/dashboard/view_interns')       
+    return redirect('/dashboard/view_interns')     
 
+
+
+
+
+################ search ##################
+# class SearchResultsView(ListView):
+#     model = Intern
+#     template_name = 'view_intern.html'
+#     def get_queryset(self):
+#         query = self.request.GET.get('q') # new
+#         object_list = Intern.objects.filter(
+#             Q(intern_name=query) | Q(email=query)
+#         )
+#         return object_list
+
+
+      
 ############################################################## employee departmenet ########################################################  
 
-
+@login_required(login_url='/')
 def register_trainees(request):
     trainee = Trainee(request.POST,request.FILES)
     if request.method =="POST":
@@ -242,12 +273,12 @@ def register_trainees(request):
         ,post_graduation_year=post_graduation_year,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
-        return render(request,"dashboard/register_trainees.html")
+        return render(request,"dashboard/view_trainees.html")
     else:
         return render(request,"dashboard/register_trainees.html")
 
 ################ view trainees ##################          
-
+@login_required(login_url='/')
 def view_trainees(request):
     data = Trainee(request.GET)
     trainees = Trainee.objects.all()
@@ -262,6 +293,7 @@ def view_trainees(request):
         
 
 ################ edit trainees ##################  
+@login_required(login_url='/')
 def edit_trainees(request,id):
     trainees = Trainee.objects.get(id=id)
     print(trainees)
@@ -269,6 +301,7 @@ def edit_trainees(request,id):
 
 
 ################ update trainees ##################  
+@login_required(login_url='/')
 def manage_trainees(request,id):
     trainees = Trainee.objects.get(id=id) 
     if request.method =="POST":
@@ -318,6 +351,7 @@ def manage_trainees(request,id):
 
 
 ################ delete trainees ##################  
+@login_required(login_url='/')
 def remove_trainees(request):
     Id=request.POST['trainee_id']
     print(Id)
@@ -327,6 +361,7 @@ def remove_trainees(request):
 
 
 ################ trainees attendence ##################  
+@login_required(login_url='/')
 def trainee_attendance(request): 
     if request.method =="POST":
         print(request.POST)
@@ -342,17 +377,20 @@ def trainee_attendance(request):
         return render(request,"dashboard/trainee_attendance.html",{'data':data,'dat':dat})
 
 
+@login_required(login_url='/')
 def trainee_attendance_date(request):
     data = TraineeAttendance.objects.all()
     
     return render(request,"dashboard/trainee_attendance_date.html",{'data':data})
  
 
+@login_required(login_url='/')
 def trainee_attendance_edit(request,id):
     data = TraineeAttendance.objects.get(id=id)
     print(data)
     return render(request,"dashboard/trainee_attendance_edit.html",{'data':data})
 
+@login_required(login_url='/')
 def trainee_attendance_manage(request,id):
     print(id)
     data = TraineeAttendance.objects.get(id=id)
@@ -363,12 +401,8 @@ def trainee_attendance_manage(request,id):
         data.save()
     return redirect(f'/dashboard/trainee_attendance_edit/{id}',{'data':data})
 
-############################################################################################################################################    
-
-def register_employees(request):
-    return render(request,"dashboard/register_employees.html")
 ############################################################## employee departmenet ########################################################  
-
+@login_required(login_url='/')
 def register_employees(request):
     employee = Employee(request.POST,request.FILES)
     if request.method =="POST":
@@ -447,12 +481,13 @@ def register_employees(request):
         relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
         Insertion.save()
         print(Insertion)
-        return render(request,"dashboard/register_employees.html")
+        return render(request,"dashboard/view_employees.html")
     else:
         return render(request,"dashboard/register_employees.html")
 
 
 ################ view employees ##################  
+@login_required(login_url='/')
 def view_employees(request):
     data = Employee(request.GET)
     employees = Employee.objects.all()
@@ -461,6 +496,7 @@ def view_employees(request):
 
 
 ################ employees attendence ################## 
+@login_required(login_url='/')
 def emp_attendance(request): 
     if request.method =="POST":
         print(request.POST)
@@ -476,17 +512,20 @@ def emp_attendance(request):
         return render(request,"dashboard/emp_attendance.html",{'data':data,'dat':dat})
 
 
+@login_required(login_url='/')
 def emp_attendance_date(request):
     data = EmployeeAttendance.objects.all()
     
     return render(request,"dashboard/emp_attendance_date.html",{'data':data})
  
 
+@login_required(login_url='/')
 def emp_attendance_edit(request,id):
     data = EmployeeAttendance.objects.get(id=id)
     print(data)
     return render(request,"dashboard/emp_attendance_edit.html",{'data':data})
 
+@login_required(login_url='/')
 def emp_attendance_manage(request,id):
     print(id)
     data = EmployeeAttendance.objects.get(id=id)
@@ -501,6 +540,7 @@ def emp_attendance_manage(request,id):
 
 ############################################################################################################################################ 
 ################ edit employees ################## 
+@login_required(login_url='/')
 def edit_employees(request,id):
     employees = Employee.objects.get(id=id)
     skills=list(employees.skill.split(","))
@@ -512,6 +552,7 @@ def edit_employees(request,id):
     return render(request,"dashboard/edit_employees.html",{'edit_employees':employees,'skills':skill_info})
 
 ################ manage employees ################## 
+@login_required(login_url='/')
 def manage_employees(request,id):
     employee = Employee.objects.get(id=id) 
     if request.method =="POST":
@@ -581,6 +622,7 @@ def manage_employees(request,id):
     return redirect('/dashboard/view_employees')
 
 ################ delete employees ################## 
+@login_required(login_url='/')
 def remove_employees(request):
     Id=request.POST['employee_id']
     print(Id)
@@ -592,7 +634,7 @@ def remove_employees(request):
 
 
 ############################################################## employee departmenet ########################################################  
-
+@login_required(login_url='/')
 def register_trainer(request):
     trainer = Trainer(request.POST,request.FILES)
     if request.method =="POST":
@@ -668,12 +710,13 @@ def register_trainer(request):
         relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
         Insertion.save()
         print(Insertion)
-        return render(request,"dashboard/register_trainer.html")
+        return render(request,"dashboard/view_trainer.html")
     else:
         return render(request,"dashboard/register_trainer.html")
 
 
 ################ view trainer ################## 
+@login_required(login_url='/')
 def view_trainer(request):
     data = Trainer(request.GET)
     trainer = Trainer.objects.all()
@@ -682,6 +725,7 @@ def view_trainer(request):
 
 
 ################ edit trainer ################## 
+@login_required(login_url='/')
 def edit_trainer(request,id):
     trainers = Trainer.objects.get(id=id)
     skills=list(trainers.skill.split(","))
@@ -693,6 +737,7 @@ def edit_trainer(request,id):
     return render(request,"dashboard/edit_trainer.html",{'edit_trainer':trainers,'skills':skill_info})
 
 ################ update trainer ################## 
+@login_required(login_url='/')
 def manage_trainer(request,id):
     trainer = Trainer.objects.get(id=id) 
     if request.method =="POST":
@@ -764,6 +809,7 @@ def manage_trainer(request,id):
     
 
 ################ delete trainer ################## 
+@login_required(login_url='/')
 def remove_trainer(request):
     Id=request.POST['trainer_id']
     print(Id)
@@ -772,7 +818,7 @@ def remove_trainer(request):
     return redirect('/dashboard/view_trainer')       
 
 
-
+@login_required(login_url='/')
 def trainer_attendance(request): 
     if request.method =="POST":
         print(request.POST)
@@ -788,17 +834,19 @@ def trainer_attendance(request):
         return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat})
 
 
+@login_required(login_url='/')
 def trainer_attendance_date(request):
     data = TrainerAttendance.objects.all()
     
     return render(request,"dashboard/trainer_attendance_date.html",{'data':data})
  
-
+@login_required(login_url='/')
 def trainer_attendance_edit(request,id):
     data = TrainerAttendance.objects.get(id=id)
     print(data)
     return render(request,"dashboard/trainer_attendance_edit.html",{'data':data})
 
+@login_required(login_url='/')
 def trainer_attendance_manage(request,id):
     print(id)
     data = TrainerAttendance.objects.get(id=id)
@@ -815,7 +863,7 @@ def trainer_attendance_manage(request,id):
 
 ############################################################## employee departmenet ########################################################  
 
-
+@login_required(login_url='/')
 def add_salary(request):
     if request.method =="POST":
         print(request.POST)
@@ -832,7 +880,7 @@ def add_salary(request):
         net_salary = request.POST['net_salary']  
         sub_total = request.POST['sub_total']  
 
-        Insertion=Salary(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
+        Insertion=Payroll(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
         ,net_salary=net_salary,sub_total=sub_total)
         Insertion.save()
         return render(request,"dashboard/view_salary.html")
@@ -840,23 +888,21 @@ def add_salary(request):
         employee = Employee.objects.all()
         return render(request,"dashboard/add_salary.html",{'employee':employee})
 
-
-
-    return render(request,"dashboard/view_salary.html")
-
+@login_required(login_url='/')
 def view_salary(request):
-    data = Salary.objects.all()
+    data = Payroll.objects.all()
     print(data)
     return render(request,"dashboard/view_salary.html",{'data':data})
 
+@login_required(login_url='/')
 def salary_detail(request,id):
-    data = Salary.objects.get(id=id)
+    data = Payroll.objects.get(id=id)
     return render(request,"dashboard/salary_detail.html",{'data':data})
 
 
 ############################################################## employee departmenet ########################################################  
 
-
+@login_required(login_url='/')
 def register_staff(request):
     if request.method =="POST":
         print(request.POST)
@@ -868,20 +914,32 @@ def register_staff(request):
 
         Insertion=Staff(staff_name=staff_name, phone_no= phone_no,aadhar_no=aadhar_no,role=role,join_date=join_date)
         Insertion.save()
-        return render(request,"dashboard/register_staff.html")
+        return render(request,"dashboard/view_staff.html")
     else:
         return render(request,"dashboard/register_staff.html")
 
 
     
-################ view staff ##################        
+################ view staff ################## 
+@login_required(login_url='/')       
 def view_staff(request):
-    data = Staff.objects.all()
-    return render(request,"dashboard/view_staff.html",{'data':data})
+    if request.method=='POST':
+
+        search_term = request.POST['search']
+        
+        posts = Staff.objects.filter(staff_name=search_term)
+        
+        context = {'data': posts,'search-term': search_term}
+    
+        return render(request, "dashboard/view_staff.html",context)
+    else:
+        data = Staff.objects.all()
+        return render(request,"dashboard/view_staff.html",{'data':data})
 
 
 
 ################ delete staff ################## 
+@login_required(login_url='/')
 def delete_staff(request, id):
     staff=Staff.objects.filter(pk=id)
     staff.delete()
@@ -890,6 +948,7 @@ def delete_staff(request, id):
 
 
 ################ edit staff ################## 
+@login_required(login_url='/')
 def edit_staff(request,id):
     staff = Staff.objects.get(id=id)
     print(staff)
@@ -898,6 +957,7 @@ def edit_staff(request,id):
 
 
 ################ update staff ################## 
+@login_required(login_url='/')
 def manage_staff(request,id):
     staff = Staff.objects.get(id=id)
     if request.method == "POST":
@@ -911,7 +971,8 @@ def manage_staff(request,id):
 
 
 
-################ attendence staff ################## 
+################ attendence staff ##################
+@login_required(login_url='/') 
 def staff_attendance(request): 
     if request.method =="POST":
         print(request.POST)
@@ -927,17 +988,20 @@ def staff_attendance(request):
         return render(request,"dashboard/staff_attendance.html",{'data':data,'dat':dat})
 
 
+@login_required(login_url='/')
 def staff_attendance_date(request):
     data = staffAttendance.objects.all()
     
     return render(request,"dashboard/staff_attendance_date.html",{'data':data})
  
 
+@login_required(login_url='/')
 def staff_attendance_edit(request,id):
     data = staffAttendance.objects.get(id=id)
     print(data)
     return render(request,"dashboard/staff_attendance_edit.html",{'data':data})
 
+@login_required(login_url='/')
 def staff_attendance_manage(request,id):
     print(id)
     data = staffAttendance.objects.get(id=id)
@@ -948,6 +1012,7 @@ def staff_attendance_manage(request,id):
         data.save()
     return redirect(f'/dashboard/staff_attendance_edit/{id}',{'data':data})
 
+@login_required(login_url='/')
 def search(request):
     posts =Staff.objects.all()
     search_term = ''
@@ -963,3 +1028,57 @@ def search(request):
 
     return render(request, '/dashboard/view_staff.html', context)  
     
+##############################################lead##################################################################
+
+def register_lead(request):
+    if request.method =="POST":
+        print(request.POST)
+        name=request.POST['name']
+        email=request.POST['email']
+        regarding=request.POST['regarding']
+        reference=request.POST['reference']
+        message=request.POST['message']
+
+        Insertion=Lead(name=name, email= email,regarding=regarding,reference=reference,message=message)
+        Insertion.save()
+        return render(request,"dashboard/register_lead.html")
+    else:
+        return render(request,"dashboard/register_lead.html")
+
+################ view lead #########################################################################################
+
+def view_lead(request):
+    data = Lead(request.GET)
+    lead = Lead.objects.all()
+    print(lead)
+    return render(request,"dashboard/view_lead.html",{'view_lead':lead} )
+
+    ################ delete staff ####################################################################################
+def remove_lead(request):
+    Id=request.POST['lead_id']
+    print(Id)
+    lead = Lead.objects.get(pk=Id)
+    lead.delete()
+    return redirect('/dashboard/view_lead')
+
+
+
+################ edit staff ################## ######################################################################
+def edit_lead(request,id):
+    lead = Lead.objects.get(id=id)
+    print(lead)
+    return render(request,"dashboard/edit_lead.html",{'lead':lead})
+
+
+
+################ update staff ################## ###################################################################
+def manage_lead(request,id):
+    lead = Lead.objects.get(id=id)
+    if request.method == "POST":
+        lead.name = request.POST.get('name','') 
+        lead.email = request.POST.get('email','')
+        lead.regarding = request.POST.get('regarding','')
+        lead.reference = request.POST.get('reference','')
+        lead.message = request.POST.get('message','')
+        lead.save()
+    return redirect('/dashboard/view_lead/')

@@ -1,5 +1,5 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 
     <style type="text/css">
         label {
@@ -29,23 +29,27 @@ body {
             </div>
             <div class="col-sm-4 form-group">
                 <label for="address-1">Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_trainees.email}}">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_trainees.email}}" onfocusout="ValidateEmail()">
+                <span id="email_error"></span>
             </div>
             <div class="col-sm-4 form-group">
                 <label for="address-2">Phone Number</label>
-                <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number" value="{{edit_trainees.phone_no}}">
+                <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainees.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                 <span id="messages"></span>
             </div>
             <div class="col-sm-4 form-group">
                 <label for="State">Aadhar Number</label>
-                <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainees.aadhar_no}}">
+                <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainees.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <span id="msg"></span>
             </div>
             <div class="col-sm-4 form-group">
                 <label for="zip">Pan Card</label>
                 <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainees.pan_card}}">
+                 <span id="msgs"></span>
             </div>
             <div class="col-sm-4 form-group">
                 <label for="Country">Gender</label>
-                <select class="form-control custom-select browser-default" name="gender" value="{{edit_trainees.gender}}">
+                <select class="form-control custom-select browser-default" name="gender" value="{{edit_trainees.gender}}" onfocusout="PanCardValidation()" >
                {% if edit_trainees.gender == "Male" %}
                                     <option value="Male" selected="selected" >Male</option>
                                 {% else %}
@@ -76,7 +80,8 @@ body {
             </div>
             <div class="col-sm-4 form-group">
                 <label for="pass2">Father's Number</label>
-                <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father's Number" value="{{edit_trainees.father_no}}">
+                <input type="text" name="father_no" class="form-control" id="father_no"  onfocusout="ValidateNum()" placeholder="Father's Number" value="{{edit_trainees.father_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <span id="message"></span>
             </div>
             <div class="col-sm-4 form-group">
                 <label for="pass2">City</label>
@@ -89,7 +94,7 @@ body {
 
             <div class="col-sm-4 form-group">
                 <label for="pass2">Pin code</label>
-                <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_trainees.pin_code}}">
+                <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_trainees.pin_code}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             </div>
             <div class="col-sm-4 form-group">
                 <label for="pass2">Address</label>
@@ -108,7 +113,7 @@ body {
                 <label for="pass2">Board</label>
                 <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_trainees.board}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainees.passing_year}}"></br>
+                <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainees.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
             <div class="col-sm-6 form-group">
                  <h5>High School</h5></br>
@@ -116,7 +121,7 @@ body {
                 <label for="pass2">Board</label> 
                 <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_trainees.high_school_board}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_trainees.high_school_passing_year}}"></br>
+                <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_trainees.high_school_passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
     
                 
@@ -129,7 +134,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_trainees.graduation_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_trainees.graduation_year}}"></br>
+                <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_trainees.graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
             <div class="col-sm-4 form-group">
              <h5>Post Graduation Details</h5></br>
@@ -137,7 +142,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_trainees.post_graduation_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_trainees.post_graduation_year}}"></br>
+                <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_trainees.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
             <div class="col-sm-4 form-group">
             <h5>Other Degree/Chartification</h5></br>
@@ -145,7 +150,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_trainees.other_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_trainees.other_year}}"></br>
+                <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_trainees.other_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div></br></br></br></br></br>
             </div>
 
@@ -161,5 +166,165 @@ body {
         </br>
     </div>
 
+<script>
+  function ValidateEmail() 
+{ 
+  
 
-{% endblock maincontent %}
+    var email = document.getElementById('email');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var message = document.getElementById('email_error');
+    var badColor = "#FF0000";
+    if(!email.value=='')
+    {
+
+
+    if (!filter.test(email.value)) {
+      message.style.color = badColor;
+      message.innerHTML = "Please enter a valid email address"
+      return false;
+	}
+  else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+
+function ValidateNumber()
+{
+
+    var mobile = document.getElementById('phone_no');
+   
+    
+    var message = document.getElementById('messages');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+function ValidateNum()
+{
+
+    var mobile = document.getElementById('father_no');
+   
+    
+    var message = document.getElementById('message');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+
+function AdharValidation()
+{
+
+    var mobile = document.getElementById('aadhar_no');
+   
+    
+    var message = document.getElementById('msg');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=12){
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid Aadhaar Number!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+
+function PanCardValidation()
+{
+
+    var mobile = document.getElementById('pan_card');
+   
+    
+    var message = document.getElementById('msgs');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid PAN CARD Number!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+</script>
+
+{% endblock maincontain %}

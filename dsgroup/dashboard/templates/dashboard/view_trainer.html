@@ -1,5 +1,5 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 <style>
   .table{
     background-color: white;
@@ -9,7 +9,6 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th>Trainer Id</th>
       <th>Name</th>
       <th>Email</th>
       <th>Phone Number</th>
@@ -21,8 +20,6 @@
   
     {% for trainer in view_trainers %}
     <tr>
-     
-      <td>{{trainer.id}}</td>
       <td>{{trainer.trainer_name}}</td>
       <td>{{trainer.email}}</td>
       <td>{{trainer.phone_no}}</td>
@@ -79,4 +76,4 @@ function get_id(id)
 		}
 
 	</script>
-{% endblock maincontent %}
+{% endblock maincontain %}

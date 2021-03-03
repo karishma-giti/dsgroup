@@ -1,15 +1,15 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 <style>
     .table{
       background-color: white;
     }
    
   </style>
+ 
   <table class="table">
     <thead class="">
       <tr>
-        <th>Employee Id</th>
         <th>Name</th>
         <th>Email</th>
         <th>Join_date</th>
@@ -21,7 +21,6 @@
       {% for d in data %}
       <tr>
        
-        <td>{{d.id}}</td>
         <td>{{d.emp_name.emp_name}}</td>
         <td>{{d.emp_name.email}}</td>
         <td>{{d.emp_name.join_date}}</td>
@@ -37,4 +36,4 @@
   </table>
   </div>
   
-{% endblock maincontent %}
+{% endblock maincontain %}

@@ -1,0 +1,83 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<style>
+  .table{
+    background-color: white;
+  }
+ 
+</style>
+<table class="table">
+  <thead>
+    <tr>
+      
+      <th>Name</th>
+      <th>Email</th>
+      <th>Regarding</th>
+      <th>Reference</th>
+      <th>Message</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+    {% for lead in view_lead %}
+    <tr>
+     
+      
+      <td>{{lead.name}}</td>
+      <td>{{lead.email}}</td>
+      <td>{{lead.regarding}}</td>
+      <td>{{lead.reference}}</td>
+      <td>{{lead.message}}</td>
+      
+      <td>
+        <a href="{% url 'edit_lead' lead.id %}">Update</a>
+        <button type="button" class="btn btn-danger" onclick="get_id({{lead.id}})" data-toggle="modal" data-target="#example" style="width:70px;">
+          Delete
+       </button>
+       
+       <!-- Modal -->
+       <div class="modal fade" id="example" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="examplemodel" style="font-weight:bold;color:black;margin-left:38%;font-size:20px;">Delete Details</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body" >
+               <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
+               <form action="{% url 'remove_lead' %}" method='POST'>
+							{% csrf_token %}
+							<input type='hidden' name='lead_id' id='lead_id'> 
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-danger">Delete</a></button>
+             </div>
+             </form>
+           </div>
+         </div>
+       </div>
+
+        
+
+        
+        </td>
+    {% endfor %}
+  
+</table>
+</div>
+<script>
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+
+function get_id(id)
+		{
+		
+		document.getElementById('lead_id').value=id;
+		}
+
+	</script>
+{% endblock maincontain %}

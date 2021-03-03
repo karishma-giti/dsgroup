@@ -1,135 +1,296 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 
-    <style type="text/css">
-        label {
+<style type="text/css">
+  label {
     font-weight: 600;
     color: #555;
-}
-body {
-  background: ;
-}
-    </style>
-</head>
-<body>
+  }
 
-    <div class="container">
-    <h2 class="text-center">Personal Details</h2>
-        <form method="POST" action="#" enctype="multipart/form-data">
-						    {% csrf_token %}
-            
-        <div class="row jumbotron">
-            
-            <div class="col-sm-4 form-group">
-                <input type="text" class="form-control" name="intern_name" id="intern_name" placeholder="Intern Name">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card">
-            </div>
-            <div class="col-sm-4 form-group">
-                <select class="form-control custom-select browser-default" name="gender">
-                    <option value="" selected>Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-            
-            <div class="col-sm-4 form-group">
-                <input type="text" name="blood_group" class="form-control" id="blood_group" placeholder="Blood Group">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father's Number">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" name="city" class="form-control" id="city" placeholder="City">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" name="state" class="form-control" id="state" placeholder="State">
-            </div>
+  body {
+    background: ;
+  }
+</style>
 
-            <div class="col-sm-4 form-group">
-                <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code">
-            </div>
-            <div class="col-sm-4 form-group">
-                <input type="text" name="address" class="form-control" id="address" placeholder="Address">
-            </div>
-            <div class="col-sm-4 form-group">
-                <label for="name-l">Profile</label>
-                <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile">
-            </div>
-            <div class="col-sm-4 form-group">
-                <label for="Date">Date Of Birth</label>
-                <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
-            </div>
-            <div class="col-sm-4 form-group">
-                <label for="pass2">Join Date</label>
-                <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date">
-            </div></br></br></br>
-            </div> 
-              <h3 class="text-center">Educational Details</h3></br></br>
-            <div class="row">
-            <div class="col-sm-6 form-group">
-                <h6>School</h6></br>
-                <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
-                <input type="text" name="board" class="form-control" id="board" placeholder="Board"></br>
-                <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year"></br>
-            </div>
-            <div class="col-sm-6 form-group">
-                <h6>High School</h6></br>
-                <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
-                <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
-                 <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year"></br>
-            </div>
-            </div></br></br></br>
+<div class="container">
+  <h2 class="text-center">Personal Details</h2>
+  <form method="POST" action="#" enctype="multipart/form-data">
+    {% csrf_token %}
 
-            <div class="row">
-            
-            <div class="col-sm-4 form-group">
-                <h6>Graduation Details</h6></br>
-                <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
-                <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
-                <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year"></br>
-            </div>
-            <div class="col-sm-4 form-group">
-                <h6>Post Graduation Details</h6></br>
-                <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
-                <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
-                <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year"></br>
-            </div>
-            <div class="col-sm-4 form-group">
-                <h6>Other Degree/Chartification</h6></br>
-                <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
-                <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
-                <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year"></br>
-            </div>
+    <div class="row jumbotron">
 
-            </div>
-             
-            
-            
-            <div class="col-sm-12 form-group mb-0">
-               <button class="btn btn-primary float-right">Submit</button>
-            </div>
-            
-        </div>
-        </form>
-        </br>
+      <div class="col-sm-4 form-group">
+        <input type="text" class="form-control" name="intern_name" id="intern_name" placeholder="Intern Name">
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email" onfocusout="ValidateEmail()">
+        <span id="email_error"></span>
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+        <span id="messages"></span>
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" class="form-control" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhar Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <span id="msg"></span>
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" class="form-control" name="pan_card"  onfocusout="PanCardValidation()" id="pan_card" placeholder="Pan Card">
+        <span id="msgs"></span>
+      </div>
+      <div class="col-sm-4 form-group">
+        <select class="form-control custom-select browser-default" name="gender">
+          <option value="" selected>Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+      <div class="col-sm-4 form-group">
+        <input type="text" name="blood_group" class="form-control" id="blood_group" placeholder="Blood Group">
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
+      
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" name="father_no" onfocusout="ValidateNum()" class="form-control" id="father_no" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+      <span id="message"></span>
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" name="city" class="form-control" id="city" placeholder="City">
+      </div>
+      <div class="col-sm-4 form-group">
+        <input type="text" name="state" class="form-control" id="state" placeholder="State">
+      </div>
+
+      <div class="col-sm-4 form-group">
+        <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+      </div>
+      <div class="col-sm-8 form-group">
+        <input type="text" name="address" class="form-control" id="address" placeholder="Address">
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="name-l">Intern's Profile</label>
+        <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile">
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="Date">Date Of Birth</label>
+        <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="pass2">Join Date</label>
+        <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date">
+      </div></br></br></br>
+    </div>
+    <h3 class="text-center">Educational Details</h3></br></br>
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        <h6>School</h6></br>
+        <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
+        <input type="text" name="board" class="form-control" id="board" placeholder="Board"></br>
+        <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+      </div>
+      <div class="col-sm-6 form-group">
+        <h6>High School</h6></br>
+        <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
+        <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
+        <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+      </div>
+    </div></br></br></br>
+
+    <div class="row">
+
+      <div class="col-sm-4 form-group">
+        <h6>Graduation Details</h6></br>
+        <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
+        <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
+        <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+      </div>
+      <div class="col-sm-4 form-group">
+        <h6>Post Graduation Details</h6></br>
+        <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
+        <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
+        <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+      </div>
+      <div class="col-sm-4 form-group">
+        <h6>Other Degree/Chartification</h6></br>
+        <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
+        <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
+        <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+      </div>
+
     </div>
 
+    <div class="col-sm-12 form-group mb-0">
+      <button class="btn btn-primary float-right">Submit</button> </br> </br> </br>
+    </div>
 
-{% endblock maincontent %}
+</div>
+</form>
+
+<script>
+  function ValidateEmail() 
+{ 
+  
+
+    var email = document.getElementById('email');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var message = document.getElementById('email_error');
+    var badColor = "#FF0000";
+    if(!email.value=='')
+    {
+
+
+    if (!filter.test(email.value)) {
+      message.style.color = badColor;
+      message.innerHTML = "Please enter a valid email address"
+      return false;
+	}
+  else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+
+function ValidateNumber()
+{
+
+    var mobile = document.getElementById('phone_no');
+   
+    
+    var message = document.getElementById('messages');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+function ValidateNum()
+{
+
+    var mobile = document.getElementById('father_no');
+   
+    
+    var message = document.getElementById('message');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+
+function AdharValidation()
+{
+
+    var mobile = document.getElementById('aadhar_no');
+   
+    
+    var message = document.getElementById('msg');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=12){
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid Aadhaar Number!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+
+function PanCardValidation()
+{
+
+    var mobile = document.getElementById('pan_card');
+   
+    
+    var message = document.getElementById('msgs');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid PAN CARD Number!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+</script>
+
+{% endblock maincontain %}

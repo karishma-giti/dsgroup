@@ -1,6 +1,493 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
-    <!-- Main content -->
+{% block maincontain %}
+      <div class="page-wrapper mdc-toolbar-fixed-adjust">
+        <main class="content-wrapper">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--success">
+                  <div class="card-inner">
+                    <h5 class="card-title">Intern</h5>
+                    <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_intern}}</h5>
+                    <p class="tx-12 text-muted">Total Intern {{total_intern}}</p>
+                    <div class="card-icon-wrapper">
+                      <i class="material-icons">dvr</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--danger">
+                  <div class="card-inner">
+                    <h5 class="card-title">Trainees</h5>
+                    <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_trainee}}</h5>
+                    <p class="tx-12 text-muted">Total Trainees {{total_trainee}}</p>
+                    <div class="card-icon-wrapper">
+                      <i class="material-icons">attach_money</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--primary">
+                  <div class="card-inner">
+                    <h5 class="card-title">Employee</h5>
+                    <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_emp}}</h5>
+                    <p class="tx-12 text-muted">Total Employee {{total_emp}}</p>
+                    <div class="card-icon-wrapper">
+                      <i class="material-icons">trending_up</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--info">
+                  <div class="card-inner">
+                    <h5 class="card-title">Trainer</h5>
+                    <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_trainer}}</h5>
+                    <p class="tx-12 text-muted">Total Trainer{{total_trainer}}</p>
+                    <div class="card-icon-wrapper">
+                      <i class="material-icons">credit_card</i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+        
+              
+            </div>
+          </div>
+        </main>
+        <!-- partial:partials/_footer.html -->
+  
+        <!-- partial -->
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% comment %} <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
@@ -581,6 +1068,6 @@
         </div>
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
-    </section>
-    {% endblock maincontent %}
+    </section> {% endcomment %}
+    {% endblock maincontain %}
     <!-- /.content -->

@@ -1,19 +1,15 @@
 {% extends 'dashboard/base.html' %}
-{% block maincontent %}
+{% block maincontain %}
 
 <style>
     label {
     font-weight: 600;
     color: #555;
 }
-.container
-{
 
-  width:70%;
-}
 .form-control
 {
-    background-color: #ccc;
+    background-color:;
 }
 
 </style>
@@ -32,11 +28,13 @@
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="email">Phone Number</label>
-                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number" required>
+                    <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone Number" onfocusout="ValidateNumber()"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
+                     <span id="messages"></span>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="address-1">Aadhaar Number</label>
-                    <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhaar Number" required>
+                    <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhaar Number" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
+                <span id="msg"></span>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="address-1">Role</label>
@@ -59,4 +57,4 @@
     
     
 
-{% endblock maincontent %}
+{% endblock maincontain %}
