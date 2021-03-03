@@ -88,9 +88,11 @@ def view_interns(request):
 ################ intern profile##################  
 @login_required(login_url='/')
 def intern_profile(request,id):
-    interns = Intern.objects.filter(id=id)
+    interns = Intern.objects.get(id=id)
     print(interns)
-    return render(request,"dashboard/intern_profile.html")
+    return render(request,"dashboard/intern_profile.html",{'view_profile':interns}) 
+
+    
     
 
 @login_required(login_url='/')
