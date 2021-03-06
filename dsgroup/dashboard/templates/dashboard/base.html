@@ -28,7 +28,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</
+
+  
+
 </head>
 <body>
 <script src="/static/assets/js/preloader.js"></script>
@@ -43,10 +45,6 @@
         </a>
       </div>
       <div class="mdc-drawer__content">
-        <div class="user-info">
-          <p class="email">hr@dsmie.com</p>
-          <p class="email">info@dsmie.com</p>
-        </div>
         <div class="mdc-list-group">
           <nav class="mdc-list mdc-drawer-menu">
             <div class="mdc-list-item mdc-drawer-item">
@@ -108,8 +106,6 @@
               </div>
             </div>
 
-            
-
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="employee">
                  EMPLOYEE
@@ -140,11 +136,11 @@
            
 
             <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trainer">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trai">
                  TRAINER
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
-              <div class="mdc-expansion-panel" id="trainer">
+              <div class="mdc-expansion-panel" id="trai">
                 <nav class="mdc-list mdc-drawer-submenu">
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_trainer' %}">
@@ -164,9 +160,6 @@
                 </nav>
               </div>
             </div>
-
-
-
            
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="staff">
@@ -194,6 +187,29 @@
               </div>
             </div>
 
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="lead">
+                  LEAD
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="lead">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'register_lead' %}">
+                      REGISTER&nbsp;&nbsp; LEAD
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_lead' %}">
+                     VIEW&nbsp;&nbsp; LEAD
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+
+           
             {% if perms.dashboard.add_payroll %}
 
 

@@ -35,5 +35,7 @@ admin.site.register(staffAttendance)
 from .models import Payroll
 admin.site.register(Payroll)
 
+from .models import Lead
+admin.site.register(Lead)
 
 

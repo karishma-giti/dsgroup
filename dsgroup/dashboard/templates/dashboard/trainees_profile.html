@@ -1,0 +1,109 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<div class="row">
+  <div class="profile-info col-md-1">
+  </div>
+  <div class="profile-info col-md-10">
+    <div class="panel">
+      <div class="bio-graph-heading">
+
+        <a href="#">
+          <p><img src="{{view_profile.profile.url}}" alt=""></p>
+        </a>
+      </div>
+      
+    </div>
+    </br></br>
+    <div class="row">
+      <div class="col-sm-6 form-group">
+      Name: &nbsp;&nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.trainee_name}}" style="border:none; "></br></br>
+      Email: &nbsp;&nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.email}}"  style="border:none; "/></br></br>
+      Pan Card:&nbsp;&nbsp;&nbsp;<input type="text" value="{{view_profile.pan_card}}" style="border:none; "/></br></br>
+      Gender:&nbsp; &nbsp;&nbsp;&nbsp;<input type="text" value="{{view_profile.gender}}" style="border:none; "/></br></br>
+    </div>
+      <div class="col-sm-6 form-group">
+      Aadhaar Number: &nbsp;&nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.aadhar_no}}" style="border:none; "/></br></br>
+      Phone Number:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.phone_no}}"  style="border:none; "/></br></br>
+      Date Of Birth:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.date_of_birth}}" style="border:none; "/></br></br>
+      Blood Group:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.blood_group}}" style="border:none; "/></br></br>  
+
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        
+        Fathe Name:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.father_name}}" style="border:none; "/></br></br>
+        Fathe Number:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.father_no}}" style="border:none; "/></br></br>
+        Father Occupation:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.father_occupation}}" style="border:none; "/></br></br>
+        City:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.city}}" style="border:none; "/></br></br>
+      </div>
+      <div class="col-sm-6 form-group">
+        state:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.state}}" style="border:none; "/></br></br>
+        pin_code:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.pin_code}}" style="border:none; "/></br></br>
+        join_date:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.join_date}}" style="border:none; "/></br></br>
+        address:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.address}}" style="border:none; "/></br></br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        school_name:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.school_name}}" style="border:none; "/></br></br>
+        board:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.board}}" style="border:none; "/></br></br>
+        passing_year:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.passing_year}}" style="border:none; "/></br></br>
+      </div>
+      <div class="col-sm-6 form-group">
+        high_school_name:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.high_school_name}}" style="border:none; "/></br></br>
+        high_school_board:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.high_school_board}}" style="border:none; "/></br></br>
+        high_school_passing_year:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.high_school_passing_year}}" style="border:none; "/></br></br>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-sm-6 form-group">
+        graduation_univercity:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.graduation_univercity}}" style="border:none; "/></br></br>
+        graduation_degree:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.graduation_degree}}" style="border:none; "/></br></br>
+        graduation_year:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.graduation_year}}" style="border:none; "/></br></br>
+      </div>
+      <div class="col-sm-6 form-group">
+        post_graduation_univercity:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.post_graduation_univercity}}" style="border:none; "/></br></br>
+        post_graduation_degree:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.post_graduation_degree}}" style="border:none; "/></br></br>
+        post_graduation_year:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.post_graduation_year}}" style="border:none; "/></br></br>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-sm-6 form-group">
+        other_univercity:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.other_univercity}}" style="border:none; "/></br></br>
+        other_degree:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.other_degree}}" style="border:none; "/></br></br>
+        other_year:&nbsp; &nbsp;&nbsp; &nbsp;<input type="text" value="{{view_profile.other_year}}" style="border:none; "/></br></br>
+      </div>
+      
+      
+    </div>
+    
+
+
+  </div>
+
+</div>
+<div class="profile-info col-md-1">
+</div>
+<style>
+  a p img {
+    width: 125px;
+    height: 125px;
+    border-radius: 60%;
+    -webkit-border-radius: 50%;
+    float: left;
+    margin: 8px;
+  }
+
+  .bio-graph-heading {
+    background: #dedede;
+    color: #fff;
+    height: 140px;
+    font-style: italic;
+    border-radius: 4px 4px 0 0;
+    font-size: 16px;
+    font-weight: 300;
+  }
+</style>
+
+{% endblock maincontain %}

@@ -52,9 +52,156 @@
                   </div>
                 </div>
               </div>
+
+
+
+
+              <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div style="margin:6px;" class="mdc-card p-0">
+                  <h6 class="card-title card-padding pb-0">Intern's Birthday</h6>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-left">Intern's Name</th>
+                          <th>Birthday</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for birth in intern_birthday %}
+                        <tr>
+                      
+                          <td class="text-left">{{birth.intern_name}}</td>
+                           <td>{{birth.date_of_birth}}</td>
+                            <td>Happy Birthday</td>
+                           </tr>
+                           {% endfor %}
+  
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div  style="margin:6px;" class="mdc-card p-0">
+                  <h6 class="card-title card-padding pb-0">Trainees's Birthday</h6>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-left">Trainees's Name</th>
+                          <th>Birthday</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for birth in trainee_birthday %}
+                        <tr>
+                      
+                          <td class="text-left">{{birth.trainee_name}}</td>
+                           <td>{{birth.date_of_birth}}</td>
+                          
+                           </tr>
+                           {% endfor %}
+  
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+                </div>
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div style="margin:6px;" class="mdc-card p-0">
+                  <h6 class="card-title card-padding pb-0">Trainer's Birthday</h6>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-left">Trainer's Name</th>
+                          <th>Birthday</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for birth in trainer_birthday %}
+                        <tr>
+                      
+                          <td class="text-left">{{birth.trainer_name}}</td>
+                           <td>{{birth.date_of_birth}}</td>
+                           </tr>
+                           {% endfor %}
+  
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div style="margin:6px;"class="mdc-card p-0">
+                  <h6 class="card-title card-padding pb-0">Employee's Birthday</h6>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="text-left">Employee's Name</th>
+                          <th>Birthday</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for birth in emp_birthday %}
+                        <tr>
+                      
+                          <td class="text-left">{{birth.emp_name}}</td>
+                           <td>{{birth.date_of_birth}}</td>
+                           </tr>
+                           {% endfor %}
+  
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
               
-              
-        
+              {% comment %} <table class="table">
+    <tr>
+  
+      <th>Name</th>
+      <th>Date Of Birthday</th>
+     
+    </tr>
+
+  
+    {% for birth in intern_birthday %}
+    <tr>
+     
+   
+      <td>{{birth.intern_name}}</td>
+      <td>{{birth.date_of_birth}}</td>
+    </tr>
+    {% endfor %}
+  
+</table>
+
+
+
+
+
+
+
+
+
+ {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               
             </div>
           </div>

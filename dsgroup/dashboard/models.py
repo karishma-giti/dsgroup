@@ -5,6 +5,56 @@ gender=(
     ('Male','Male'),
     ('Female','Female'),
 )
+reference=(
+    ('facebook','facebook'),
+    ('instagram','instagram'),
+    ('linkain','linkain'),
+    ('twitter','twitter'),
+    ('other','other'),
+    ('people','people'),
+)
+state=(
+('Andhra Pradesh','Andhra Pradesh'),
+('Arunachal Pradesh','Arunachal Pradesh'),
+('Asom (Assam)','Asom (Assam)'),
+('Bihar','Bihar'),
+('Karnataka','Karnataka'),
+('Kerala','Kerala'),
+('Chhattisgarh','Chhattisgarh'),
+('Uttar Pradesh','Uttar Pradesh'),
+('Goa','Goa'),
+('Gujarat','Gujarat'),
+('Haryana','Haryana'),
+('Himachal Pradesh','Himachal Pradesh'),
+('Jammu and Kashmir','Jammu and Kashmir'),
+('Jharkhand','Jharkhand'),
+('West Bengal','West Bengal'),
+('Madhya Pradesh','Madhya Pradesh'),
+('Maharashtra','Maharashtra'),
+('Manipur','Manipur'),
+('Meghalaya','Meghalaya'),
+('Mizoram','Mizoram'),
+('Nagaland','Nagaland'),
+('Orissa','Orissa'),
+('Punjab','Punjab'),
+('Rajasthan','Rajasthan'),
+('Sikkim','Sikkim'),
+('Tamil Nadu','Tamil Nadu'),
+('Telangana','Telangana'),
+('Tripura','Tripura'),
+('Uttarakhand (Uttaranchal)','Uttarakhand (Uttaranchal)'),
+)
+blood_group=(
+
+    ('A+','A+'),
+    ('A-','A-'),
+    ('B+','B+'),
+    ('B-','B-'),
+    ('O+','O+'),
+    ('O-','O-'),
+    ('AB+','AB+'),
+    ('AB-','AB-'),
+)
 
 
 # Create your models here.
@@ -16,13 +66,13 @@ class Intern(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100) 
-    blood_group = models.CharField(max_length=100,blank=True,null=True)  
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
+    blood_group =  models.CharField(max_length=100, choices=blood_group,null=True)   
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
     father_no = models.IntegerField(blank=True,null=True)   
     city = models.CharField(max_length=100)  
-    state = models.CharField(max_length=100)  
+    state = models.CharField(max_length=100, choices=state,null=True)  
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
@@ -71,7 +121,7 @@ class Trainer(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100) 
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
@@ -144,7 +194,7 @@ class Trainee(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100) 
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
@@ -201,7 +251,7 @@ class Employee(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100,default=True) 
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100,default=True)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
@@ -306,3 +356,14 @@ class staffAttendance(models.Model):
     def __str__(self): 
         return str(self.staff_name)
 
+# ######################################lead#####################################################################
+
+class Lead(models.Model):    
+    name = models.CharField(max_length=100)  
+    email = models.EmailField(max_length=100) 
+    regarding = models.CharField(max_length=100,blank=True,null=True,default=True)
+    reference = models.CharField(max_length=100, choices=reference,null=True) 
+    message = models.CharField(max_length=100,blank=True,null=True,default=True)    
+
+    def __str__(self): 
+        return str(self.name)

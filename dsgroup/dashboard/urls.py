@@ -28,7 +28,7 @@ urlpatterns = [
     path('trainee_attendance_date/',views.trainee_attendance_date, name='trainee_attendance_date'),
     path('trainee_attendance_edit/<int:id>',views.trainee_attendance_edit, name='trainee_attendance_edit'),
     path('trainee_attendance_manage/<int:id>',views.trainee_attendance_manage, name='trainee_attendance_manage'),
-    # path('trainees_profile/<int:id>',views.trainees_profile,name="trainees_profile"),
+    path('trainees_profile/<int:id>',views.trainees_profile,name="trainees_profile"),
     path('edit_trainees/<int:id>',views.edit_trainees,name='edit_trainees'),
     path('manage_trainees/<int:id>',views.manage_trainees,name='manage_trainees'),
     path('remove_trainees/',views.remove_trainees,name='remove_trainees'),
@@ -39,6 +39,7 @@ urlpatterns = [
     path('trainer_attendance_date/',views.trainer_attendance_date, name='trainer_attendance_date'),
     path('trainer_attendance_edit/<int:id>',views.trainer_attendance_edit, name='trainer_attendance_edit'),
     path('trainer_attendance_manage/<int:id>',views.trainer_attendance_manage, name='trainer_attendance_manage'),
+    path('trainer_profile/<int:id>',views.trainer_profile,name="trainer_profile"),
     path('edit_trainer/<int:id>',views.edit_trainer,name='edit_trainer'),
     path('manage_trainer/<int:id>',views.manage_trainer,name='manage_trainer'),
     path('remove_trainer',views.remove_trainer,name='remove_trainer'),
@@ -47,6 +48,7 @@ urlpatterns = [
     path('view_employees/',views.view_employees, name='view_employees'),
     path('emp_attendance/',views.emp_attendance, name='emp_attendance'),
     path('emp_attendance_date/',views.emp_attendance_date, name='emp_attendance_date'),
+    path('emp_profile/<int:id>',views.emp_profile,name="emp_profile"),
     path('emp_attendance_edit/<int:id>',views.emp_attendance_edit, name='emp_attendance_edit'),
     path('emp_attendance_manage/<int:id>',views.emp_attendance_manage, name='emp_attendance_manage'),
     path('edit_employees/<int:id>',views.edit_employees,name='edit_employees'),
@@ -68,4 +70,12 @@ urlpatterns = [
     path('delete_staff/<int:id>',views.delete_staff,name='delete_staff'),
     path('edit_staff/<int:id>',views.edit_staff,name="edit_staff"),
     path('manage_staff/<int:id>', views.manage_staff,name="manage_staff"),
+
+
+
+    path('register_lead/',views.register_lead, name='register_lead'),
+    path('view_lead/',views.view_lead, name='view_lead'),
+    path('remove_lead/',views.remove_lead,name='remove_lead'),
+    path('edit_lead/<int:id>',views.edit_lead,name="edit_lead"),
+    path('manage_lead/<int:id>', views.manage_lead,name="manage_lead"),
 ]
