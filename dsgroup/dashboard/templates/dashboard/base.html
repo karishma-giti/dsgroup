@@ -27,12 +27,16 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
 <link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
 
 
 
@@ -44,16 +48,12 @@
     {% block sidebar %}
     <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
       <div class="mdc-drawer__header">
-        <a href="base.html" class="brand-logo">
+        <a href="#" class="brand-logo">
           {% comment %} <img src="/static/assets/images/360..png" alt="logo"> {% endcomment %}
           <h3 style="color:white;">Digital Spirit</h3>
         </a>
       </div>
       <div class="mdc-drawer__content">
-        <div class="user-info">
-          <p class="email">hr@dsmie.com</p>
-          <p class="email">info@dsmie.com</p>
-        </div>
         <div class="mdc-list-group">
           <nav class="mdc-list mdc-drawer-menu">
             <div class="mdc-list-item mdc-drawer-item">
@@ -73,7 +73,7 @@
                 <nav class="mdc-list mdc-drawer-submenu">
                   
                   <div class="mdc-list-item mdc-drawer-item">
-                   
+                    
                     <a class="mdc-drawer-link" href="{% url 'register_intern' %}">
                       REGISTER &nbsp;&nbsp;INTERN
                     </a>
@@ -84,7 +84,7 @@
                     </a>
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="{% url 'interns_attendance' %}">
+                    <a class="mdc-drawer-link" href="{% url 'intern_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
@@ -113,7 +113,7 @@
                     </a>
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="#">
+                    <a class="mdc-drawer-link" href="{% url 'trainee_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
@@ -121,11 +121,9 @@
               </div>
             </div>
 
-            
-
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="employee">
-                <i class="fa fa-address-card" aria-hidden="true"></i>
+                <i class="fa fa-user-circle"></i>
                 &nbsp;&nbsp;&nbsp;
                  EMPLOYEE
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
@@ -155,12 +153,13 @@
            
 
             <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trainer">
-                
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trai">
+                <i class="fa fa-graduation-cap"></i>
+&nbsp;&nbsp;
                  TRAINER
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
-              <div class="mdc-expansion-panel" id="trainer">
+              <div class="mdc-expansion-panel" id="trai">
                 <nav class="mdc-list mdc-drawer-submenu">
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_trainer' %}">
@@ -180,12 +179,11 @@
                 </nav>
               </div>
             </div>
-
-
-
            
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="staff">
+                <i class="fa fa-users" style="font-size:16px"></i>&nbsp;&nbsp;&nbsp;
+
                   STAFF
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -212,6 +210,8 @@
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="lead">
+                <i class="fa fa-arrows-alt"></i>
+&nbsp;&nbsp;
                   LEAD
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -236,11 +236,15 @@
               </div>
             </div>
 
+
+           
             {% if perms.dashboard.add_payroll %}
 
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="payroll">
+                <i class="fa fa-rupee"></i>
+                &nbsp;&nbsp;
                    PAYROLL
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>

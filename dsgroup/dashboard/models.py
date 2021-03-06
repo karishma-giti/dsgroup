@@ -13,6 +13,48 @@ reference=(
     ('other','other'),
     ('people','people'),
 )
+state=(
+('Andhra Pradesh','Andhra Pradesh'),
+('Arunachal Pradesh','Arunachal Pradesh'),
+('Asom (Assam)','Asom (Assam)'),
+('Bihar','Bihar'),
+('Karnataka','Karnataka'),
+('Kerala','Kerala'),
+('Chhattisgarh','Chhattisgarh'),
+('Uttar Pradesh','Uttar Pradesh'),
+('Goa','Goa'),
+('Gujarat','Gujarat'),
+('Haryana','Haryana'),
+('Himachal Pradesh','Himachal Pradesh'),
+('Jammu and Kashmir','Jammu and Kashmir'),
+('Jharkhand','Jharkhand'),
+('West Bengal','West Bengal'),
+('Madhya Pradesh','Madhya Pradesh'),
+('Maharashtra','Maharashtra'),
+('Manipur','Manipur'),
+('Meghalaya','Meghalaya'),
+('Mizoram','Mizoram'),
+('Nagaland','Nagaland'),
+('Orissa','Orissa'),
+('Punjab','Punjab'),
+('Rajasthan','Rajasthan'),
+('Sikkim','Sikkim'),
+('Tamil Nadu','Tamil Nadu'),
+('Telangana','Telangana'),
+('Tripura','Tripura'),
+('Uttarakhand (Uttaranchal)','Uttarakhand (Uttaranchal)'),
+)
+blood_group=(
+
+    ('A+','A+'),
+    ('A-','A-'),
+    ('B+','B+'),
+    ('B-','B-'),
+    ('O+','O+'),
+    ('O-','O-'),
+    ('AB+','AB+'),
+    ('AB-','AB-'),
+)
 
 
 # Create your models here.
@@ -24,13 +66,13 @@ class Intern(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100) 
-    blood_group = models.CharField(max_length=100,blank=True,null=True)  
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
+    blood_group =  models.CharField(max_length=100, choices=blood_group,null=True)   
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
     father_no = models.IntegerField(blank=True,null=True)   
     city = models.CharField(max_length=100)  
-    state = models.CharField(max_length=100)  
+    state = models.CharField(max_length=100, choices=state,null=True)  
     pin_code = models.IntegerField(blank=True,null=True)   
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
@@ -62,8 +104,8 @@ class Intern(models.Model):
 
 class InternAttendance(models.Model):
     intern_name= models.ForeignKey('Intern',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100) 
-    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+    attendance = models.CharField(max_length=100, default='absent') 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
         return str(self.intern_name)
@@ -79,7 +121,7 @@ class Trainer(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100) 
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
@@ -137,7 +179,7 @@ class Trainer(models.Model):
 class TrainerAttendance(models.Model):
     trainer_name= models.ForeignKey('Trainer',on_delete=models.CASCADE,default=True)
     attendance = models.CharField(max_length=100) 
-    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
         return str(self.trainer_name)
@@ -152,7 +194,7 @@ class Trainee(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100) 
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
@@ -193,8 +235,8 @@ class Trainee(models.Model):
 
 class TraineeAttendance(models.Model):
     trainee_name= models.ForeignKey('Trainee',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100) 
-    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+    attendance = models.CharField(max_length=100, default='absent') 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
         return str(self.trainee_name)
@@ -209,7 +251,7 @@ class Employee(models.Model):
     aadhar_no = models.IntegerField()   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
-    date_of_birth = models.CharField(max_length=100,default=True) 
+    date_of_birth = models.DateField(blank=True, default=True, null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100,default=True)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
@@ -281,13 +323,14 @@ class Payroll(models.Model):
     pf = models.IntegerField()   
     da =  models.IntegerField()   
     prof_tax =  models.IntegerField() 
-    hra =  models.IntegerField()  
+    hra =  models.IntegerField() 
+    ta = models.IntegerField() 
     deductions =  models.IntegerField()  
-    medical_allowance =  models.IntegerField()  
+    medical_allowance =  models.IntegerField() 
+    other = models.IntegerField() 
     net_salary =  models.IntegerField()  
     sub_total =  models.IntegerField() 
-    other =models.IntegerField()
-    ta = models.IntegerField()
+   
 
  
 

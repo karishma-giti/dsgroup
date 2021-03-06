@@ -63,7 +63,7 @@ margin-left: 20px;
                   </div>
                   <div class="col-sm-6 form-group">
                     <label for="e_group">TDS</label>
-                    <input type="text" class="form-control" name="tds" id="TDS" placeholder="TDS"  style="font-size:15px;width:80%;">
+                    <input type="int" class="form-control" name="tds" id="TDS" placeholder="TDS"  style="font-size:15px;width:80%;">
                   </div>
                   <div class="col-sm-6 form-group">
                     <label for="cost_center">Basic</label>
@@ -102,7 +102,7 @@ margin-left: 20px;
               </div>
               <div class="col-sm-6 form-group">
                 <label for="created_on">TA</label>
-                <input type="int" class="form-control" name="ta" id="Total Deductions" placeholder="TA"  style="font-size:15px;width:80%;">
+                <input type="int" class="form-control" name="ta" id="TA" placeholder="TA"  style="font-size:15px;width:80%;">
               </div>
               <div class="col-sm-6 form-group">
                 <label for="renew_date">Medical Allowance</label>
@@ -110,14 +110,14 @@ margin-left: 20px;
               </div>
               <div class="col-sm-6 form-group">
                 <label for="created_on">Other</label>
-                <input type="int" class="form-control" name="other" id="Total Deductions" placeholder="other"  style="font-size:15px;width:80%;">
+                <input type="int" class="form-control" name="other" id="Other" placeholder="other"  style="font-size:15px;width:80%;">
               </div>
               <div class="col-sm-6 form-group">
                 <label for="renew_date">Net Salary</label>
                 <input type="text" name="net_salary"  class="form-control datetimepicker" id="Net Salary" placeholder="Net Salary "  style="font-size:15px;width:80%;">
               </div>
               <div class="col-sm-6 form-group">
-                <label for="renew_date">Sub Total</label>
+                <label for="renew_date"> Total Earnings</label>
                 <input type="text" name="sub_total"  class="form-control datetimepicker" id="Sub Total" placeholder="Total"  style="font-size:15px;width:80%;">
               </div>
               
@@ -130,6 +130,67 @@ margin-left: 20px;
         </div>
 
         <script>
+          document.getElementById("salary").onchange =function(){ NetSalary()};
+          function NetSalary() {
+          
+            
+            var Package = parseFloat(document.getElementById("salary").value);
+            var monthly=Package/12;
+            
+          var Basic=Math.ceil((Package/2)/12);
+          
+            var DA=Math.ceil((Package*0.25)/12);
+            var HRA=Math.ceil((Package*0.15)/12);
+            var TA=Math.ceil((Package*0.075)/12);
+            var OTHER=Math.ceil((Package*0.005)/12);
+            var PF=Math.ceil(((Package+DA)*0.12)/12);
+            var MA=Math.ceil((Package*2/100)/12);
+            var ProfTax=200;
+          
+          document.getElementById("Basic").value=Basic;
+          
+            document.getElementById("DA").value=DA;
+            document.getElementById("HRA").value=HRA;
+            document.getElementById("TA").value=TA;
+            document.getElementById("PF").value=PF;
+            document.getElementById("Medical Allowance").value=MA;
+            document.getElementById("Other").value=OTHER;
+            document.getElementById("Prof. Tax").value=ProfTax;
+          var subtotal=document.getElementById("Sub Total").value=Basic+DA+HRA+MA+TA+OTHER;
+            
+            
+            if(Package<=250000)
+            {
+                
+            var TDS=document.getElementById("TDS").value=0;
+              
+            }
+            else if(Package >250000 && Package<=500000)
+            {
+            var TDS=document.getElementById("TDS").value= Basic*5/100;
+          
+            }
+            
+            else if(Package >500000 && Package<=1000000)
+            {
+            var TDS=document.getElementById("TDS").value=12500+(Basic*20/100);
+          
+            }
+            else
+            {
+            var TDS=document.getElementById("TDS").value=112500+(Basic*30/100);
+          
+            }
+          var deduction=document.getElementById("Total Deductions").value=TDS+PF+ProfTax;
+          
+            var net_salary=subtotal- deduction;
+            
+            document.getElementById('Net Salary').value=Math.ceil(net_salary);
+            
+            }
+            </script>
+
+        <!-- <script>
             document.getElementById("salary").onchange =function(){ NetSalary()};
             function NetSalary() {
             
@@ -184,7 +245,7 @@ margin-left: 20px;
                 document.getElementById('Net Salary').value=Math.ceil(net_salary/12);
                 
                 }
-                </script>
+                </script> -->
             
 
 {% endblock maincontain %}

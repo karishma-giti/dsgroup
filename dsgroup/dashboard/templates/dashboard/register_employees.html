@@ -25,7 +25,7 @@
          
           <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control" name="emp_name" id="emp_name" placeholder="employee_name">
+            <input type="text" style="text-transform: capitalize;" class="form-control" name="emp_name" id="emp_name" placeholder="employee_name">
           </div>
           <div class="col-sm-4 form-group">
 
@@ -48,7 +48,7 @@
              <span id="msgs"></span>
           </div>
           <div class="col-sm-4 form-group">
-            <select class="form-control custom-select browser-default" name="gender">
+            <select class="form-control" name="gender">
               <option value="" selected>Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -56,15 +56,25 @@
           </div>
 
           <div class="col-sm-4 form-group">
-            <input type="text" name="blood_group" class="form-control" id="blood_group" placeholder="Blood Group">
+           <select class="form-control" name="blood_group">
+          <option value="" selected>Blood Group</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
+            <input type="text" name="father_name" style="text-transform: capitalize;" class="form-control" id="father_name" placeholder="Father's Name">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
+            <input type="text"  style="text-transform: capitalize;" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
           </div>
           <div class="col-sm-4 form-group">
 
@@ -73,11 +83,41 @@
           </div>
            <div class="col-sm-4 form-group">
 
-            <input type="text" name="city" class="form-control" id="city" placeholder="City">
+            <input type="text" name="city" style="text-transform: capitalize;" class="form-control" id="city" placeholder="City">
           </div>
           <div class="col-sm-4 form-group">
-
-            <input type="text" name="state" class="form-control" id="state" placeholder="State">
+          <select class="form-control" name="state">
+          <option value="" selected>State</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+          <option value="Asom (Assam)">Asom (Assam)</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Chhattisgarh">Chhattisgarh</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Goa">Goa</option>
+          <option value="Gujarat">Gujarat</option>
+          <option value="Haryana">Haryana</option>
+          <option value="Himachal Pradesh">Himachal Pradesh</option>
+          <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+          <option value="Jharkhand">Jharkhand</option>
+          <option value="West Bengal">West Bengal</option>
+          <option value="Madhya Pradesh">Madhya Pradesh</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Manipur">Manipur</option>
+          <option value="Meghalaya">Meghalaya</option>
+          <option value="Mizoram">Mizoram</option>
+          <option value="Nagaland">Nagaland</option>
+          <option value="Orissa">Orissa</option>
+          <option value="Punjab">Punjab</option>
+          <option value="Rajasthan">Rajasthan</option>
+          <option value="Sikkim">Sikkim</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Tripura">Tripura</option>
+          <option value="Uttarakhand (Uttaranchal)">Uttarakhand (Uttaranchal)</option>
+        </select>
           </div>
           <div class="col-sm-4 form-group">
 
@@ -85,7 +125,7 @@
           </div>
           <div class="col-sm-8 form-group">
 
-            <input type="text" name="address" class="form-control" id="address" placeholder="Address">
+            <input type="text" name="address" style="text-transform: capitalize;" class="form-control" id="address" placeholder="Address">
           </div>
          
           <div class="col-sm-4 form-group">
@@ -101,40 +141,44 @@
             <label for="pass2">Join Date</label>
             <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date">
           </div>
+          <div class="col-sm-4 form-group">
+        <label for="Date">Documents Zip</label>
+        <input type="file" name="document_zip" class="form-control" id="document_zip" placeholder="Documents Zip">
+      </div>
         </div>
       </div>
       <h3 class="text-center">Educational Details</h3></br></br>
       <div class="row">
         <div class="col-sm-6 form-group">
           <h6>School</h6></br>
-          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
-          <input type="text" name="board" class="form-control" id="board" placeholder="Board"></br>
+          <input type="text" style="text-transform: capitalize;" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
+          <input type="text" style="text-transform: capitalize;" name="board" class="form-control" id="board" placeholder="Board"></br>
           <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-6 form-group">
           <h6>High School</h6></br>
-          <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
-          <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
+          <input type="text" style="text-transform: capitalize;" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
+          <input type="text" style="text-transform: capitalize;" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
           <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
       </div></br>
       <div class="row">
         <div class="col-sm-4 form-group">
           <h6>Graduation Details</h6></br>
-          <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
-          <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
+          <input type="text" style="text-transform: capitalize;" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
+          <input type="text" style="text-transform: capitalize;" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
           <input type="text" name="graduation_year" class="form-control" id="yearPicker" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
 
         </div>
         <div class="col-sm-4 form-group">
           <h6>Post Graduation Details</h6></br>
-          <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
-          <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
+          <input type="text" style="text-transform: capitalize;" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
+          <input type="text" style="text-transform: capitalize;" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
           <input type="text" name="post_graduation_year" class="form-control" id="yearPicker" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-4 form-group">
           <h6>Other Degree/Chartification</h6></br>
-          <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
+          <input type="text" style="text-transform: capitalize;" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
           <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
           <input type="text" name="other_year" class="form-control" id="yearPicker" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
@@ -168,13 +212,13 @@
                   1
                 </td>
                 <td>
-                  <input type="text" name='skill[]' placeholder=' skill' class="form-control" />
+                  <input type="text"  style="text-transform: capitalize;" name='skill[]' placeholder=' skill' class="form-control" />
                 </td>
                 <td>
-                  <input type="text" name='position[]' placeholder='position' class="form-control" />
+                  <input type="text" style="text-transform: capitalize;"  name='position[]' placeholder='position' class="form-control" />
                 </td>
                 <td>
-                  <input type="text" name='experience[]' placeholder='experience' class="form-control" />
+                  <input type="text" style="text-transform: capitalize;" name='experience[]' placeholder='experience' class="form-control" />
                 </td>
               </tr>
               <tr id='addr1'></tr>
@@ -191,20 +235,22 @@
 
       <div class="row">
         <div class="col-sm-4 form-group">
-          <input type="text" name="company_name" class="form-control" id="company_name" placeholder="Company Name"></br>
-          <input type="text" name="designation" class="form-control" id="designation" placeholder="Designation "></br>
+          <input type="text" style="text-transform: capitalize;" name="company_name" class="form-control" id="company_name" placeholder="Company Name"></br>
+          <input type="text" style="text-transform: capitalize;"  name="designation" class="form-control" id="designation" placeholder="Designation "></br>
            <label for="text">Refference</label>
-          <input type="text" name="refference" class="form-control" id="refference" placeholder="How do you know Him/Her."></br>
+          <input type="text" style="text-transform: capitalize;"  name="refference" class="form-control" id="refference" placeholder="How do you know Him/Her."></br>
         </div>
         <div class="col-sm-4 form-group">
-          <input type="text" name="emails" class="form-control" id="emails" placeholder="Email"></br>
-          <input type="text" name="contact_no" class="form-control" id="contact_no" placeholder="Contact Number"></br>
+          <input type="text" name="emails" class="form-control" id="emails"  onfocusout="Validateemail()" placeholder="Email"></br>
+          <span id="email_errors"></span>
+          <input type="text" name="contact_no" class="form-control" id="contact_no" onfocusout="Validatenum()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Contact Number"></br>
+          <span id="mge"></span>
           <label for="Date">Joining Date</label>
           <input type="date" name="joining_date" class="form-control" id="joining_date" placeholder="Joining Date"></br>
         </div>
         <div class="col-sm-4 form-group">
-          <input type="text" name="relationships" class="form-control" id="relationships" placeholder="Relationships"></br>
-          <input type="text" name="belongs_department" class="form-control" id="belongs_department" placeholder="Belongs Department"></br>
+          <input type="text" style="text-transform: capitalize;" name="relationships" class="form-control" id="relationships" placeholder="Relationships"></br>
+          <input type="text" style="text-transform: capitalize;" name="belongs_department" class="form-control" id="belongs_department" placeholder="Belongs Department"></br>
           <label for="Date">Living Date</label>
           <input type="date" name="living_date" class="form-control" id="living_date" placeholder="Living Date"></br>
           </br></br></br>
@@ -215,7 +261,7 @@
         $(document).ready(function() {
           var i = 1;
           $("#add_row").click(function() {
-            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><input  name='position[]' type='text' placeholder='position'  class='form-control input-md'></td><td><input  name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
+            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input style='text-transform: capitalize;' name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><input  style='text-transform: capitalize;' name='position[]' type='text' placeholder='position'  class='form-control input-md'></td><td><input  style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
             $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
             i++;
           });
@@ -275,6 +321,39 @@ else
   }
 
 }
+
+function Validateemail() 
+{ 
+  
+
+    var email = document.getElementById('emails');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var message = document.getElementById('email_errors');
+    var badColor = "#FF0000";
+    if(!email.value=='')
+    {
+
+
+    if (!filter.test(email.value)) {
+      message.style.color = badColor;
+      message.innerHTML = "Please enter a valid email address"
+      return false;
+	}
+  else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+
 
 function ValidateNumber()
 {
@@ -337,6 +416,38 @@ else
     }
 
 }
+
+function Validatenum()
+{
+
+    var mobile = document.getElementById('contact_no');
+   
+    
+    var message = document.getElementById('mge');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
 
 
 function AdharValidation()

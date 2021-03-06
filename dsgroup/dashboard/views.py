@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Payroll,Employee,Trainer,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,staffAttendance,Lead
+from .models import Intern,Staff,Trainee,Employee,Trainer,Payroll,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,staffAttendance,Lead
 from datetime import date
 from django.contrib.auth.decorators import login_required
-
 # from django.db.models import Q
 # from django.views.generic import TemplateView, ListView
 
@@ -14,11 +13,27 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/')
 def dashboard(request):
+   ################ happy birthday notification#############################
+    today = date.today() 
+    intern_birthday=Intern.objects.filter(date_of_birth__month=today.strftime('%m'),date_of_birth__day=today.strftime('%d'))
+    print(intern_birthday)
+
+    emp_birthday=Employee.objects.filter(date_of_birth__month=today.strftime('%m'),date_of_birth__day=today.strftime('%d'))
+    print(emp_birthday)
+
+    trainee_birthday=Trainee.objects.filter(date_of_birth__month=today.strftime('%m'),date_of_birth__day=today.strftime('%d'))
+    print(trainee_birthday)
+
+    trainer_birthday=Trainer.objects.filter(date_of_birth__month=today.strftime('%m'),date_of_birth__day=today.strftime('%d'))
+    print(trainer_birthday)
+
+    
+
     total_intern= Intern.objects.all().count()
     total_trainee= Trainee.objects.all().count()
     total_emp= Employee.objects.all().count()
     total_trainer= Trainer.objects.all().count()
-    return render(request,"dashboard/dashboard.html",{'total_intern':total_intern,'total_trainee':total_trainee,'total_emp':total_emp,'total_trainer':total_trainer})
+    return render(request,"dashboard/dashboard.html",{'total_intern':total_intern,'total_trainee':total_trainee,'total_emp':total_emp,'total_trainer':total_trainer,'intern_birthday':intern_birthday,'emp_birthday':emp_birthday,'trainee_birthday':trainee_birthday,'trainer_birthday':trainer_birthday})
 
 @login_required(login_url='/')
 def register_intern(request):
@@ -41,6 +56,8 @@ def register_intern(request):
         pin_code=request.POST.get('pin_code')
         address=request.POST.get('address')
         join_date=request.POST.get('join_date')
+
+        document_zip = request.FILES.get('document_zip')
 
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
@@ -69,7 +86,7 @@ def register_intern(request):
         high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
         post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
-        post_graduation_year=post_graduation_year,
+        post_graduation_year=post_graduation_year,document_zip=document_zip,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
         return render(request,"dashboard/view_intern.html")
@@ -96,52 +113,71 @@ def intern_profile(request,id):
     
 
 @login_required(login_url='/')
-def interns_attendance(request): 
+def intern_attendance(request): 
     if request.method =="POST":
+        print("nfjkfff")
         print(request.POST)
-        intern_name=Intern.objects.get(intern_name=request.POST['internname'])
-        attendance = request.POST.get('attendance')
-        Insertion=InternAttendance(intern_name=intern_name,attendance=attendance)
-        Insertion.save()
-        return render(request,"dashboard/interns_attendance.html")
+
+        date_exist = InternAttendance.objects.filter(date=request.POST.get('todays_date')).count()
+        if date_exist>0:
+
+            return HttpResponseRedirect('/dashboard/intern_attendance')
+        else:
+            print("helllllllllllllllllllllo")
+            name_list=request.POST.getlist('intern_name')
+            attendance = request.POST.getlist('attendance')
+            print(len(attendance))
+        for i in range(len(name_list)):
+            print(i)
+            
+            intern_name=Intern.objects.get(intern_name=name_list[i])
+            Insertion=InternAttendance(intern_name=intern_name,attendance=attendance[i])
+            Insertion.save()
+        # Insertion.save()
+        return render(request,"dashboard/intern_attendance.html")
     else:
         data = Intern.objects.all()
-        dat = date.today().strftime("%d/%m/%Y")
+        dat = date.today().strftime("%d-%m-%Y")
         print(data)
-        return render(request,"dashboard/interns_attendance.html",{'data':data,'dat':dat})
+        return render(request,"dashboard/intern_attendance.html",{'data':data,'dat':dat})
 
 
-@login_required(login_url='/')
-def interns_attendance_date(request):
+def intern_attendance_date(request):
     data = InternAttendance.objects.all()
     
-    return render(request,"dashboard/interns_attendance_date.html",{'data':data})
+    return render(request,"dashboard/intern_attendance_date.html",{'data':data})
  
 
-@login_required(login_url='/')
-def interns_attendance_edit(request,id):
-    data = InternAttendance.objects.get(id=id)
-    print(data)
-    return render(request,"dashboard/interns_attendance_edit.html",{'data':data})
+def intern_attendance_edit(request,update_date):
+    print(update_date)
+    all_attendance = InternAttendance.objects.filter(date=update_date)
+    
+    
+    return render(request,'dashboard/intern_attendance_edit.html',{'all_attendance':all_attendance})
 
 
-@login_required(login_url='/')
-def interns_attendance_manage(request,id):
-    print(id)
-    data = InternAttendance.objects.get(id=id)
+def intern_attendance_manage(request):
     if request.method == "POST":
-        print(request.POST.get('attendance') )
-
-        data.attendance = request.POST.get('attendance') 
-        data.save()
-    return redirect(f'/dashboard/interns_attendance_edit/{id}',{'data':data})
-
+        print("dkjjjjjjjjjjjjjjjjjjjjj method ")
+        
+        attendance_list = request.POST.getlist('attendance')
+        id_list=request.POST.getlist('id')
+        for i in range(len(attendance_list)):
+            print(i)
+            
+            intern=InternAttendance.objects.get(id=id_list[i])
+            
+            intern.attendance=attendance_list[i]
+            print(intern.attendance)
+            trainee.save()
+        return render(request,"dashboard/intern_attendance.html")
+ 
   
 ################ edit intern ##################  
 @login_required(login_url='/')
 def edit_intern(request,id):
     interns = Intern.objects.get(id=id)
-    print(interns)
+    print(type(interns.date_of_birth))
     return render(request,"dashboard/edit_intern.html",{'edit_intern':interns}) 
 
 
@@ -153,7 +189,6 @@ def manage_intern(request,id):
         if "profile" in request.FILES:
             img=request.FILES["profile"]
             interns.profile =img
-        interns.save()
         interns.intern_name=request.POST.get('intern_name','')
         interns.email=request.POST.get('email','')
         interns.phone_no=request.POST.get('phone_no','')
@@ -187,8 +222,11 @@ def manage_intern(request,id):
         interns.post_graduation_univercity=request.POST.get('post_graduation_univercity','')
         interns.post_graduation_degree=request.POST.get('post_graduation_degree','')
         interns.post_graduation_year=request.POST.get('post_graduation_year','')
-       
-       
+        
+        if "document_zip" in request.FILES:
+            img=request.FILES["document_zip"]
+            interns.document_zip =img
+
         interns.other_univercity =request.POST.get('other_univercity','')
         interns.other_degree=request.POST.get('other_degree','')
         interns.other_year=request.POST.get('other_year','')
@@ -245,6 +283,8 @@ def register_trainees(request):
         address=request.POST.get('address')
         join_date=request.POST.get('join_date')
 
+        document_zip = request.FILES.get('document_zip')
+
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
         passing_year=request.POST.get('passing_year')
@@ -272,7 +312,7 @@ def register_trainees(request):
         ,high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
         post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
-        ,post_graduation_year=post_graduation_year,
+        ,post_graduation_year=post_graduation_year,document_zip=document_zip,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
         return render(request,"dashboard/view_trainees.html")
@@ -288,16 +328,16 @@ def view_trainees(request):
     return render(request,"dashboard/view_trainees.html",{'view_trainees':trainees} )
 
 
-# def trainees_profile(request,id):
-#     interns = Intern.objects.filter(id=id)
-#     print(interns)
-#     return render(request,"dashboard/intern_profile.html")
+def trainees_profile(request,id):
+    trainees = Trainee.objects.get(id=id)
+    print(trainees)
+    return render(request,"dashboard/trainees_profile.html",{'view_profile':trainees})
         
 
 ################ edit trainees ##################  
 @login_required(login_url='/')
-def edit_trainees(request,id):
-    trainees = Trainee.objects.get(id=id)
+def edit_trainees(request,pk):
+    trainees = Trainee.objects.get(pk=pk)
     print(trainees)
     return render(request,"dashboard/edit_trainees.html",{'edit_trainees':trainees})  
 
@@ -309,8 +349,8 @@ def manage_trainees(request,id):
     if request.method =="POST":
         if "profile" in request.FILES:
             img=request.FILES["profile"]
-            interns.profile =img
-        trainees.save()
+            trainees.profile =img
+            
         trainees.trainee_name=request.POST.get('trainee_name','')
         trainees.email=request.POST.get('email','')
         trainees.phone_no=request.POST.get('phone_no','')
@@ -327,6 +367,10 @@ def manage_trainees(request,id):
         trainees.pin_code=request.POST.get('pin_code','')
         trainees.address=request.POST.get('address','')
         trainees.join_date=request.POST.get('join_date','')
+
+        if "document_zip" in request.FILES:
+            img=request.FILES["document_zip"]
+            trainees.document_zip =img
 
         trainees.school_name=request.POST.get('school_name','')
         trainees.board=request.POST.get('board','')
@@ -366,42 +410,62 @@ def remove_trainees(request):
 @login_required(login_url='/')
 def trainee_attendance(request): 
     if request.method =="POST":
+        print("nfjkfff")
         print(request.POST)
-        trainee_name=Trainee.objects.get(trainee_name=request.POST['trainee_name'])
-        attendance = request.POST.get('attendance')
-        Insertion=TraineeAttendance(trainee_name=trainee_name,attendance=attendance)
-        Insertion.save()
+
+        date_exist = TraineeAttendance.objects.filter(date=request.POST.get('todays_date')).count()
+        if date_exist>0:
+
+            return HttpResponseRedirect('/dashboard/trainee_attendance')
+        else:
+            print("helllllllllllllllllllllo")
+            name_list=request.POST.getlist('trainee_name')
+            attendance = request.POST.getlist('attendance')
+            print(len(attendance))
+        for i in range(len(name_list)):
+            print(i)
+            
+            trainee_name=Trainee.objects.get(trainee_name=name_list[i])
+            Insertion=TraineeAttendance(trainee_name=trainee_name,attendance=attendance[i])
+            Insertion.save()
+        # Insertion.save()
         return render(request,"dashboard/trainee_attendance.html")
     else:
         data = Trainee.objects.all()
-        dat = date.today().strftime("%d/%m/%Y")
+        dat = date.today().strftime("%d-%m-%Y")
         print(data)
         return render(request,"dashboard/trainee_attendance.html",{'data':data,'dat':dat})
 
 
-@login_required(login_url='/')
 def trainee_attendance_date(request):
     data = TraineeAttendance.objects.all()
     
     return render(request,"dashboard/trainee_attendance_date.html",{'data':data})
  
 
-@login_required(login_url='/')
-def trainee_attendance_edit(request,id):
-    data = TraineeAttendance.objects.get(id=id)
-    print(data)
-    return render(request,"dashboard/trainee_attendance_edit.html",{'data':data})
+def trainee_attendance_edit(request,update_date):
+    print(update_date)
+    all_attendance = TraineeAttendance.objects.filter(date=update_date)
+    
+    
+    return render(request,'dashboard/trainee_attendance_edit.html',{'all_attendance':all_attendance})
 
-@login_required(login_url='/')
-def trainee_attendance_manage(request,id):
-    print(id)
-    data = TraineeAttendance.objects.get(id=id)
+
+def trainee_attendance_manage(request):
     if request.method == "POST":
-        print(request.POST.get('attendance') )
-
-        data.attendance = request.POST.get('attendance') 
-        data.save()
-    return redirect(f'/dashboard/trainee_attendance_edit/{id}',{'data':data})
+        print("dkjjjjjjjjjjjjjjjjjjjjj method ")
+        
+        attendance_list = request.POST.getlist('attendance')
+        id_list=request.POST.getlist('id')
+        for i in range(len(attendance_list)):
+            print(i)
+            
+            trainee=TraineeAttendance.objects.get(id=id_list[i])
+            
+            trainee.attendance=attendance_list[i]
+            print(trainee.attendance)
+            trainee.save()
+        return render(request,"dashboard/trainee_attendance.html")
 
 ############################################################## employee departmenet ########################################################  
 @login_required(login_url='/')
@@ -425,6 +489,8 @@ def register_employees(request):
         pin_code=request.POST.get('pin_code')
         address=request.POST.get('address')
         join_date=request.POST.get('join_date')
+
+        document_zip = request.FILES.get('document_zip')
 
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
@@ -452,11 +518,11 @@ def register_employees(request):
         skill = request.POST.getlist(('skill[]'))
         skill=','.join(skill)
         print(skill)
-        position = request.POST.getlist(str('position[]'))
+        position = request.POST.getlist(('position[]'))
         position=','.join(position)
 
         print(position)
-        experience = request.POST.getlist(str('experience[]'))
+        experience = request.POST.getlist(('experience[]'))
         experience=','.join(experience)
         print(experience)
 
@@ -477,7 +543,7 @@ def register_employees(request):
         high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
         post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
-        post_graduation_year=post_graduation_year,
+        post_graduation_year=post_graduation_year,document_zip=document_zip,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state,skill=skill,position=position,
         experience=experience,company_name=company_name,designation=designation,contact_no=contact_no,emails=emails,refference=refference,
         relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
@@ -541,6 +607,12 @@ def emp_attendance_manage(request,id):
 
 
 ############################################################################################################################################ 
+
+def emp_profile(request,id):
+    employees = Employee.objects.get(id=id)
+    print(employees)
+    return render(request,"dashboard/employee_profile.html",{'view_profile':employees})
+        
 ################ edit employees ################## 
 @login_required(login_url='/')
 def edit_employees(request,id):
@@ -558,7 +630,9 @@ def edit_employees(request,id):
 def manage_employees(request,id):
     employee = Employee.objects.get(id=id) 
     if request.method =="POST":
-        employee.profile=request.FILES.get('profile','')
+        if "profile" in request.FILES:
+            img=request.FILES["profile"]
+            employee.profile =img
         employee.emp_name=request.POST.get('emp_name','')
         employee.email=request.POST.get('email','')
         employee.phone_no=request.POST.get('phone_no','')
@@ -575,6 +649,10 @@ def manage_employees(request,id):
         employee.pin_code=request.POST.get('pin_code','')
         employee.address=request.POST.get('address','')
         employee.join_date=request.POST.get('join_date','')
+
+        if "document_zip" in request.FILES:
+            img=request.FILES["document_zip"]
+            employee.document_zip =img
 
         employee.school_name=request.POST.get('school_name','')
         employee.board=request.POST.get('board','')
@@ -658,6 +736,8 @@ def register_trainer(request):
         address=request.POST.get('address')
         join_date=request.POST.get('join_date')
 
+        document_zip = request.FILES.get('document_zip')
+
         school_name=request.POST.get('school_name')
         board=request.POST.get('board')
         passing_year=request.POST.get('passing_year')
@@ -682,11 +762,11 @@ def register_trainer(request):
         skill = request.POST.getlist(('skill[]'))
         skill=','.join(skill)
         print(skill)
-        position = request.POST.getlist(str('position[]'))
+        position = request.POST.getlist(('position[]'))
         position=','.join(position)
 
         print(position)
-        experience = request.POST.getlist(str('experience[]'))
+        experience = request.POST.getlist(('experience[]'))
         experience=','.join(experience)
         print(experience)
 
@@ -704,7 +784,7 @@ def register_trainer(request):
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
         father_occupation=father_occupation,father_no=father_no,city=city,pin_code=pin_code,address=address,join_date=join_date,
         school_name=school_name,board=board,passing_year=passing_year,high_school_name=high_school_name,
-        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,
+        high_school_board=high_school_board,high_school_passing_year=high_school_passing_year,document_zip=document_zip,
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
         post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity,
         post_graduation_year=post_graduation_year,other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state,skill=skill,position=position,
@@ -743,6 +823,10 @@ def edit_trainer(request,id):
 def manage_trainer(request,id):
     trainer = Trainer.objects.get(id=id) 
     if request.method =="POST":
+        if "profile" in request.FILES:
+            img=request.FILES["profile"]
+            trainer.profile =img
+
         trainer.profile=request.FILES.get('profile','')
         trainer.trainer_name=request.POST.get('trainer_name','')
         trainer.email=request.POST.get('email','')
@@ -760,6 +844,10 @@ def manage_trainer(request,id):
         trainer.pin_code=request.POST.get('pin_code','')
         trainer.address=request.POST.get('address','')
         trainer.join_date=request.POST.get('join_date','')
+
+        if "document_zip" in request.FILES:
+            img=request.FILES["document_zip"]
+            trainer.document_zip =img
 
         trainer.school_name=request.POST.get('school_name','')
         trainer.board=request.POST.get('board','')
@@ -835,6 +923,11 @@ def trainer_attendance(request):
         print(data)
         return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat})
 
+def trainer_profile(request,id):
+    trainer = Trainer.objects.get(id=id)
+    print(trainer)
+    return render(request,"dashboard/employee_profile.html",{'view_profile':trainer})
+        
 
 @login_required(login_url='/')
 def trainer_attendance_date(request):
@@ -877,12 +970,14 @@ def add_salary(request):
         da =  request.POST['da']   
         prof_tax = request.POST['prof_tax'] 
         hra = request.POST['hra'] 
+        ta = request.POST['ta']
+        other = request.POST['other']  
         deductions = request.POST['deductions']
         medical_allowance = request.POST['medical_allowance']  
         net_salary = request.POST['net_salary']  
         sub_total = request.POST['sub_total']  
 
-        Insertion=Payroll(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
+        Insertion=Payroll(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,ta=ta,other=other,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
         ,net_salary=net_salary,sub_total=sub_total)
         Insertion.save()
         return render(request,"dashboard/view_salary.html")
@@ -951,8 +1046,8 @@ def delete_staff(request, id):
 
 ################ edit staff ################## 
 @login_required(login_url='/')
-def edit_staff(request,id):
-    staff = Staff.objects.get(id=id)
+def edit_staff(request,pk):
+    staff = Staff.objects.get(pk=pk)
     print(staff)
     return render(request,"dashboard/edit_staff.html",{'staff':staff})
 

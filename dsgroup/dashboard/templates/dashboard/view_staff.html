@@ -1,13 +1,5 @@
 {% extends 'dashboard/base.html' %}
 {% block maincontain %}
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-  .table{
-    background-color: white;
-  }
- 
-</style>
 <form action="{% url 'view_staff' %}" method="post">
   {% csrf_token %}
 <div class="input-group">
@@ -16,7 +8,7 @@
     
   </div>
   <button type="submit" class="btn btn-primary" name='search_btn' style="height: 40px;" >
-    <i class="fas fa-search"></i>
+    <i class="fa fa-search"></i>
   </button>
 </div>
 </br></br>
@@ -24,11 +16,15 @@
 {{posts}}
 {{search_term.staff_name.staff_name}}
 
-<table class="table">
-  <thead class="">
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card p-0">
+                  <h6 class="card-title card-padding pb-0">Intern Table</h6>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
     <tr>
      
-      <th>Name</th>
+      <th class="text-left">Name</th>
       <th>Phone Number</th>
       <th>Aadhaar Number</th>
       <th>Role</th>
@@ -42,14 +38,14 @@
     <tr>
      
       
-      <td>{{d.staff_name}}</td>
+      <td class="text-left">{{d.staff_name}}</td>
       <td>{{d.phone_no}}</td>
       <td>{{d.aadhar_no}}</td>
       <td>{{d.role}}</td>
       <td>{{d.join_date}}</td>
       
       <td>
-        <a href="{% url 'edit_staff' d.id %}"><i class="fa fa-pencil-square-o" style="font-size:26px"></i>
+        <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_staff' staff.id  %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
         </a>&nbsp;&nbsp;
         <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
           <i class="fa fa-trash" aria-hidden="true"></i>
@@ -83,11 +79,15 @@
         
 
         
-        </td>
-    {% endfor %}
+  </td>
+     </tr>
+                         {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
   
-</table>
-</div>
 <script>
 	$('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')

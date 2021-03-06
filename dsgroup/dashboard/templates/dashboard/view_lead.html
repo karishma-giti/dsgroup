@@ -1,16 +1,14 @@
 {% extends 'dashboard/base.html' %}
 {% block maincontain %}
-<style>
-  .table{
-    background-color: white;
-  }
- 
-</style>
-<table class="table">
-  <thead>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                <div class="mdc-card p-0">
+                  <h6 class="card-title card-padding pb-0">Intern Table</h6>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
     <tr>
       
-      <th>Name</th>
+      <th class="text-left">Name</th>
       <th>Email</th>
       <th>Regarding</th>
       <th>Reference</th>
@@ -23,16 +21,16 @@
     <tr>
      
       
-      <td>{{lead.name}}</td>
+      <td class="text-left">{{lead.name}}</td>
       <td>{{lead.email}}</td>
       <td>{{lead.regarding}}</td>
       <td>{{lead.reference}}</td>
       <td>{{lead.message}}</td>
       
       <td>
-        <a href="{% url 'edit_lead' lead.id %}"><i class="fa fa-pencil-square-o" style="font-size:26px"></i></a>
+        <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_lead' lead.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
         <button type="button" class="btn btn-danger" onclick="get_id({{lead.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
-          <i class="fa fa-trash" aria-hidden="true"></i>
+          <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i>
        </button>
        
        <!-- Modal -->
@@ -63,11 +61,16 @@
         
 
         
-        </td>
-    {% endfor %}
-  
-</table>
-</div>
+    </td>
+
+        
+        </tr>
+                         {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
 <script>
 	$('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
