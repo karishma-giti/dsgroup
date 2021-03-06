@@ -6,8 +6,6 @@
   }
  
 </style>
-<<<<<<< HEAD
-=======
  <div class="navbar-search-block">
             <form class="form-inline">
               <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -22,14 +20,10 @@
             </form>
           </div>         
           
->>>>>>> 5f984f98c1cfe26e27cbaa37ac68b19ba7f02edb
 
 <table class="table">
     <tr>
-<<<<<<< HEAD
-=======
   
->>>>>>> 5f984f98c1cfe26e27cbaa37ac68b19ba7f02edb
       <th>Name</th>
       <th>Email</th>
       <th>Phone Number</th>
@@ -41,20 +35,17 @@
   
     {% for intern in view_intern %}
     <tr>
-<<<<<<< HEAD
-=======
      
    
->>>>>>> 5f984f98c1cfe26e27cbaa37ac68b19ba7f02edb
       <td>{{intern.intern_name}}</td>
       <td>{{intern.email}}</td>
       <td>{{intern.phone_no}}</td>
       <td>{{intern.join_date}}</td>
       <td><a   class="btn btn-secondary" href="{% url 'intern_profile' intern.id %}">view profile</a></td>
       <td>
-        <a href="{% url 'edit_intern' intern.id %}">Update</a>
-        <button type="button" class="btn btn-danger" onclick="get_id({{intern.id}})" data-toggle="modal" data-target="#example" style="width:70px;">
-          Delete
+        <button type="button" class="btn btn-primary" style="background-color: #00BFFF;width:40px;height:40px;"><a href="{% url 'edit_intern' intern.id %}"><i class="fa fa-pencil-square-o" style="font-size:26px;color:white;text-align:center;"></i></a></button>
+        <button type="button" class="btn btn-danger" onclick="get_id({{intern.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
+          <i class="fa fa-trash" aria-hidden="true"></i>
        </button>
        
        <!-- Modal -->

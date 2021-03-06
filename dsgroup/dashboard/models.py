@@ -285,7 +285,11 @@ class Payroll(models.Model):
     deductions =  models.IntegerField()  
     medical_allowance =  models.IntegerField()  
     net_salary =  models.IntegerField()  
-    sub_total =  models.IntegerField()  
+    sub_total =  models.IntegerField() 
+    other =models.IntegerField()
+    ta = models.IntegerField()
+
+ 
 
     def __str__(self): 
         return str(self.emp_name)

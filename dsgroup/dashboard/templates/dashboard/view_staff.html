@@ -1,10 +1,7 @@
 {% extends 'dashboard/base.html' %}
 {% block maincontain %}
-<<<<<<< HEAD
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-=======
->>>>>>> 5f984f98c1cfe26e27cbaa37ac68b19ba7f02edb
 <style>
   .table{
     background-color: white;
@@ -52,9 +49,10 @@
       <td>{{d.join_date}}</td>
       
       <td>
-        <a href="{% url 'edit_staff' d.id %}">Update</a>&nbsp;&nbsp;
-        <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:70px;">
-          Delete
+        <a href="{% url 'edit_staff' d.id %}"><i class="fa fa-pencil-square-o" style="font-size:26px"></i>
+        </a>&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
+          <i class="fa fa-trash" aria-hidden="true"></i>
        </button>
        
        <!-- Modal -->
