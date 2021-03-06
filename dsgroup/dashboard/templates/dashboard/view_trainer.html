@@ -1,8 +1,24 @@
 {% extends 'dashboard/base.html' %}
 {% block maincontain %}
+<form action="{% url 'view_trainer' %}" method="POST">
+  {% csrf_token %}
+<center><div class="input-group">
+  <div class="form-outline" style="margin-left: 65%;margin-bottom: none;" >
+    <input type="search" id="form1" name="search" class="form-control" />
+    
+  </div>
+  <button type="submit" class="btn btn-primary" name='search_btn' style="height: 37px;" >
+    search
+  </button>
+</div>
+</center>
+</br></br>
+</form>
+{{posts}}
+{{search_term.trainer_name.trainer_name}}
 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
-                  <h6 class="card-title card-padding pb-0">Intern Table</h6>
+                 
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>

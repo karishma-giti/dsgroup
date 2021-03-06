@@ -43,7 +43,7 @@
           </div>
           <div class="col-sm-4 form-group">
 
-          <input type="text" class="form-control" name="pan_card" id="pan_card"  onfocusout="PanCardValidation()"  placeholder="Pan Card">
+          <input type="text" class="form-control" style="text-transform: uppercase;"name="pan_card" id="pan_card"  onfocusout="PanCardValidation()"  placeholder="Pan Card">
            <span id="msgs"></span>
           </div>
           <div class="col-sm-4 form-group">
@@ -152,13 +152,13 @@
           <h6>School</h6></br>
           <input type="text" style="text-transform: capitalize;" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
           <input type="text" style="text-transform: capitalize;" name="board" class="form-control" id="board" placeholder="Board"></br>
-          <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <input type="text"maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-6 form-group">
           <h6>High School</h6></br>
           <input type="text" style="text-transform: capitalize;" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
           <input type="text" style="text-transform: capitalize;" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
-          <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing_year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <input type="text" maxlength="4" size="4"name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing_year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
       </div></br>
       <div class="row">
@@ -166,19 +166,19 @@
           <h6>Graduation Details</h6></br>
           <input type="text" style="text-transform: capitalize;" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
           <input type="text"style="text-transform: capitalize;" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
-          <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <input type="text"maxlength="4" size="4" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-4 form-group">
           <h6>Post Graduation Details</h6></br>
           <input type="text" style="text-transform: capitalize;" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
           <input type="text" style="text-transform: capitalize;" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
-          <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <input type="text" maxlength="4" size="4"name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-4 form-group">
           <h6>Other Degree/Chartification</h6></br>
           <input type="text" style="text-transform: capitalize;" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
           <input type="text" style="text-transform: capitalize;" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
-          <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <input type="text"maxlength="4" size="4" name="other_year" class="form-control" id="other_year" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
       </div></br></br></br>
 

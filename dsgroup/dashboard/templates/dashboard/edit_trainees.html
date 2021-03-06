@@ -44,7 +44,7 @@ body {
             </div>
             <div class="col-sm-4 form-group">
                 <label for="zip">Pan Card</label>
-                <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainees.pan_card}}">
+                <input type="text" class="form-control"style="text-transform: uppercase;" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainees.pan_card}}">
                  <span id="msgs"></span>
             </div>
             <div class="col-sm-4 form-group">
@@ -64,7 +64,7 @@ body {
             </div>
             <div class="col-sm-4 form-group">
                 <label for="Date">Date Of Birth</label>
-                <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_trainees.date_of_birth}}">
+                <input type="text" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_trainees.date_of_birth|date:'Y-m-d'}}">
             </div>
             <div class="col-sm-4 form-group">
                 <select class="form-control" name="blood_group" value="{{edit_trainees.blood_group}}">
@@ -331,7 +331,7 @@ body {
                 <label for="pass2">Board</label>
                 <input type="text"  style="text-transform: capitalize;" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_trainees.board}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainees.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+                <input type="text"maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainees.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
             <div class="col-sm-6 form-group">
                  <h5>High School</h5></br>
@@ -339,7 +339,7 @@ body {
                 <label for="pass2">Board</label> 
                 <input type="text"  style="text-transform: capitalize;" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_trainees.high_school_board}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_trainees.high_school_passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+                <input type="text" maxlength="4" size="4"name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_trainees.high_school_passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
     
                 
@@ -352,7 +352,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text" style="text-transform: capitalize;" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_trainees.graduation_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_trainees.graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+                <input type="text"maxlength="4" size="4" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_trainees.graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
             <div class="col-sm-4 form-group">
              <h5>Post Graduation Details</h5></br>
@@ -360,7 +360,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text"  style="text-transform: capitalize;" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_trainees.post_graduation_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_trainees.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+                <input type="text"maxlength="4" size="4" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_trainees.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div>
             <div class="col-sm-4 form-group">
             <h5>Other Degree/Chartification</h5></br>
@@ -368,7 +368,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text"  style="text-transform: capitalize;" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_trainees.other_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_trainees.other_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+                <input type="text" maxlength="4" size="4"name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_trainees.other_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
             </div></br></br></br></br></br>
             </div>
 

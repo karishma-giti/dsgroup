@@ -47,6 +47,7 @@ def register_intern(request):
         pan_card=request.POST.get('pan_card')
         gender=request.POST.get('gender')
         date_of_birth=request.POST.get('date_of_birth')
+        
         blood_group=request.POST.get('blood_group')
         father_name=request.POST.get('father_name')
         father_occupation=request.POST.get('father_occupation')
@@ -89,17 +90,27 @@ def register_intern(request):
         post_graduation_year=post_graduation_year,document_zip=document_zip,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
-        return render(request,"dashboard/view_intern.html")
+        return redirect('/dashboard/view_interns') 
     else:
         return render(request,"dashboard/register_intern.html")
 
 ################ view intern ##################      
 @login_required(login_url='/')
 def view_interns(request):
-    data = Intern(request.GET)
-    interns = Intern.objects.all()
-    print(interns)
-    return render(request,"dashboard/view_intern.html",{'view_intern':interns} )
+    if request.method=='POST':
+        
+        search_term = request.POST['search']
+        
+        posts = Intern.objects.filter(intern_name=search_term)
+        print(posts)
+        
+        context = {'view_intern': posts,'search-term': search_term}
+    
+        return render(request, "dashboard/view_intern.html",context)
+    else:
+        interns = Intern.objects.all()
+        print(interns)
+        return render(request,"dashboard/view_intern.html",{'view_intern':interns} )
     
     
 ################ intern profile##################  
@@ -227,16 +238,21 @@ def remove_intern(request):
 
 
 
-################ search ##################
-# class SearchResultsView(ListView):
-#     model = Intern
-#     template_name = 'view_intern.html'
-#     def get_queryset(self):
-#         query = self.request.GET.get('q') # new
-#         object_list = Intern.objects.filter(
-#             Q(intern_name=query) | Q(email=query)
-#         )
-#         return object_list
+@login_required(login_url='/')
+def search(request):
+    posts =Intern.objects.all()
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = posts.filter(intern_name=search_term)
+        print(posts)
+        context = {
+        'posts': posts,
+        'search-term': search_term
+        }
+
+    return render(request, '/dashboard/view_intern.html', context)  
 
 
       
@@ -296,17 +312,27 @@ def register_trainees(request):
         ,post_graduation_year=post_graduation_year,document_zip=document_zip,
         other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
         Insertion.save()
-        return render(request,"dashboard/view_trainees.html")
+        return redirect('/dashboard/view_trainees') 
     else:
         return render(request,"dashboard/register_trainees.html")
 
 ################ view trainees ##################          
 @login_required(login_url='/')
 def view_trainees(request):
-    data = Trainee(request.GET)
-    trainees = Trainee.objects.all()
-    print(trainees)
-    return render(request,"dashboard/view_trainees.html",{'view_trainees':trainees} )
+    if request.method=='POST':
+        
+        search_term = request.POST['search']
+        
+        posts = Trainee.objects.filter(trainee_name=search_term)
+        print(posts)
+        
+        context = {'view_trainees': posts,'search-term': search_term}
+    
+        return render(request, "dashboard/view_trainees.html",context)
+    else:
+        trainees = Trainee.objects.all()
+        print(trainees)
+        return render(request,"dashboard/view_trainees.html",{'view_trainees':trainees} )
 
 
 def trainees_profile(request,id):
@@ -428,6 +454,24 @@ def trainee_attendance_manage(request,id):
         data.save()
     return redirect(f'/dashboard/trainee_attendance_edit/{id}',{'data':data})
 
+
+
+@login_required(login_url='/')
+def search(request):
+    posts =Trainee.objects.all()
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = posts.filter(trainee_name=search_term)
+        print(posts)
+        context = {
+        'posts': posts,
+        'search-term': search_term
+        }
+
+    return render(request, '/dashboard/view_trainees.html', context)      
+
 ############################################################## employee departmenet ########################################################  
 @login_required(login_url='/')
 def register_employees(request):
@@ -510,7 +554,7 @@ def register_employees(request):
         relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
         Insertion.save()
         print(Insertion)
-        return render(request,"dashboard/view_employees.html")
+        return redirect('/dashboard/view_employees') 
     else:
         return render(request,"dashboard/register_employees.html")
 
@@ -518,10 +562,20 @@ def register_employees(request):
 ################ view employees ##################  
 @login_required(login_url='/')
 def view_employees(request):
-    data = Employee(request.GET)
-    employees = Employee.objects.all()
-    print(employees)
-    return render(request,"dashboard/view_employees.html",{'view_employees':employees} )
+    if request.method=='POST':
+        
+        search_term = request.POST['search']
+        
+        posts = Employee.objects.filter(emp_name=search_term)
+        print(posts)
+        
+        context = {'view_employees': posts,'search-term': search_term}
+    
+        return render(request, "dashboard/view_employees.html",context)
+    else:
+        employees = Employee.objects.all()
+        print(employees)
+        return render(request,"dashboard/view_employees.html",{'view_employees':employees} )
 
 
 ################ employees attendence ################## 
@@ -672,6 +726,21 @@ def remove_employees(request):
     return redirect('/dashboard/view_employees')       
 
 
+@login_required(login_url='/')
+def search(request):
+    posts =Employee.objects.all()
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = posts.filter(emp_name=search_term)
+        print(posts)
+        context = {
+        'posts': posts,
+        'search-term': search_term
+        }
+
+    return render(request, '/dashboard/view_employees.html', context)  
 
 
 ############################################################## employee departmenet ########################################################  
@@ -753,7 +822,7 @@ def register_trainer(request):
         relationships=relationships,belongs_department=belongs_department,joining_date=joining_date,living_date=living_date)
         Insertion.save()
         print(Insertion)
-        return render(request,"dashboard/view_trainer.html")
+        return redirect('/dashboard/view_trainer') 
     else:
         return render(request,"dashboard/register_trainer.html")
 
@@ -761,10 +830,20 @@ def register_trainer(request):
 ################ view trainer ################## 
 @login_required(login_url='/')
 def view_trainer(request):
-    data = Trainer(request.GET)
-    trainer = Trainer.objects.all()
-    print(trainer)
-    return render(request,"dashboard/view_trainer.html",{'view_trainers':trainer})
+    if request.method=='POST':
+        
+        search_term = request.POST['search']
+        
+        posts = Trainer.objects.filter(trainer_name=search_term)
+        print(posts)
+        
+        context = {'view_trainers': posts,'search-term': search_term}
+    
+        return render(request, "dashboard/view_trainer.html",context)
+    else:
+        trainer = Trainer.objects.all()
+        print(trainer)
+        return render(request,"dashboard/view_trainer.html",{'view_trainers':trainer})
 
 
 ################ edit trainer ################## 
@@ -886,7 +965,7 @@ def trainer_attendance(request):
 
 def trainer_profile(request,id):
     trainer = Trainer.objects.get(id=id)
-    print(trainer)
+    print(trainer.date_of_birth)
     return render(request,"dashboard/employee_profile.html",{'view_profile':trainer})
         
 
@@ -914,7 +993,21 @@ def trainer_attendance_manage(request,id):
     return redirect(f'/dashboard/trainer_attendance_edit/{id}',{'data':data})
 
 
+@login_required(login_url='/')
+def search(request):
+    posts =Trainer.objects.all()
+    search_term = ''
 
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = posts.filter(trainer_name=search_term)
+        print(posts)
+        context = {
+        'posts': posts,
+        'search-term': search_term
+        }
+
+    return render(request, '/dashboard/view_trainer.html', context)  
     
 
 ############################################################## employee departmenet ########################################################  
@@ -939,7 +1032,7 @@ def add_salary(request):
         Insertion=Payroll(emp_name=emp_name,salary=salary,tds=tds,basic=basic,hra=hra,pf=pf,da=da,prof_tax=prof_tax,deductions=deductions,medical_allowance=medical_allowance
         ,net_salary=net_salary,sub_total=sub_total)
         Insertion.save()
-        return render(request,"dashboard/view_salary.html")
+        return redirect('/dashboard/view_salary') 
     else:
         employee = Employee.objects.all()
         return render(request,"dashboard/add_salary.html",{'employee':employee})
@@ -970,7 +1063,7 @@ def register_staff(request):
 
         Insertion=Staff(staff_name=staff_name, phone_no= phone_no,aadhar_no=aadhar_no,role=role,join_date=join_date)
         Insertion.save()
-        return render(request,"dashboard/view_staff.html")
+        return redirect('/dashboard/view_staff') 
     else:
         return render(request,"dashboard/register_staff.html")
 
@@ -984,6 +1077,7 @@ def view_staff(request):
         search_term = request.POST['search']
         
         posts = Staff.objects.filter(staff_name=search_term)
+        print(posts)
         
         context = {'data': posts,'search-term': search_term}
     
@@ -1076,7 +1170,7 @@ def search(request):
     if 'search' in request.GET:
         search_term = request.GET['search']
         posts = posts.filter(staff_name=search_term)
-
+        print(posts)
         context = {
         'posts': posts,
         'search-term': search_term
@@ -1097,17 +1191,27 @@ def register_lead(request):
 
         Insertion=Lead(name=name, email= email,regarding=regarding,reference=reference,message=message)
         Insertion.save()
-        return render(request,"dashboard/register_lead.html")
+        return redirect('/dashboard/view_lead') 
     else:
         return render(request,"dashboard/register_lead.html")
 
 ################ view lead #########################################################################################
 
 def view_lead(request):
-    data = Lead(request.GET)
-    lead = Lead.objects.all()
-    print(lead)
-    return render(request,"dashboard/view_lead.html",{'view_lead':lead} )
+    if request.method=='POST':
+    
+        search_term = request.POST['search']
+        
+        posts = Lead.objects.filter(name=search_term)
+        
+        
+        context = {'view_lead': posts,'search-term': search_term}
+    
+        return render(request, "dashboard/view_lead.html",context)
+    else:
+        lead = Lead.objects.all()
+        print(lead)
+        return render(request,"dashboard/view_lead.html",{'view_lead':lead} )
 
     ################ delete staff ####################################################################################
 def remove_lead(request):
@@ -1138,3 +1242,19 @@ def manage_lead(request,id):
         lead.message = request.POST.get('message','')
         lead.save()
     return redirect('/dashboard/view_lead/')
+
+@login_required(login_url='/')
+def search(request):
+    posts =Lead.objects.all()
+    search_term = ''
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        posts = posts.filter(name=search_term)
+        print(posts)
+        context = {
+        'posts': posts,
+        'search-term': search_term
+        }
+
+    return render(request, '/dashboard/view_lead.html', context)  

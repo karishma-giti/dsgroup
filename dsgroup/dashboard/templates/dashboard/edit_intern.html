@@ -40,7 +40,7 @@ body {
             </div>
             <div class="col-sm-4 form-group">
                 <label for="zip">Pan Card</label>
-                <input type="text" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_intern.pan_card}}" onfocusout="PanCardValidation()" >
+                <input type="text" style="text-transform: uppercase;"class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_intern.pan_card}}" onfocusout="PanCardValidation()" >
              <span id="msgs"></span>
             </div>
             <div class="col-sm-4 form-group">
@@ -312,7 +312,7 @@ body {
             </div>
             <div class="col-sm-4 form-group">
                 <label for="Date">Date Of Birth</label>
-                <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_intern.date_of_birth}}">
+                <input type="text" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_intern.date_of_birth|date:'Y-m-d'}}">
             </div>
             <div class="col-sm-4 form-group">
                 <label for="pass2">Join Date</label>
@@ -333,7 +333,7 @@ body {
                 <label for="pass2">Board</label>
                 <input type="text" style="text-transform: capitalize;" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_intern.board}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_intern.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="text"maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_intern.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
 
             </div>
             <div class="col-sm-6 form-group">
@@ -343,7 +343,7 @@ body {
                 <label for="pass2">Board</label>
                 <input type="text" style="text-transform: capitalize;" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_intern.high_school_board}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_intern.high_school_passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="text" maxlength="4" size="4"name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" value="{{edit_intern.high_school_passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             </div>
             
         </div></br></br></br>
@@ -356,7 +356,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text"  style="text-transform: capitalize;" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_intern.graduation_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_intern.graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="text"maxlength="4" size="4" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_intern.graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             </div>
             <div class="col-sm-4 form-group">
                  <h5>Post Graduation Details</h5></br>
@@ -365,7 +365,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text"  style="text-transform: capitalize;" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_intern.post_graduation_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_intern.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="text"maxlength="4" size="4" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_intern.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             </div>
             <div class="col-sm-4 form-group">
                 <h5>Other Degree/Chartification</h5></br>
@@ -374,7 +374,7 @@ body {
                 <label for="pass2">Degree</label>
                 <input type="text"  style="text-transform: capitalize;" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_intern.other_degree}}"></br>
                 <label for="pass2">Passing year</label>
-                <input type="text" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_intern.other_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="text" nmaxlength="4" size="4"ame="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_intern.other_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           
                  </div>
                  </div></br></br></br></br></br>
