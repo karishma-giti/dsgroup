@@ -45,7 +45,7 @@
       <td>{{d.join_date}}</td>
       
       <td>
-        <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_staff' staff.id  %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
+        <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_staff' d.id  %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
         </a>&nbsp;&nbsp;
         <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
           <i class="fa fa-trash" aria-hidden="true"></i>

@@ -61,10 +61,6 @@
     border-radius: 50%;
   }
   </style>
-  
-
-
-
 <div class="container">
  
   <div class='alert alert-danger' style="display: none;"><strong>Error !</strong> Student Roll Missing !</div>
@@ -72,7 +68,7 @@
         <div class="card-header">
           <h2>
             <a class="btn btn-success" href="{% url 'register_trainees' %}">Add Trainee</a>
-            <a class="btn btn-info float-right" href="{% url 'trainee_attendance_date'  %}">View All</a>
+            <a class="btn btn-info float-right" href="{% url 'trainee_attendance_date' %}">View All</a>
           </h2>
         </div>
   
@@ -92,13 +88,13 @@
               {% for d in data %}
             
               <tr>
-                <td>{{d.id}}</td>
+                <td style="text-align:left">{{forloop.counter}}</td>
                 <input type="hidden" name="todays_date"  value="{{dat}}" >
 
-                <td>
-                  <input type="text" name="trainee_name" value="{{d.trainee_name}}" style="outline:none ;border:none;"readonly></td>
+                <td  style="text-align:left">
+                  <input type="text" name="trainee_name" value="{{d.trainee_name}}" style="outline:none ;border:none;background-color: transparent;"readonly></td>
                   
-                <td>
+                <td  style="text-align:left">
                   <label class="switch">
                     <input type="checkbox" id='check{{d.id}}' onClick="check('{{d.id}}')">>
                     <span class="slider round"></span>
@@ -143,4 +139,4 @@ function check(id)
   }
 }
     </script>
-    <script>{% endblock maincontain %}
+{% endblock maincontain %}

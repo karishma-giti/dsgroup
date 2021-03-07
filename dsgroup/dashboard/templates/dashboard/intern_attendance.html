@@ -61,17 +61,13 @@
     border-radius: 50%;
   }
   </style>
-  
-
-
-
 <div class="container">
  
   <div class='alert alert-danger' style="display: none;"><strong>Error !</strong> Student Roll Missing !</div>
       <div class="card">
         <div class="card-header">
           <h2>
-            <a class="btn btn-success" href="{% url 'register_intern' %}">Add Trainee</a>
+            <a class="btn btn-success" href="{% url 'register_intern' %}">Add Intern</a>
             <a class="btn btn-info float-right" href="{% url 'intern_attendance_date' %}">View All</a>
           </h2>
         </div>
@@ -84,7 +80,7 @@
             {% csrf_token %}
             <table class="table table-striped">
               <tr>
-                <th width="25%">S/L</th>
+                <th width="25%" >S/L</th>
                 <th width="25%">Intern Name</th>
                
                 <th width="25%">Attendance</th>
@@ -92,15 +88,17 @@
               {% for d in data %}
             
               <tr>
-                <td>{{d.id}}</td>
+                
+                <td  style="text-align:left">{{forloop.counter}}</td>
                 <input type="hidden" name="todays_date"  value="{{dat}}" >
 
-                <td>
-                  <input type="text" name="trainee_name" value="{{d.intern_name}}" style="outline:none ;border:none;"readonly></td>
+                <td style="text-align:left">
+                  <input type="text" name="intern_name" value="{{d.intern_name}}" style="outline:none 
+                  ;border:none;background-color: transparent;" readonly></td>
                   
-                <td>
+                <td style="text-align:left">
                   <label class="switch">
-                    <input type="checkbox" id='check{{d.id}}' onClick="check('{{d.id}}')">>
+                    <input type="checkbox" id='check{{d.id}}' onClick="check('{{d.id}}')">
                     <span class="slider round"></span>
                   </label>
                   

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect  
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Intern,Staff,Trainee,Employee,Trainer,Payroll,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,staffAttendance,Lead
+from .models import Intern,Staff,Trainee,Employee,Trainer,Payroll,InternAttendance,TraineeAttendance,EmployeeAttendance,TrainerAttendance,StaffAttendance,Lead
 from datetime import date
 from django.contrib.auth.decorators import login_required
 # from django.db.models import Q
@@ -113,53 +113,53 @@ def intern_profile(request,id):
     
 
 @login_required(login_url='/')
-def intern_attendance(request): 
+def intern_attendance(request):
+    dat = date.today().strftime("%d-%m-%Y")
+ 
     if request.method =="POST":
         print("nfjkfff")
         print(request.POST)
-
         date_exist = InternAttendance.objects.filter(date=request.POST.get('todays_date')).count()
-        if date_exist>0:
-
+        print(date_exist)
+        if date_exist >0:
+            
             return HttpResponseRedirect('/dashboard/intern_attendance')
         else:
             print("helllllllllllllllllllllo")
             name_list=request.POST.getlist('intern_name')
             attendance = request.POST.getlist('attendance')
             print(len(attendance))
-        for i in range(len(name_list)):
-            print(i)
-            
-            intern_name=Intern.objects.get(intern_name=name_list[i])
-            Insertion=InternAttendance(intern_name=intern_name,attendance=attendance[i])
-            Insertion.save()
-        # Insertion.save()
-        return render(request,"dashboard/intern_attendance.html")
+            for i in range(len(name_list)):
+                print(i)
+                intern_name=Intern.objects.get(intern_name=name_list[i])
+                Insertion=InternAttendance(intern_name=intern_name,attendance=attendance[i])
+                Insertion.save()
+            data = Intern.objects.all()
+
+            return render(request,"dashboard/intern_attendance.html",{'data':data})
     else:
         data = Intern.objects.all()
-        dat = date.today().strftime("%d-%m-%Y")
         print(data)
         return render(request,"dashboard/intern_attendance.html",{'data':data,'dat':dat})
 
 
+@login_required(login_url='/')
 def intern_attendance_date(request):
-    data = InternAttendance.objects.all()
+    data = InternAttendance.objects.all().values('date').distinct()
     
     return render(request,"dashboard/intern_attendance_date.html",{'data':data})
  
 
+@login_required(login_url='/')
 def intern_attendance_edit(request,update_date):
     print(update_date)
     all_attendance = InternAttendance.objects.filter(date=update_date)
-    
-    
     return render(request,'dashboard/intern_attendance_edit.html',{'all_attendance':all_attendance})
 
-
+@login_required(login_url='/')
 def intern_attendance_manage(request):
     if request.method == "POST":
         print("dkjjjjjjjjjjjjjjjjjjjjj method ")
-        
         attendance_list = request.POST.getlist('attendance')
         id_list=request.POST.getlist('id')
         for i in range(len(attendance_list)):
@@ -169,9 +169,9 @@ def intern_attendance_manage(request):
             
             intern.attendance=attendance_list[i]
             print(intern.attendance)
-            trainee.save()
+            intern.save()
         return render(request,"dashboard/intern_attendance.html")
- 
+
   
 ################ edit intern ##################  
 @login_required(login_url='/')
@@ -422,14 +422,14 @@ def trainee_attendance(request):
             name_list=request.POST.getlist('trainee_name')
             attendance = request.POST.getlist('attendance')
             print(len(attendance))
-        for i in range(len(name_list)):
-            print(i)
+            for i in range(len(name_list)):
+               print(i)
             
-            trainee_name=Trainee.objects.get(trainee_name=name_list[i])
-            Insertion=TraineeAttendance(trainee_name=trainee_name,attendance=attendance[i])
-            Insertion.save()
+               trainee_name=Trainee.objects.get(trainee_name=name_list[i])
+               Insertion=TraineeAttendance(trainee_name=trainee_name,attendance=attendance[i])
+               Insertion.save()
         # Insertion.save()
-        return render(request,"dashboard/trainee_attendance.html")
+            return render(request,"dashboard/trainee_attendance.html")
     else:
         data = Trainee.objects.all()
         dat = date.today().strftime("%d-%m-%Y")
@@ -438,7 +438,7 @@ def trainee_attendance(request):
 
 
 def trainee_attendance_date(request):
-    data = TraineeAttendance.objects.all()
+    data = TraineeAttendance.objects.all().values('date').distinct()
     
     return render(request,"dashboard/trainee_attendance_date.html",{'data':data})
  
@@ -567,42 +567,59 @@ def view_employees(request):
 @login_required(login_url='/')
 def emp_attendance(request): 
     if request.method =="POST":
+        print("nfjkfff")
         print(request.POST)
-        emp_name=Employee.objects.get(emp_name=request.POST['empname'])
-        attendance = request.POST.get('attendance')
-        Insertion=EmployeeAttendance(emp_name=emp_name,attendance=attendance)
-        Insertion.save()
-        return render(request,"dashboard/emp_attendance.html")
+        date_exist = EmployeeAttendance.objects.filter(date=request.POST.get('todays_date')).count()
+        if date_exist>0:
+            return HttpResponseRedirect('/dashboard/emp_attendance')
+        else:
+            print("helllllllllllllllllllllo")
+            name_list=request.POST.getlist('emp_name')
+            attendance = request.POST.getlist('attendance')
+            print(len(attendance))
+            for i in range(len(name_list)):
+                print(i)
+            
+                emp_name=Employee.objects.get(emp_name=name_list[i])
+                Insertion=EmployeeAttendance(emp_name=emp_name,attendance=attendance[i])
+                Insertion.save()
+        # Insertion.save()
+            return render(request,"dashboard/emp_attendance.html")
     else:
         data = Employee.objects.all()
-        dat = date.today().strftime("%d/%m/%Y")
+        dat = date.today().strftime("%d-%m-%Y")
         print(data)
         return render(request,"dashboard/emp_attendance.html",{'data':data,'dat':dat})
 
 
 @login_required(login_url='/')
 def emp_attendance_date(request):
-    data = EmployeeAttendance.objects.all()
+    data = EmployeeAttendance.objects.all().values('date').distinct()
     
     return render(request,"dashboard/emp_attendance_date.html",{'data':data})
  
 
 @login_required(login_url='/')
-def emp_attendance_edit(request,id):
-    data = EmployeeAttendance.objects.get(id=id)
-    print(data)
-    return render(request,"dashboard/emp_attendance_edit.html",{'data':data})
+def emp_attendance_edit(request,update_date):
+    print(update_date)
+    all_attendance = EmployeeAttendance.objects.filter(date=update_date)
+    return render(request,'dashboard/emp_attendance_edit.html',{'all_attendance':all_attendance})
 
 @login_required(login_url='/')
-def emp_attendance_manage(request,id):
-    print(id)
-    data = EmployeeAttendance.objects.get(id=id)
+def emp_attendance_manage(request):
     if request.method == "POST":
-        print(request.POST.get('attendance') )
-
-        data.attendance = request.POST.get('attendance') 
-        data.save()
-    return redirect(f'/dashboard/emp_attendance_edit/{id}',{'data':data})
+        print("dkjjjjjjjjjjjjjjjjjjjjj method ")
+        attendance_list = request.POST.getlist('attendance')
+        id_list=request.POST.getlist('id')
+        for i in range(len(attendance_list)):
+            print(i)
+            
+            emp=EmployeeAttendance.objects.get(id=id_list[i])
+            
+            emp.attendance=attendance_list[i]
+            print(emp.attendance)
+            emp.save()
+        return render(request,"dashboard/emp_attendance.html")
 
 
 
@@ -908,49 +925,69 @@ def remove_trainer(request):
     return redirect('/dashboard/view_trainer')       
 
 
-@login_required(login_url='/')
-def trainer_attendance(request): 
-    if request.method =="POST":
-        print(request.POST)
-        trainer_name=Trainer.objects.get(trainer_name=request.POST['trainer_name'])
-        attendance = request.POST.get('attendance')
-        Insertion=TrainerAttendance(trainer_name=trainer_name,attendance=attendance)
-        Insertion.save()
-        return render(request,"dashboard/trainer_attendance.html")
-    else:
-        data =Trainer.objects.all()
-        dat = date.today().strftime("%d/%m/%Y")
-        print(data)
-        return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat})
-
 def trainer_profile(request,id):
     trainer = Trainer.objects.get(id=id)
     print(trainer)
     return render(request,"dashboard/employee_profile.html",{'view_profile':trainer})
-        
+
+
+@login_required(login_url='/')
+def trainer_attendance(request): 
+    if request.method =="POST":
+        print("nfjkfff")
+        print(request.POST)
+        date_exist = TrainerAttendance.objects.filter(date=request.POST.get('todays_date')).count()
+        print(date_exist)
+        if date_exist >0:
+            
+            return HttpResponseRedirect('/dashboard/trainer_attendance')
+        else:
+            print("helllllllllllllllllllllo")
+            name_list=request.POST.getlist('trainer_name')
+            attendance = request.POST.getlist('attendance')
+            print(len(attendance))
+            for i in range(len(name_list)):
+                print(i)
+                trainer_name=Trainer.objects.get(trainer_name=name_list[i])
+                Insertion=TrainerAttendance(trainer_name=trainer_name,attendance=attendance[i])
+                Insertion.save()
+        # Insertion.save()
+            return render(request,"dashboard/trainer_attendance.html")
+    else:
+        data = Trainer.objects.all()
+        dat = date.today().strftime("%d-%m-%Y")
+        print(data)
+        return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat})
+
 
 @login_required(login_url='/')
 def trainer_attendance_date(request):
-    data = TrainerAttendance.objects.all()
+    data = TrainerAttendance.objects.all().values('date').distinct()
     
     return render(request,"dashboard/trainer_attendance_date.html",{'data':data})
  
-@login_required(login_url='/')
-def trainer_attendance_edit(request,id):
-    data = TrainerAttendance.objects.get(id=id)
-    print(data)
-    return render(request,"dashboard/trainer_attendance_edit.html",{'data':data})
 
 @login_required(login_url='/')
-def trainer_attendance_manage(request,id):
-    print(id)
-    data = TrainerAttendance.objects.get(id=id)
+def trainer_attendance_edit(request,update_date):
+    print(update_date)
+    all_attendance = TrainerAttendance.objects.filter(date=update_date)
+    return render(request,'dashboard/trainer_attendance_edit.html',{'all_attendance':all_attendance})
+
+@login_required(login_url='/')
+def trainer_attendance_manage(request):
     if request.method == "POST":
-        print(request.POST.get('attendance') )
-
-        data.attendance = request.POST.get('attendance') 
-        data.save()
-    return redirect(f'/dashboard/trainer_attendance_edit/{id}',{'data':data})
+        print("dkjjjjjjjjjjjjjjjjjjjjj method ")
+        attendance_list = request.POST.getlist('attendance')
+        id_list=request.POST.getlist('id')
+        for i in range(len(attendance_list)):
+            print(i)
+            
+            trainer=TrainerAttendance.objects.get(id=id_list[i])
+            
+            trainer.attendance=attendance_list[i]
+            print(trainer.attendance)
+            trainer.save()
+        return render(request,"dashboard/trainer_attendance.html")
 
 
 
@@ -1072,42 +1109,61 @@ def manage_staff(request,id):
 @login_required(login_url='/') 
 def staff_attendance(request): 
     if request.method =="POST":
+        print("nfjkfff")
         print(request.POST)
-        staff_name=Staff.objects.get(staff_name=request.POST['staff_name'])
-        attendance = request.POST.get('attendance')
-        Insertion=staffAttendance(staff_name=staff_name,attendance=attendance)
-        Insertion.save()
-        return render(request,"dashboard/staff_attendance.html")
+        date_exist = StaffAttendance.objects.filter(date=request.POST.get('todays_date')).count()
+        print(date_exist)
+        if date_exist >0:
+            
+            return HttpResponseRedirect('/dashboard/staff_attendance')
+        else:
+            print("helllllllllllllllllllllo")
+            name_list=request.POST.getlist('staff_name')
+            attendance = request.POST.getlist('attendance')
+            print(len(attendance))
+            for i in range(len(name_list)):
+                print(i)
+                staff_name=Staff.objects.get(staff_name=name_list[i])
+                Insertion=StaffAttendance(staff_name=staff_name,attendance=attendance[i])
+                Insertion.save()
+        # Insertion.save()
+            return render(request,"dashboard/staff_attendance.html")
     else:
         data = Staff.objects.all()
-        dat = date.today().strftime("%d/%m/%Y")
+        dat = date.today().strftime("%d-%m-%Y")
         print(data)
         return render(request,"dashboard/staff_attendance.html",{'data':data,'dat':dat})
 
 
 @login_required(login_url='/')
 def staff_attendance_date(request):
-    data = staffAttendance.objects.all()
+    data = StaffAttendance.objects.all().values('date').distinct()
     
     return render(request,"dashboard/staff_attendance_date.html",{'data':data})
  
 
 @login_required(login_url='/')
-def staff_attendance_edit(request,id):
-    data = staffAttendance.objects.get(id=id)
-    print(data)
-    return render(request,"dashboard/staff_attendance_edit.html",{'data':data})
+def staff_attendance_edit(request,update_date):
+    print(update_date)
+    all_attendance = StaffAttendance.objects.filter(date=update_date)
+    return render(request,'dashboard/staff_attendance_edit.html',{'all_attendance':all_attendance})
 
 @login_required(login_url='/')
-def staff_attendance_manage(request,id):
-    print(id)
-    data = staffAttendance.objects.get(id=id)
+def staff_attendance_manage(request):
     if request.method == "POST":
-        print(request.POST.get('attendance') )
+        print("dkjjjjjjjjjjjjjjjjjjjjj method ")
+        attendance_list = request.POST.getlist('attendance')
+        id_list=request.POST.getlist('id')
+        for i in range(len(attendance_list)):
+            print(i)
+            
+            staff=StaffAttendance.objects.get(id=id_list[i])
+            
+            staff.attendance=attendance_list[i]
+            print(staff.attendance)
+            staff.save()
+        return render(request,"dashboard/staff_attendance.html")
 
-        data.attendance = request.POST.get('attendance') 
-        data.save()
-    return redirect(f'/dashboard/staff_attendance_edit/{id}',{'data':data})
 
 @login_required(login_url='/')
 def search(request):

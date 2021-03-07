@@ -5,7 +5,7 @@
   <div class="card">
     <div class="card-header">
       <h2>
-        <a class="btn btn-success" href="{% url 'register_intern' %}">Add Trainee</a>
+        <a class="btn btn-success" href="{% url 'register_intern' %}">Add Intern</a>
         <a class="btn btn-info float-right" href="{% url 'intern_attendance' %}">Take Addendance</a>
       </h2>
     </div>
@@ -21,9 +21,9 @@
           {% for d in data %}
           
           <tr>
-            <td>{{d.id}}</td>
-            <td>{{d.date}}</td>
-            <td>
+            <td style="text-align:left">{{forloop.counter}}</td>
+            <td style="text-align:left">{{d.date}}</td>
+            <td style="text-align:left">
             <a class="btn btn-primary" href='/dashboard/intern_attendance_edit/{{d.date}}'>View</a>
             </td>
           </tr>
@@ -33,4 +33,5 @@
     </div>
   </div>
 </div>
+
 {% endblock maincontain %}
