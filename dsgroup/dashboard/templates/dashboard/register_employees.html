@@ -215,7 +215,12 @@
                   <input type="text"  style="text-transform: capitalize;" name='skill[]' placeholder=' skill' class="form-control" />
                 </td>
                 <td>
-                  <input type="text" style="text-transform: capitalize;"  name='position[]' placeholder='position' class="form-control" />
+                <select class="form-control" name="position[]">
+              <option value="" selected>Position</option>
+              <option value="Beginners">Beginners</option>
+              <option value="Intermediate ">Intermediate</option>
+              <option value="Expert ">Expert</option>
+            </select>
                 </td>
                 <td>
                   <input type="text" style="text-transform: capitalize;" name='experience[]' placeholder='experience' class="form-control" />
@@ -261,7 +266,17 @@
         $(document).ready(function() {
           var i = 1;
           $("#add_row").click(function() {
-            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input style='text-transform: capitalize;' name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><input  style='text-transform: capitalize;' name='position[]' type='text' placeholder='position'  class='form-control input-md'></td><td><input  style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
+            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input style='text-transform: capitalize;' name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td> <select class="form-control" name="position[]">
+              <option value="" selected>Position</option>
+              <option value="Beginners">Beginners</option>
+              <option value="Intermediate ">Intermediate</option>
+              <option value="Expert ">Expert</option>
+            </select> <select class="form-control" name="position[]">
+              <option value="" selected>Position</option>
+              <option value="Beginners">Beginners</option>
+              <option value="Intermediate ">Intermediate</option>
+              <option value="Expert ">Expert</option>
+            </select></td><td><input  style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
             $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
             i++;
           });

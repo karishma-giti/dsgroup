@@ -389,7 +389,6 @@
             <tbody>
 
             {% for i,j,k in skills%} 
-            
                 <td>
                  {{forloop.counter }} 
                 </td>
@@ -398,7 +397,25 @@
                   <input type="text"  style="text-transform: capitalize;"name='skill[]' placeholder=' skill' class="form-control"  value="{{i}}"/>
                 </td>
                 <td>
-                  <input type="text"  style="text-transform: capitalize;"name='position[]' placeholder='position' class="form-control" value="{{j}}" />
+
+                 <select class="form-control" name="position[]" value="{{j}}">
+              {% if j == "Beginners" %}
+              <option selected="selected" value="Beginners">Beginners</option>
+              {% else %}
+               <option value="Beginners">Beginners</option>
+               {% endif %}
+               {% if j == "Intermediate" %}
+              <option  selected="selected"value="Intermediate ">Intermediate</option>
+              {%else%}
+              <option value="Intermediate ">Intermediate</option>
+              {%endif%}
+              {% if j == "Expert" %}
+              <option selected="selected" value="Expert ">Expert</option>
+              {%else%}
+              <option value="Expert ">Expert</option>
+              {%endif%}
+            </select>
+                  
                 </td>
                 <td>
                   <input type="text"  style="text-transform: capitalize;"name='experience[]' placeholder='experience' class="form-control"  value="{{k}}"/>
@@ -448,7 +465,7 @@
 
           $("#add_row").click(function() {
         
-            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name=' skill[]'  style='text-transform: capitalize;' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><input  name='position[]'  style='text-transform: capitalize;' type='text' placeholder='position'  class='form-control input-md'></td><td><input   style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
+            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name=' skill[]'  style='text-transform: capitalize;' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><select class='form-control' name='position[]' value='{{j}}'>{% if j == 'Beginner' %}<option selected='selected' value='Beginner'>Beginner</option>{% else %}<option value='Beginner'>Beginner</option>{% endif %}{% if j == 'Intermediate' %}<option  selected='selected'value='Intermediate '>Intermediate</option>{%else%}<option value='Intermediate '>Intermediate</option>{%endif%}{% if j == 'Expert' %}<option selected='selected' value='Expert'>Expert</option>{%else%}<option value='Expert'>Expert</option>{%endif%}</select></td><td><input   style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
             $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
             i++;
           });

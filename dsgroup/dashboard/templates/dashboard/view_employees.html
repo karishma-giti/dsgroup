@@ -38,11 +38,11 @@
       <td>{{employee.email}}</td>
       <td>{{employee.phone_no}}</td>
       <td>{{employee.join_date}}</td>
-      <td><a   class="btn btn-secondary" href="{% url 'emp_profile' employee.id  %}">view profile</a></td>
+      <td><a   class="btn btn-secondary" href="{% url 'emp_profile' employee.id  %}"><i class="fa fa-eye" style="font-size:23px"></i> </a></td>
       <td>
-        <a href="{% url 'edit_employees' employee.id %}">Update</a>
-        <button type="button" class="btn btn-danger" onclick="get_id({{employee.id}})" data-toggle="modal" data-target="#example" style="width:70px;">
-          Delete
+        <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_employees' employee.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
+        <button type="button" class="btn btn-danger" onclick="get_id({{employee.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
+          <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i>
        </button>
        
        <!-- Modal -->

@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% block maincontain %}
+
 <style>
   .switch {
     position: relative;
@@ -71,8 +72,8 @@
       <div class="card">
         <div class="card-header">
           <h2>
-            <a class="btn btn-success" href="{% url 'register_trainees' %}">Add Trainee</a>
-            <a class="btn btn-info float-right" href="{% url 'trainee_attendance_date'  %}">View All</a>
+            <a class="btn btn-success" href="{% url 'register_intern' %}">Add Intern</a>
+            <a class="btn btn-info float-right" href="{% url 'intern_attendance_date' %}">View All</a>
           </h2>
         </div>
   
@@ -85,7 +86,7 @@
             <table class="table table-striped">
               <tr>
                 <th width="25%">S/L</th>
-                <th width="25%">Trainee Name</th>
+                <th width="25%">Intern Name</th>
                
                 <th width="25%">Attendance</th>
               </tr>
@@ -96,7 +97,7 @@
                 <input type="hidden" name="todays_date"  value="{{dat}}" >
 
                 <td>
-                  <input type="text" name="trainee_name" value="{{d.trainee_name}}" style="outline:none ;border:none;"readonly></td>
+                  <input type="text" name="intern_name" value="{{d.intern_name}}" style="outline:none ;border:none;"readonly></td>
                   
                 <td>
                   <label class="switch">
@@ -143,4 +144,4 @@ function check(id)
   }
 }
     </script>
-    <script>{% endblock maincontain %}
+{% endblock maincontain %}

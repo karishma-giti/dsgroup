@@ -2,7 +2,7 @@
 {% block maincontain %}
 <form action="{% url 'view_staff' %}" method="POST">
   {% csrf_token %}
-<center><div class="input-group">
+<div class="input-group">
   <div class="form-outline" style="margin-left: 65%;margin-bottom: none;" >
     <input type="search" id="form1" name="search" class="form-control" />
     
@@ -11,11 +11,9 @@
     search
   </button>
 </div>
-</center>
 </br></br>
 </form>
-{{posts}}
-{{search_term.staff_name.staff_name}}
+
 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                 <div class="mdc-card p-0">
                  
@@ -45,9 +43,10 @@
       <td>{{d.join_date}}</td>
       
       <td>
-        <a href="{% url 'edit_staff' d.id %}">Update</a>&nbsp;&nbsp;
-        <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:70px;">
-          Delete
+        <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_staff' d.id  %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
+        </a>&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
+          <i class="fa fa-trash" aria-hidden="true"></i>
        </button>
        
        <!-- Modal -->

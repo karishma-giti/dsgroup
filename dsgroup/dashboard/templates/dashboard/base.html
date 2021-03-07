@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/static/assets/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="/static/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+  <!-- <link rel="stylesheet" href="/static/assets/vendors/flag-icon-css/css/flag-icon.min.css"> -->
   <link rel="stylesheet" href="/static/assets/vendors/jvectormap/jquery-jvectormap.css">
   <!-- End plugin css for this page -->
   <!-- Layout styles -->
@@ -18,18 +18,27 @@
   <!-- End layout styles -->
   <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
 
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   
-  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
   <link rel="stylesheet" type="text/css" href="https://codepen.io/skjha5993/pen/bXqWpR.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 
-  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+<link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+
 
 </head>
 <body>
@@ -55,12 +64,16 @@
             </div>
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="intern">
+                <i class="fa fa-user" aria-hidden="true"></i>
+&nbsp;&nbsp;&nbsp;
                   INTERNS
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="intern">
                 <nav class="mdc-list mdc-drawer-submenu">
+                  
                   <div class="mdc-list-item mdc-drawer-item">
+                    
                     <a class="mdc-drawer-link" href="{% url 'register_intern' %}">
                       REGISTER &nbsp;&nbsp;INTERN
                     </a>
@@ -71,7 +84,7 @@
                     </a>
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="{% url 'interns_attendance' %}">
+                    <a class="mdc-drawer-link" href="{% url 'intern_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
@@ -82,7 +95,9 @@
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trainees">
-                  TRAINEES
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+                &nbsp;&nbsp;&nbsp;
+                TRAINEES
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="trainees">
@@ -98,7 +113,7 @@
                     </a>
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="#">
+                    <a class="mdc-drawer-link" href="{% url 'trainee_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
@@ -108,6 +123,8 @@
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="employee">
+                <i class="fa fa-user-circle"></i>
+                &nbsp;&nbsp;&nbsp;
                  EMPLOYEE
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -137,6 +154,8 @@
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trai">
+                <i class="fa fa-graduation-cap"></i>
+&nbsp;&nbsp;
                  TRAINER
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -163,6 +182,8 @@
            
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="staff">
+                <i class="fa fa-users" style="font-size:16px"></i>&nbsp;&nbsp;&nbsp;
+
                   STAFF
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -189,6 +210,8 @@
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="lead">
+                <i class="fa fa-arrows-alt"></i>
+&nbsp;&nbsp;
                   LEAD
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -204,6 +227,11 @@
                      VIEW&nbsp;&nbsp; LEAD
                     </a>
                   </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="#">
+                      ATTENDANCE
+                    </a>
+                  </div>
                 </nav>
               </div>
             </div>
@@ -215,6 +243,8 @@
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="payroll">
+                <i class="fa fa-rupee"></i>
+                &nbsp;&nbsp;
                    PAYROLL
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
@@ -258,10 +288,11 @@
             <div class="menu-button-container menu-profile d-none d-md-block">
               <button class="mdc-button mdc-menu-button">
                 <span class="d-flex align-items-center">
+                 <span   class="user-name">Log Out</span>
                   <span class="figure">
-                    {% comment %} <img src="/static/assets/images/faces/face1.jpg" alt="user" class="user"> {% endcomment %}
+                  <img src="/static/assets/images/download.jpeg" alt="user" class="user">
                   </span>
-                  <span class="user-name">Log Out</span>
+                 
                 </span>
               </button>
               <div class="mdc-menu mdc-menu-surface" tabindex="-1">
