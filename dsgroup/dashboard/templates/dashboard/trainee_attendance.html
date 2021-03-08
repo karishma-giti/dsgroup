@@ -66,6 +66,7 @@
   <div class='alert alert-danger' style="display: none;"><strong>Error !</strong> Student Roll Missing !</div>
       <div class="card">
         <div class="card-header">
+          <h2 name="total">Total Present:{{total_present}}</h2>
           <h2>
             <a class="btn btn-success" href="{% url 'register_trainees' %}">Add Trainee</a>
             <a class="btn btn-info float-right" href="{% url 'trainee_attendance_date' %}">View All</a>

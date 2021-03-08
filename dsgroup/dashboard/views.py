@@ -140,7 +140,8 @@ def intern_attendance(request):
     else:
         data = Intern.objects.all()
         print(data)
-        return render(request,"dashboard/intern_attendance.html",{'data':data,'dat':dat})
+        total_present = InternAttendance.objects.filter(date=dat,attendance='present').count()
+        return render(request,"dashboard/intern_attendance.html",{'data':data,'dat':dat,'total_present':total_present})
 
 
 @login_required(login_url='/')
@@ -434,7 +435,8 @@ def trainee_attendance(request):
         data = Trainee.objects.all()
         dat = date.today().strftime("%d-%m-%Y")
         print(data)
-        return render(request,"dashboard/trainee_attendance.html",{'data':data,'dat':dat})
+        total_present = TraineeAttendance.objects.filter(date=dat,attendance='present').count()
+        return render(request,"dashboard/trainee_attendance.html",{'data':data,'dat':dat,'total_present':total_present})
 
 
 def trainee_attendance_date(request):
@@ -589,7 +591,8 @@ def emp_attendance(request):
         data = Employee.objects.all()
         dat = date.today().strftime("%d-%m-%Y")
         print(data)
-        return render(request,"dashboard/emp_attendance.html",{'data':data,'dat':dat})
+        total_present = EmployeeAttendance.objects.filter(date=dat,attendance='present').count()
+        return render(request,"dashboard/emp_attendance.html",{'data':data,'dat':dat,'total_present':total_present})
 
 
 @login_required(login_url='/')
@@ -938,11 +941,11 @@ def trainer_attendance(request):
         print(request.POST)
         date_exist = TrainerAttendance.objects.filter(date=request.POST.get('todays_date')).count()
         print(date_exist)
-        if date_exist >0:
+        if date_exist>0:
             
             return HttpResponseRedirect('/dashboard/trainer_attendance')
         else:
-            print("helllllllllllllllllllllo")
+        
             name_list=request.POST.getlist('trainer_name')
             attendance = request.POST.getlist('attendance')
             print(len(attendance))
@@ -957,7 +960,9 @@ def trainer_attendance(request):
         data = Trainer.objects.all()
         dat = date.today().strftime("%d-%m-%Y")
         print(data)
-        return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat})
+        total_present = TrainerAttendance.objects.filter(date=dat,attendance='present').count()
+
+        return render(request,"dashboard/trainer_attendance.html",{'data':data,'dat':dat,'total_present':total_present})
 
 
 @login_required(login_url='/')
@@ -1132,7 +1137,8 @@ def staff_attendance(request):
         data = Staff.objects.all()
         dat = date.today().strftime("%d-%m-%Y")
         print(data)
-        return render(request,"dashboard/staff_attendance.html",{'data':data,'dat':dat})
+        total_present = StaffAttendance.objects.filter(date=dat,attendance='present').count()
+        return render(request,"dashboard/staff_attendance.html",{'data':data,'dat':dat,'total_present':total_present})
 
 
 @login_required(login_url='/')
