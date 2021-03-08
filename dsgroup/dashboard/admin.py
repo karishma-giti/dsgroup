@@ -29,8 +29,8 @@ admin.site.register(EmployeeAttendance)
 from .models import TrainerAttendance
 admin.site.register(TrainerAttendance)
 
-from .models import staffAttendance
-admin.site.register(staffAttendance)
+from .models import StaffAttendance
+admin.site.register(StaffAttendance)
 
 from .models import Payroll
 admin.site.register(Payroll)

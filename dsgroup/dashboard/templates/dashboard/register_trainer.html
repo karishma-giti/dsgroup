@@ -24,26 +24,26 @@
         <div class="row">
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" class="form-control" name="trainer_name" id="trainer_name" placeholder="Trainer Name">
+            <input type="text"  required style="text-transform: capitalize;" class="form-control" name="trainer_name" id="trainer_name" placeholder="Trainer Name">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email" onfocusout="ValidateEmail()">
+            <input type="email"  required class="form-control" name="email" id="email" placeholder="Email" onfocusout="ValidateEmail()">
             <span id="email_error"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"   requiredclass="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
              <span id="messages"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number"  onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"  required class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number"  onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           <span id="msg"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-          <input type="text" class="form-control" style="text-transform: uppercase;"name="pan_card" id="pan_card"  onfocusout="PanCardValidation()"  placeholder="Pan Card">
+          <input type="text"  required class="form-control" style="text-transform: uppercase;"name="pan_card" id="pan_card"  onfocusout="PanCardValidation()"  placeholder="Pan Card">
            <span id="msgs"></span>
           </div>
           <div class="col-sm-4 form-group">
@@ -69,20 +69,20 @@
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
+            <input type="text"  required style="text-transform: capitalize;" name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
+            <input type="text"  required style="text-transform: capitalize;" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" name="father_no" class="form-control" id="father_no"  onfocusout="ValidateNum()" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"  required name="father_no" class="form-control" id="father_no"  onfocusout="ValidateNum()" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           <span id="message"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="city" class="form-control" id="city" placeholder="City">
+            <input type="text"  required style="text-transform: capitalize;" name="city" class="form-control" id="city" placeholder="City">
           </div>
           <div class="col-sm-4 form-group">
           <select class="form-control" name="state">
@@ -120,25 +120,25 @@
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"  required name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           </div>
           <div class="col-sm-8 form-group">
 
-            <input type="text"  style="text-transform: capitalize;" name="address" class="form-control" id="address" placeholder="Address">
+            <input type="text"  required  style="text-transform: capitalize;" name="address" class="form-control" id="address" placeholder="Address">
           </div>
           
           <div class="col-sm-4 form-group">
             <label for="Date">Trainer's Profile</label>
-            <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile">
+            <input type="file"  required class="form-control" name="profile" id="profile" placeholder="Profile">
           </div>
 
           <div class="col-sm-4 form-group">
             <label for="Date">Date Of Birth</label>
-            <input type="Date" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
+            <input type="Date"  required name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
           </div>
           <div class="col-sm-4 form-group">
             <label for="pass2">Join Date</label>
-            <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date">
+            <input type="date"  required name="join_date" class="form-control" id="join_date" placeholder="Join Date">
           </div>
           <div class="col-sm-4 form-group">
         <label for="Date">Documents Zip</label>
@@ -264,7 +264,7 @@
         $(document).ready(function() {
           var i = 1;
           $("#add_row").click(function() {
-            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input style='text-transform: capitalize;' name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><select class='form-control' name='position[]'><option value='' selected>Position</option><option value='Beginners'>Beginners</option><option value='Intermediate'>Intermediate</option><option value='Expert'>Expert</option></select></select></td><td><input  style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
+            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input style='text-transform: capitalize;' name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><select class='form-control' name='position[]'><option value='' selected>Position</option><option value='Beginners'>Beginners</option><option value='Intermediate'>Intermediate</option><option value='Expert'>Expert</option></select></td><td><input  style='text-transform: capitalize;' name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
             $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
             i++;
           });

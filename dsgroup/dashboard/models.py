@@ -84,37 +84,38 @@ class Intern(models.Model):
     join_date = models.CharField(max_length=100)
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
-    passing_year = models.IntegerField(blank=True,null=True) 
+    passing_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     document_zip = models.FileField(upload_to='media/',blank=True,null=True) 
 
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
-    high_school_passing_year =models.IntegerField(blank=True,null=True) 
+    high_school_passing_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
-    graduation_year =models.IntegerField(blank=True,null=True) 
+    graduation_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     
     post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
     post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
-    post_graduation_year = models.IntegerField(blank=True,null=True) 
+    post_graduation_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
     other_degree = models.CharField(max_length=100,blank=True,null=True)
-    other_year = models.IntegerField(blank=True,null=True)  
+    other_year =models.CharField(max_length=4,blank=True,null=True,default=True)
         
     def __str__(self): 
          return self.intern_name
 
 class InternAttendance(models.Model):
     intern_name= models.ForeignKey('Intern',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100, default='absent') 
+    attendance = models.CharField(max_length=100) 
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
         return str(self.intern_name)
+
 
 
 
@@ -143,25 +144,25 @@ class Trainer(models.Model):
 
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
-    passing_year = models.IntegerField(blank=True,null=True) 
+    passing_year = models.CharField(max_length=4,blank=True,null=True,default=True)
     
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
-    high_school_passing_year =models.IntegerField(blank=True,null=True) 
+    high_school_passing_year =models.CharField(max_length=4,blank=True,null=True,default=True)
     
 
     graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
-    graduation_year =models.IntegerField(blank=True,null=True) 
+    graduation_year =models.CharField(max_length=4,blank=True,null=True,default=True)
 
     post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     post_graduation_degree = models.CharField(max_length=100,blank=True,null=True)
-    post_graduation_year = models.IntegerField(blank=True,null=True) 
+    post_graduation_year =models.CharField(max_length=4,blank=True,null=True,default=True)
     
     
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
     other_degree = models.CharField(max_length=100,blank=True,null=True)
-    other_year = models.IntegerField(blank=True,null=True) 
+    other_year =models.CharField(max_length=4,blank=True,null=True,default=True)
     
 
     skill = models.CharField(max_length=100,blank=True,null=True)
@@ -179,12 +180,12 @@ class Trainer(models.Model):
     living_date =  models.CharField(max_length=100) 
 
     def __str__(self): 
-        return "Trainer_name"
+        return str(self.trainer_name)
 
 
 class TrainerAttendance(models.Model):
     trainer_name= models.ForeignKey('Trainer',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100) 
+    attendance = models.CharField(max_length=100, default='absent') 
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
@@ -216,23 +217,23 @@ class Trainee(models.Model):
 
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
-    passing_year = models.IntegerField() 
+    passing_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
-    high_school_passing_year =models.IntegerField(blank=True,null=True) 
+    high_school_passing_year =models.CharField(max_length=4,blank=True,null=True,default=True)
 
     graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
-    graduation_year =models.IntegerField(blank=True,null=True) 
+    graduation_year =models.CharField(max_length=4,blank=True,null=True,default=True)
 
     post_graduation_degree = models.CharField(max_length=100,blank=True,null=True)
     post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
-    post_graduation_year = models.IntegerField(blank=True,null=True) 
+    post_graduation_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     other_degree = models.CharField(max_length=100,blank=True,null=True)
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
-    other_year = models.IntegerField(blank=True,null=True) 
+    other_year =models.CharField(max_length=4,blank=True,null=True,default=True)
  
 
     def __str__(self): 
@@ -273,25 +274,25 @@ class Employee(models.Model):
     
     school_name = models.CharField(max_length=100,blank=True,null=True)
     board = models.CharField(max_length=100,blank=True,null=True)
-    passing_year = models.IntegerField(blank=True,null=True,default=True) 
+    passing_year =models.CharField(max_length=4,blank=True,null=True,default=True)
 
     high_school_name = models.CharField(max_length=100,blank=True,null=True,default=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True,default=True)
-    high_school_passing_year =models.IntegerField(blank=True,null=True,default=True) 
+    high_school_passing_year =models.CharField(max_length=4,blank=True,null=True,default=True)
     
  
     graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
     graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
-    graduation_year =models.IntegerField(blank=True,null=True,default=True) 
+    graduation_year =models.CharField(max_length=4,blank=True,null=True,default=True)
     
     post_graduation_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
     post_graduation_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
-    post_graduation_year = models.IntegerField(blank=True,null=True,default=True) 
+    post_graduation_year =models.CharField(max_length=4,blank=True,null=True,default=True)
 
      
     other_degree = models.CharField(max_length=100,blank=True,null=True,default=True)
     other_univercity = models.CharField(max_length=100,blank=True,null=True,default=True)
-    other_year = models.IntegerField(blank=True,null=True,default=True) 
+    other_year = models.CharField(max_length=4,blank=True,null=True,default=True)
 
     skill = models.CharField(max_length=100,blank=True,null=True,default=True)
     position = models.CharField(max_length=100, choices=position,null=True)  
@@ -315,7 +316,7 @@ class Employee(models.Model):
 class EmployeeAttendance(models.Model):
     emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE,default=True)
     attendance = models.CharField(max_length=100) 
-    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
         return str(self.emp_name)
@@ -325,14 +326,14 @@ class EmployeeAttendance(models.Model):
 class Payroll(models.Model):
     emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE)
     salary = models.IntegerField() 
-    tds =  models.IntegerField() 
+    tds =  models.CharField(max_length=100) 
     basic = models.IntegerField() 
     pf = models.IntegerField()   
     da =  models.IntegerField()   
     prof_tax =  models.IntegerField() 
     hra =  models.IntegerField() 
     ta = models.IntegerField() 
-    deductions =  models.IntegerField()  
+    deductions =  models.CharField(max_length=100)  
     medical_allowance =  models.IntegerField() 
     other = models.IntegerField() 
     net_salary =  models.IntegerField()  
@@ -357,16 +358,17 @@ class Staff(models.Model):
     join_date = models.CharField(max_length=100)
     
     def __str__(self): 
-        return "staff_name"
+        return str(self.staff_name)
 
 
-class staffAttendance(models.Model):
+class StaffAttendance(models.Model):
     staff_name= models.ForeignKey('Staff',on_delete=models.CASCADE,default=True)
     attendance = models.CharField(max_length=100) 
-    date=models.CharField(max_length=100,default=date.today().strftime("%d/%m/%Y"), blank=True) 
+    date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
         return str(self.staff_name)
+
 
 # ######################################lead#####################################################################
 

@@ -25,26 +25,26 @@
         <div class="row">
          <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control" style="text-transform: capitalize;" name="trainer_name" id="trainer_name" placeholder="employee_name" value="{{edit_trainer.trainer_name}}">
+            <input type="text"  required class="form-control" style="text-transform: capitalize;" name="trainer_name" id="trainer_name" placeholder="employee_name" value="{{edit_trainer.trainer_name}}">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_trainer.email}}" onfocusout="ValidateEmail()">
+            <input type="email"  required class="form-control" name="email" id="email" placeholder="Email" value="{{edit_trainer.email}}" onfocusout="ValidateEmail()">
             <span id="email_error"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainer.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"  required class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainer.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
              <span id="messages"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainer.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+            <input type="text"  required class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainer.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
           <span id="msg"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" class="form-control"style="text-transform: uppercase;" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainer.pan_card}}" onfocusout="PanCardValidation()" >
+            <input type="text" required class="form-control"style="text-transform: uppercase;" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainer.pan_card}}" onfocusout="PanCardValidation()" >
             <span id="msgs"></span>
           </div>
           <div class="col-sm-4 form-group">
@@ -108,28 +108,28 @@
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="father_name" class="form-control" id="father_name" placeholder="Father's Name" value="{{edit_trainer.father_name}}">
+            <input type="text"  required style="text-transform: capitalize;" name="father_name" class="form-control" id="father_name" placeholder="Father's Name" value="{{edit_trainer.father_name}}">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation" value="{{edit_trainer.father_occupation}}">
+            <input type="text"  required style="text-transform: capitalize;" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation" value="{{edit_trainer.father_occupation}}">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text"  name="father_no" class="form-control" id="father_no" placeholder="Father's Number" onfocusout="ValidateNum()" value="{{edit_trainer.father_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"  required  name="father_no" class="form-control" id="father_no" placeholder="Father's Number" onfocusout="ValidateNum()" value="{{edit_trainer.father_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             <span id="message"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_trainer.pin_code}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text"  required name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_trainer.pin_code}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="address" class="form-control" id="address" placeholder="Address" value="{{edit_trainer.address}}">
+            <input type="text"  required style="text-transform: capitalize;" name="address" class="form-control" id="address" placeholder="Address" value="{{edit_trainer.address}}">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" style="text-transform: capitalize;" name="city" class="form-control" id="city" placeholder="City" value="{{edit_trainer.city}}">
+            <input type="text"  required style="text-transform: capitalize;" name="city" class="form-control" id="city" placeholder="City" value="{{edit_trainer.city}}">
           </div>
           <div class="col-sm-4 form-group">
            <select class="form-control" name="state" value="{{edit_trainer.state}}">
@@ -310,12 +310,12 @@
           </div>
           <div class="col-sm-4 form-group">
             <label for="Date">Employee Profile</label>
-            <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_trainer.profile}}">
+            <input type="file"   requiredclass="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_trainer.profile}}">
           </div>
 
           <div class="col-sm-4 form-group">
             <label for="Date">Date Of Birth</label>
-            <input type="text" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_trainer.date_of_birth|date:'Y-m-d'}}">
+            <input type="text"  required name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_trainer.date_of_birth|date:'Y-m-d'}}">
           </div>
           <div class="col-sm-4 form-group">
             <label for="pass2">Join Date</label>

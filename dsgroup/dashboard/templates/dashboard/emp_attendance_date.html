@@ -21,10 +21,10 @@
               {% for d in data %}
               
               <tr>
-                <td>{{d.id}}</td>
-                <td>{{d.date}}</td>
-                <td>
-                <a class="btn btn-primary" href="{% url 'emp_attendance_edit' d.id %}">View</a>
+                <td style="text-align:left">{{forloop.counter}}</td>
+                <td style="text-align:left">{{d.date}}</td>
+                <td style="text-align:left">
+                  <a class="btn btn-primary" href='/dashboard/emp_attendance_edit/{{d.date}}'>View</a>
                 </td>
               </tr>
               {% endfor %}
