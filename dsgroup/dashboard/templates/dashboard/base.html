@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,38 +19,35 @@
   <!-- End layout styles -->
   <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
 
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  
-   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://codepen.io/skjha5993/pen/bXqWpR.css">
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-<link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
-
-
+  <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+<script src="sweetalert2/dist/sweetalert2.min.js"></script>
 
 </head>
+
 <body>
-<script src="/static/assets/js/preloader.js"></script>
+  <script src="/static/assets/js/preloader.js"></script>
   <div class="body-wrapper">
     <!-- partial:partials/_sidebar.html -->
     {% block sidebar %}
     <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
       <div class="mdc-drawer__header">
         <a href="#">
-          
+
           <h3 style="color:white;">Digital Spirit</h3>
         </a>
       </div>
@@ -65,15 +63,15 @@
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="intern">
                 <i class="fa fa-user" aria-hidden="true"></i>
-&nbsp;&nbsp;&nbsp;
-                  INTERNS
+                &nbsp;&nbsp;&nbsp;
+                INTERNS
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="intern">
                 <nav class="mdc-list mdc-drawer-submenu">
-                  
+
                   <div class="mdc-list-item mdc-drawer-item">
-                    
+
                     <a class="mdc-drawer-link" href="{% url 'register_intern' %}">
                       REGISTER &nbsp;&nbsp;INTERN
                     </a>
@@ -91,7 +89,6 @@
                 </nav>
               </div>
             </div>
-            
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trainees">
@@ -125,7 +122,7 @@
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="employee">
                 <i class="fa fa-user-circle"></i>
                 &nbsp;&nbsp;&nbsp;
-                 EMPLOYEE
+                EMPLOYEE
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="employee">
@@ -149,14 +146,11 @@
               </div>
             </div>
 
-
-           
-
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trai">
                 <i class="fa fa-graduation-cap"></i>
-&nbsp;&nbsp;
-                 TRAINER
+                &nbsp;&nbsp;
+                TRAINER
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="trai">
@@ -179,12 +173,12 @@
                 </nav>
               </div>
             </div>
-           
+
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="staff">
                 <i class="fa fa-users" style="font-size:16px"></i>&nbsp;&nbsp;&nbsp;
 
-                  STAFF
+                STAFF
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="staff">
@@ -196,7 +190,7 @@
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_staff' %}">
-                     VIEW&nbsp;&nbsp; STAFF
+                      VIEW&nbsp;&nbsp; STAFF
                     </a>
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
@@ -211,8 +205,8 @@
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="lead">
                 <i class="fa fa-arrows-alt"></i>
-&nbsp;&nbsp;
-                  LEAD
+                &nbsp;&nbsp;
+                LEAD
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="lead">
@@ -224,46 +218,42 @@
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_lead' %}">
-                     VIEW&nbsp;&nbsp; LEAD
+                      VIEW&nbsp;&nbsp; LEAD
                     </a>
                   </div>
-                  
+
                 </nav>
               </div>
             </div>
 
-
-           
             {% if perms.dashboard.add_payroll %}
-
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="payroll">
                 <i class="fa fa-rupee"></i>
                 &nbsp;&nbsp;
-                   PAYROLL
+                PAYROLL
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
               <div class="mdc-expansion-panel" id="payroll">
                 <nav class="mdc-list mdc-drawer-submenu">
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'add_salary' %}">
-                    ADD&nbsp;&nbsp; SALARY
+                      ADD&nbsp;&nbsp; SALARY
                     </a>
                   </div>
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_salary' %}">
-                     VIEW &nbsp;&nbsp;SALARY
+                      VIEW &nbsp;&nbsp;SALARY
                     </a>
                   </div>
                 </nav>
               </div>
             </div>
-        {% endif %}
+            {% endif %}
           </nav>
         </div>
-        
-        
+
       </div>
     </aside>
     {% endblock sidebar %}
@@ -273,37 +263,29 @@
       {% block header %}
       <header class="mdc-top-app-bar">
         <div class="mdc-top-app-bar__row">
-        
+
           <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-          {% comment %} <img src="/static/assets/images/Digital Spirit(makeITeasy).png" alt="logo">&nbsp; &nbsp;&nbsp;&nbsp; {% endcomment %}
+            {% comment %} <img src="/static/assets/images/Digital Spirit(makeITeasy).png" alt="logo">&nbsp; &nbsp;&nbsp;&nbsp; {% endcomment %}
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
             <span class="mdc-top-app-bar__title">Dashboard</span>
-            
+
           </div>
           <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section-right">
             <div class="menu-button-container menu-profile d-none d-md-block">
               <button class="mdc-button mdc-menu-button">
                 <span class="d-flex align-items-center">
-                 <span   class="user-name">Log Out</span>
+                  <span class="user-name">Log Out</span>
                   <span class="figure">
-                  <img src="/static/assets/images/download.jpeg" alt="user" class="user">
+                    <img src="/static/assets/images/download.jpeg" alt="user" class="user">
                   </span>
-                 
+
                 </span>
               </button>
               <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                 <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                  {% comment %} <li class="mdc-list-item" role="menuitem">
-                    <div class="item-thumbnail item-thumbnail-icon-only">
-                      <i class="mdi mdi-account-edit-outline text-primary"></i>
-                    </div>
-                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                      <h6 class="item-subject font-weight-normal">Edit profile</h6>
-                    </div>
-                  </li> {% endcomment %}
                   <li class="mdc-list-item" role="menuitem">
                     <div class="item-thumbnail item-thumbnail-icon-only">
-                      <i class="mdi mdi-settings-outline text-primary"></i>                      
+                      <i class="mdi mdi-settings-outline text-primary"></i>
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
                       <a href="{% url 'user_logout' %}" class="item-subject font-weight-normal">Logout</a>
@@ -331,7 +313,7 @@
                   </li>
                   <li class="mdc-list-item" role="menuitem">
                     <div class="item-thumbnail item-thumbnail-icon">
-                      <i class="mdi mdi-account-outline"></i>                      
+                      <i class="mdi mdi-account-outline"></i>
                     </div>
                     <div class="item-content d-flex align-items-start flex-column justify-content-center">
                       <h6 class="item-subject font-weight-normal">New user registered</h6>
@@ -346,7 +328,7 @@
                       <h6 class="item-subject font-weight-normal">System Alert</h6>
                       <small class="text-muted"> 2 days ago </small>
                     </div>
-                  </li> 
+                  </li>
                   <li class="mdc-list-item" role="menuitem">
                     <div class="item-thumbnail item-thumbnail-icon">
                       <i class="mdi mdi-update"></i>
@@ -355,7 +337,7 @@
                       <h6 class="item-subject font-weight-normal">You have a new update</h6>
                       <small class="text-muted"> 3 days ago </small>
                     </div>
-                  </li> 
+                  </li>
                 </ul>
               </div>
             </div>
@@ -364,18 +346,18 @@
       </header>
       {% endblock header %}
       <!-- partial -->
-       {% block contain %}
+      {% block contain %}
       <div class="page-wrapper mdc-toolbar-fixed-adjust">
         {% block maincontain %}
 
         {% endblock maincontain %}
         <!-- partial -->
       </div>
-      
+
       {% endblock contain %}
-      
+
     </div>
-    
+
   </div>
   <!-- plugins:js -->
   <script src="/static/assets/vendors/js/vendor.bundle.base.js"></script>
@@ -393,4 +375,5 @@
   <script src="/static/assets/js/dashboard.js"></script>
   <!-- End custom js for this page-->
 </body>
-</html> 
+
+</html>

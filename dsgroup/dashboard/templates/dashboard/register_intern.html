@@ -9,6 +9,10 @@
   body {
     background: ;
   }
+  input{
+    text-transform: capitalize; 
+    }
+   #email,#emails,#date_of_birth,#join_date{ text-transform: lowercase;}
 </style>
 
 <div class="container">
@@ -19,22 +23,22 @@
     <div class="row jumbotron">
 
       <div class="col-sm-4 form-group">
-        <input type="text"  required class="form-control" style="text-transform: capitalize;" name="intern_name" id="intern_name" placeholder="Intern Name">
+        <input type="text" required class="form-control" name="intern_name" id="intern_name" placeholder="Intern Name">
       </div>
       <div class="col-sm-4 form-group">
-        <input type="email"  required class="form-control" name="email" id="email" placeholder="Email" onfocusout="ValidateEmail()">
+        <input type="email" required class="form-control" name="email" id="email" placeholder="Email" onfocusout="ValidateEmail()">
         <span id="email_error"></span>
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+        <input type="text" required class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
         <span id="messages"></span>
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required class="form-control" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhar Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <input type="text" required class="form-control" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhar Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
         <span id="msg"></span>
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required class="form-control" style="text-transform: uppercase;" name="pan_card"  onfocusout="PanCardValidation()" id="pan_card" placeholder="Pan Card">
+        <input type="text" required style="text-transform: uppercase;" class="form-control" name="pan_card" onfocusout="PanCardValidation()" id="pan_card" placeholder="Pan Card">
         <span id="msgs"></span>
       </div>
       <div class="col-sm-4 form-group">
@@ -59,21 +63,21 @@
         </select>
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required name="father_name" style="text-transform: capitalize;" class="form-control" id="father_name" placeholder="Father's Name">
-      
+        <input type="text" required name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
+
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required name="father_occupation" style="text-transform: capitalize;" class="form-control" id="father_occupation" placeholder="Father's Occupation">
+        <input type="text" required name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required name="father_no" onfocusout="ValidateNum()" class="form-control" id="father_no" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
-      <span id="message"></span>
+        <input type="text" required name="father_no" onfocusout="ValidateNum()" class="form-control" id="father_no" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <span id="message"></span>
       </div>
       <div class="col-sm-4 form-group">
-        <input type="text"  required name="city" style="text-transform: capitalize;" class="form-control" id="city" placeholder="City">
+        <input type="text" required name="city" class="form-control" id="city" placeholder="City">
       </div>
       <div class="col-sm-4 form-group">
-      <select class="form-control" name="state">
+        <select class="form-control" name="state">
           <option value="" selected>State</option>
           <option value="Andhra Pradesh">Andhra Pradesh</option>
           <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -108,22 +112,22 @@
       </div>
 
       <div class="col-sm-4 form-group">
-        <input type="text"  required name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+        <input type="text" required name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
       </div>
       <div class="col-sm-8 form-group">
-        <input type="text"  required name="address" style="text-transform: capitalize;" class="form-control" id="address" placeholder="Address">
+        <input type="text" required name="address" class="form-control" id="address" placeholder="Address">
       </div>
       <div class="col-sm-4 form-group">
         <label for="name-l">Intern's Profile</label>
-        <input type="file"   required class="form-control" name="profile" id="profile" placeholder="Profile">
+        <input type="file" required class="form-control" name="profile" id="profile" placeholder="Profile">
       </div>
       <div class="col-sm-4 form-group">
         <label for="Date">Date Of Birth</label>
-        <input type="Date"  required name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
+        <input type="Date" required name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
       </div>
       <div class="col-sm-4 form-group">
         <label for="pass2">Join Date</label>
-        <input type="date"  required name="join_date" class="form-control" id="join_date" placeholder="Join Date">
+        <input type="date" required name="join_date" class="form-control" id="join_date" placeholder="Join Date">
       </div>
       <div class="col-sm-4 form-group">
         <label for="Date">Documents Zip</label>
@@ -135,15 +139,15 @@
     <div class="row">
       <div class="col-sm-6 form-group">
         <h6>School</h6></br>
-        <input type="text" style="text-transform: capitalize;" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
-        <input type="text" name="board" style="text-transform: capitalize;" class="form-control" id="board" placeholder="Board"></br>
+        <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
+        <input type="text" name="board" class="form-control" id="board" placeholder="Board"></br>
         <input type="text" maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
       </div>
       <div class="col-sm-6 form-group">
         <h6>High School</h6></br>
-        <input type="text" style="text-transform: capitalize;" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
-        <input type="text" style="text-transform: capitalize;" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
-        <input type="text"maxlength="4" size="4" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
+        <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
+        <input type="text" maxlength="4" size="4" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
       </div>
     </div></br></br></br>
 
@@ -151,21 +155,21 @@
 
       <div class="col-sm-4 form-group">
         <h6>Graduation Details</h6></br>
-        <input type="text" style="text-transform: capitalize;" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
-        <input type="text" style="text-transform: capitalize;" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
-        <input type="text" maxlength="4" size="4"name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity"></br>
+        <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree"></br>
+        <input type="text" maxlength="4" size="4" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
       </div>
       <div class="col-sm-4 form-group">
         <h6>Post Graduation Details</h6></br>
-        <input type="text" style="text-transform: capitalize;" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
-        <input type="text" style="text-transform: capitalize;" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
-        <input type="text" maxlength="4" size="4"name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
+        <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
+        <input type="text" maxlength="4" size="4" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
       </div>
       <div class="col-sm-4 form-group">
         <h6>Other Degree/Chartification</h6></br>
-        <input type="text" style="text-transform: capitalize;" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
-        <input type="text" style="text-transform: capitalize;" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
-        <input type="text"maxlength="4" size="4" name="other_year" class="form-control" id="other_year" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
+        <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
+        <input type="text" maxlength="4" size="4" name="other_year" class="form-control" id="other_year" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
       </div>
 
     </div>
@@ -173,169 +177,106 @@
     <div class="col-sm-12 form-group mb-0">
       <button class="btn btn-primary float-right">Submit</button> </br> </br> </br>
     </div>
-
+  </form>
 </div>
-</form>
+
 
 <script>
-  function ValidateEmail() 
-{ 
-  
-
+  function ValidateEmail() {
     var email = document.getElementById('email');
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var message = document.getElementById('email_error');
     var badColor = "#FF0000";
-    if(!email.value=='')
-    {
-
-
-    if (!filter.test(email.value)) {
-      message.style.color = badColor;
-      message.innerHTML = "Please enter a valid email address"
-      return false;
-	}
-  else
-  {
-     message.innerHTML = ""
+    if (!email.value == '') {
+      if (!filter.test(email.value)) {
+        message.style.color = badColor;
+        message.innerHTML = "Please enter a valid email address"
+        return false;
+      } else {
+        message.innerHTML = ""
         return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
+    }
   }
 
-}
-else
-  {
-     message.innerHTML = ""
-        return true;
-  }
-
-}
-
-function ValidateNumber()
-{
-
+  function ValidateNumber() {
     var mobile = document.getElementById('phone_no');
-   
-    
     var message = document.getElementById('messages');
     var badColor = "#FF0000";
-    if(!mobile.value=='')
-    {
-
-  
-    if(mobile.value.length!=10){
+    if (!mobile.value == '') {
+      if (mobile.value.length != 10) {
         message.style.color = badColor;
         message.innerHTML = "Please enter 10 digits!"
         return false;
-    }
-    else
-    {
-       message.innerHTML = ""
+      } else {
+        message.innerHTML = ""
         return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
     }
   }
-else
-    {
-       message.innerHTML = ""
-        return true;
-    }
 
-}
-
-function ValidateNum()
-{
-
+  function ValidateNum() {
     var mobile = document.getElementById('father_no');
-   
-    
     var message = document.getElementById('message');
     var badColor = "#FF0000";
-    if(!mobile.value=='')
-    {
-
-  
-    if(mobile.value.length!=10){
+    if (!mobile.value == '') {
+      if (mobile.value.length != 10) {
         message.style.color = badColor;
         message.innerHTML = "Please enter 10 digits!"
         return false;
-    }
-    else
-    {
-       message.innerHTML = ""
+      } else {
+        message.innerHTML = ""
         return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
     }
   }
-else
-    {
-       message.innerHTML = ""
-        return true;
-    }
 
-}
-
-
-function AdharValidation()
-{
-
+  function AdharValidation() {
     var mobile = document.getElementById('aadhar_no');
-   
-    
     var message = document.getElementById('msg');
     var badColor = "#FF0000";
-    if(!mobile.value=='')
-    {
-
-  
-    if(mobile.value.length!=12){
+    if (!mobile.value == '') {
+      if (mobile.value.length != 12) {
         message.style.color = badColor;
         message.innerHTML = "Please Enter Valid Aadhaar Number!"
         return false;
-    }
-    else
-    {
-       message.innerHTML = ""
+      } else {
+        message.innerHTML = ""
         return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
     }
   }
-else
-    {
-       message.innerHTML = ""
-        return true;
-    }
 
-}
-
-
-function PanCardValidation()
-{
-
+  function PanCardValidation() {
     var mobile = document.getElementById('pan_card');
-   
-    
     var message = document.getElementById('msgs');
     var badColor = "#FF0000";
-    if(!mobile.value=='')
-    {
-
-  
-    if(mobile.value.length!=10){
+    if (!mobile.value == '') {
+      if (mobile.value.length != 10) {
         message.style.color = badColor;
         message.innerHTML = "Please Enter Valid PAN CARD Number!"
         return false;
-    }
-    else
-    {
-       message.innerHTML = ""
+      } else {
+        message.innerHTML = ""
         return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
     }
   }
-else
-    {
-       message.innerHTML = ""
-        return true;
-    }
-
-}
-
 </script>
 
 {% endblock maincontain %}
