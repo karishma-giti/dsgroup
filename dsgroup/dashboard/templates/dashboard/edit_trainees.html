@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-4 form-group">
           <label for="address-2">Phone Number</label>
-          <input type="text" required class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainees.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+          <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainees.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           <span id="messages"></span>
         </div>
         <div class="col-sm-4 form-group">
@@ -330,16 +330,16 @@
       <h3 class="text-center">Educational Details</h3></br></br>
       <div class="row">
         <div class="col-sm-6 form-group">
-          <h5>School</h5></br>
-          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" value="{{edit_trainees.school_name}}"></br>
+          <h5>High School</h5></br>
+          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="High School" value="{{edit_trainees.school_name}}"></br>
           <label for="pass2">Board</label>
           <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_trainees.board}}"></br>
           <label for="pass2">Passing year</label>
           <input type="text" maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainees.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-6 form-group">
-          <h5>High School</h5></br>
-          <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name" value="{{edit_trainees.high_school_name}}"></br>
+          <h5>Higher Secondary School</h5></br>
+          <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="Higher Secondary School" value="{{edit_trainees.high_school_name}}"></br>
           <label for="pass2">Board</label>
           <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_trainees.high_school_board}}"></br>
           <label for="pass2">Passing year</label>
