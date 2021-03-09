@@ -1149,7 +1149,9 @@ def register_lead(request):
         regarding=request.POST['regarding']
         reference=request.POST['reference']
         message=request.POST['message']
-        Insertion=Lead(name=name, email= email,regarding=regarding,reference=reference,message=message)
+        call=request.POST['call']
+        number=request.POST['number']
+        Insertion=Lead(name=name, email= email,regarding=regarding,reference=reference,message=message,call=call,number=number)
         Insertion.save()
         return redirect('/dashboard/view_lead') 
     else:
@@ -1192,6 +1194,8 @@ def manage_lead(request,id):
         lead.regarding = request.POST.get('regarding','')
         lead.reference = request.POST.get('reference','')
         lead.message = request.POST.get('message','')
+        lead.call = request.POST.get('call','')
+        lead.number = request.POST.get('number','')
         lead.save()
     return redirect('/dashboard/view_lead/')
 

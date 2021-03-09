@@ -24,8 +24,7 @@ input{
                   {% csrf_token %}
                   <h1 style="font-size: 25px;text-align: center;">Lead Details</h1>
                   <!-- <h2 class="text-center">LIC Form</h2> -->
-                  <div class="row jumbotron">
-                   <div class="col-sm-6 form-group" style="margin-top: -20px;">
+                  <div class="row jumbotron"> <div class="col-sm-6 form-group" style="margin-top: -20px;">
                       <label for="name">Name :</label>
                       <input type="text" class="form-control" name="name" id="name-f" placeholder=" Full Name." style="font-size:15px;" value="{{lead.name}}"><br>
                     </div>
@@ -34,6 +33,20 @@ input{
                       <label for="email">Email:</label>
                       <input type="email" onfocusout="ValidateEmail()" class="form-control" name="email" id="name-l" placeholder=" Email" style="font-size:15px;" value="{{lead.email}}">
                       <span id="email_error"></span>
+                    </div>
+
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+
+                     
+                      <input type="text" required  class="form-control" name="call" id="call" placeholder=" Calling Number " style="font-size:15px;"value="{{lead.call}}">
+                      
+                    </div>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+
+                      
+                      <input type="text" required  class="form-control" name="number" id="number" placeholder="Whatsapp Number" style="font-size:15px;"value="{{lead.number }}>                    
+}}">
+                    
                     </div>
 
                     <div class="col-sm-6 form-group" style="margin-top: -20px;">
