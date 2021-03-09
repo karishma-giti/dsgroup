@@ -377,7 +377,11 @@ class Lead(models.Model):
     email = models.EmailField(max_length=100) 
     regarding = models.CharField(max_length=100,blank=True,null=True,default=True)
     reference = models.CharField(max_length=100, choices=reference,null=True) 
-    message = models.CharField(max_length=100,blank=True,null=True,default=True)    
+    message = models.CharField(max_length=100,blank=True,null=True,default=True)
+    call = models.CharField(max_length=100,blank=True,null=True,default=True)
+    number = models.CharField(max_length=100,blank=True,null=True,default=True)    
+    
+    
 
     def __str__(self): 
         return str(self.name)

@@ -64,23 +64,35 @@ input{
                   <!-- <h2 class="text-center">LIC Form</h2> -->
                   <div class="row jumbotron">
 
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
-                      <label for="name">Name :</label>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+                     
                       <input type="text" required class="form-control" name="name" id="name-f" placeholder=" Full Name." style="font-size:15px;"><br>
                     </div>
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
 
-                      <label for="email">Email:</label>
+                     
                       <input type="email" required onfocusout="ValidateEmail()" class="form-control" name="email" id="email" placeholder=" Email" style="font-size:15px;">
                       <span id="email_error"></span>
                     </div>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
 
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
-                      <label for="Date">Regarding:</label>
+                     
+                      <input type="text" required  class="form-control" name="call" id="call" placeholder=" Calling Number " style="font-size:15px;">
+                      
+                    </div>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+
+                      
+                      <input type="text" required  class="form-control" name="number" id="number" placeholder="Whatsapp Number" style="font-size:15px;">
+                    
+                    </div>
+                    
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+                      
                       <input type="text" required name="regarding" class="form-control" id="regarding" placeholder=" Regarding" style="font-size:15px;">
                     </div>
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
-                      <label for="bname">Reference</label>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+                     
                       <select input type="text" class="form-control" name="reference" id="reference" placeholder=" Reference " style="font-size:15px;">
                         <option value=""></option>
                         <option value="facebook">Facebook</option>
@@ -88,11 +100,11 @@ input{
                         <option value="linkain">Linkain</option>
                         <option value="twitter">Twitter</option>
                         <option value="other">Other</option>
-                        <option value="people">Through people</option>
+                        <option value="people">Reference people</option>
                       </select>
                     </div>
-                    <div class="col-sm-6 form-group">
-                      <label for="cost_center"> Message:</label>
+                    <div class="col-sm-12 form-group">
+                     
                       <textarea type="text" required class="form-control" name="message" id="message" placeholder="Message:-" rows="3" style="font-size:15px;"></textarea>
                     </div>
 
